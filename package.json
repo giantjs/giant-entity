@@ -4,8 +4,8 @@
     "description"    : "Entity module for Giant",
     "keywords"       : [
         "document",
-        "cache",
-        "key",
+        "entity",
+        "datastore",
         "in-memory",
         "nosql",
         "evented"
