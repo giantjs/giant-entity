@@ -1,6 +1,6 @@
 {
-    "name"           : "bookworm",
-    "version"        : "0.4.0",
+    "name"           : "giant-entity",
+    "version"        : "0.0.3",
     "description"    : "Document entity framework",
     "keywords"       : [
         "document",
@@ -22,7 +22,7 @@
     },
     "repository"     : {
         "type": "git",
-        "url" : "git://github.com/danstocker/bookworm.git"
+        "url" : "git@github.com:giantjs/giant-entity.git"
     },
     "devDependencies": {
         "QUnitAdapter"        : "https://dl.dropboxusercontent.com/u/9258903/packages/QUnitAdapter-0.1.0.tgz",
