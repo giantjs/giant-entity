@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, bookworm */
+/*global giant, giant, giant, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -6,42 +6,42 @@
     module("StringUtils");
 
     test("Safe split", function () {
-        deepEqual(bookworm.StringUtils.safeSplit('foo/bar/baz', '/'), ['foo', 'bar', 'baz'],
+        deepEqual(giant.StringUtils.safeSplit('foo/bar/baz', '/'), ['foo', 'bar', 'baz'],
             "should split clean delimited string");
 
-        deepEqual(bookworm.StringUtils.safeSplit('foo/', '/'), ['foo', ''],
+        deepEqual(giant.StringUtils.safeSplit('foo/', '/'), ['foo', ''],
             "should preserve trailing empty string component");
 
-        deepEqual(bookworm.StringUtils.safeSplit('/foo', '/'), ['', 'foo'],
+        deepEqual(giant.StringUtils.safeSplit('/foo', '/'), ['', 'foo'],
             "should preserve leading empty string component");
 
-        deepEqual(bookworm.StringUtils.safeSplit('foo\\/\\/bar/baz\\\\qux', '/'), ['foo\\/\\/bar', 'baz\\\\qux'],
+        deepEqual(giant.StringUtils.safeSplit('foo\\/\\/bar/baz\\\\qux', '/'), ['foo\\/\\/bar', 'baz\\\\qux'],
             "should split string with escaped delimiters correctly");
     });
 
     test("Escaping", function () {
-        equal(bookworm.StringUtils.escapeChars(undefined, '/'), 'undefined',
+        equal(giant.StringUtils.escapeChars(undefined, '/'), 'undefined',
             "should return 'undefined' for undefined input");
-        equal(bookworm.StringUtils.escapeChars('', '/'), '',
+        equal(giant.StringUtils.escapeChars('', '/'), '',
             "should return empty string for empty string input");
-        equal(bookworm.StringUtils.escapeChars(0, '/'), '0',
+        equal(giant.StringUtils.escapeChars(0, '/'), '0',
             "should return stringified number for numeric input");
 
-        equal(bookworm.StringUtils.escapeChars('foo/bar/baz', '/'), 'foo\\/bar\\/baz',
+        equal(giant.StringUtils.escapeChars('foo/bar/baz', '/'), 'foo\\/bar\\/baz',
             "should return string with specified character escaped");
     });
 
     test("Unescaping", function () {
-        equal(bookworm.StringUtils.unescapeChars(undefined, '/'), 'undefined',
+        equal(giant.StringUtils.unescapeChars(undefined, '/'), 'undefined',
             "should return 'undefined' for undefined input");
-        equal(bookworm.StringUtils.unescapeChars('', '/'), '',
+        equal(giant.StringUtils.unescapeChars('', '/'), '',
             "should return empty string for empty string input");
-        equal(bookworm.StringUtils.unescapeChars(0, '/'), '0',
+        equal(giant.StringUtils.unescapeChars(0, '/'), '0',
             "should return stringified number for numeric input");
 
-        equal(bookworm.StringUtils.unescapeChars('foo\\/bar\\/baz', '/'), 'foo/bar/baz',
+        equal(giant.StringUtils.unescapeChars('foo\\/bar\\/baz', '/'), 'foo/bar/baz',
             "should unescape clean encoded string");
-        equal(bookworm.StringUtils.unescapeChars('foo/bar\\/baz', '/'), 'foo/bar/baz',
+        equal(giant.StringUtils.unescapeChars('foo/bar\\/baz', '/'), 'foo/bar/baz',
             "should discard unescaped versions of the specified characters");
     });
 }());

@@ -1,23 +1,23 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'HandlerSpawner', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'HandlerSpawner', function () {
     "use strict";
 
-    var base = troop.Base,
+    var base = giant.Base,
         self = base.extend();
 
     /**
-     * @name bookworm.HandlerSpawner.create
+     * @name giant.HandlerSpawner.create
      * @function
      * @param {string} [bindingType]
-     * @returns {bookworm.HandlerSpawner}
+     * @returns {giant.HandlerSpawner}
      */
 
     /**
      * @class
-     * @extends troop.Base
+     * @extends giant.Base
      */
-    bookworm.HandlerSpawner = self
-        .addMethods(/** @lends bookworm.HandlerSpawner# */{
+    giant.HandlerSpawner = self
+        .addMethods(/** @lends giant.HandlerSpawner# */{
             /**
              * @param {string} [bindingType]
              * @ignore
@@ -29,9 +29,9 @@ troop.postpone(bookworm, 'HandlerSpawner', function () {
         });
 
     /**
-     * @name bookworm.HandlerSpawner#spawnHandler
+     * @name giant.HandlerSpawner#spawnHandler
      * @function
-     * @param {bookworm.EntityBound} instance
+     * @param {giant.EntityBound} instance
      * @param {string} methodName
      * @returns {Function}
      */

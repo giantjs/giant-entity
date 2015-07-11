@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, bookworm */
+/*global giant, giant, giant, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -6,7 +6,7 @@
     module("ItemKey");
 
     test("Instantiation", function () {
-        var itemKey = bookworm.ItemKey.create('hello', 'world', 'foo', 'bar');
+        var itemKey = giant.ItemKey.create('hello', 'world', 'foo', 'bar');
 
         equal(itemKey.documentKey.documentType, 'hello', "should set document type");
         equal(itemKey.documentKey.documentId, 'world', "should set document ID");
@@ -19,7 +19,7 @@
     test("Conversion from String", function () {
         var itemKey = 'hello/world/foo/bar'.toItemKey();
 
-        ok(itemKey.isA(bookworm.ItemKey), "should return ItemKey instance");
+        ok(itemKey.isA(giant.ItemKey), "should return ItemKey instance");
         equal(itemKey.documentKey.documentType, 'hello', "should set document type");
         equal(itemKey.documentKey.documentId, 'world', "should set document ID");
         equal(itemKey.fieldName, 'foo', "should set field name");
@@ -36,7 +36,7 @@
         var itemKey;
 
         itemKey = ['hello', 'world', 'foo', 'bar'].toItemKey();
-        ok(itemKey.isA(bookworm.ItemKey), "should return ItemKey instance");
+        ok(itemKey.isA(giant.ItemKey), "should return ItemKey instance");
         equal(itemKey.documentKey.documentType, 'hello', "should set document type");
         equal(itemKey.documentKey.documentId, 'world', "should set document ID");
         equal(itemKey.fieldName, 'foo', "should set field name");
@@ -72,7 +72,7 @@
             entityPath = {},
             path;
 
-        bookworm.FieldKey.addMocks({
+        giant.FieldKey.addMocks({
             getEntityPath: function () {
                 strictEqual(this, itemKey, "should get entity key from field key");
                 return fieldEntityPath;
@@ -88,23 +88,23 @@
 
         strictEqual(itemKey.getEntityPath(), entityPath, "should return correct item entity path");
 
-        bookworm.FieldKey.removeMocks();
+        giant.FieldKey.removeMocks();
     });
 
     test("Field key getter", function () {
         var itemKey = ['foo', 'bar', 'hello', 'world'].toItemKey(),
             fieldKey = itemKey.getFieldKey();
 
-        strictEqual(fieldKey.getBase(), bookworm.FieldKey, "should return FieldKey instance (not subclass)");
+        strictEqual(fieldKey.getBase(), giant.FieldKey, "should return FieldKey instance (not subclass)");
         equal(fieldKey.fieldName, 'hello', "should set field name");
         equal(fieldKey.documentKey.documentId, 'bar', "should set document ID");
         equal(fieldKey.documentKey.documentType, 'foo', "should set document type");
     });
 
     test("Conversion to String", function () {
-        equal(bookworm.ItemKey.create('hello', 'world', 'foo', 'bar').toString(), 'hello/world/foo/bar',
+        equal(giant.ItemKey.create('hello', 'world', 'foo', 'bar').toString(), 'hello/world/foo/bar',
             "should return correct item path string");
-        equal(bookworm.ItemKey.create('hello', 'world', 'foo', 'b/ar').toString(), 'hello/world/foo/b\\/ar',
+        equal(giant.ItemKey.create('hello', 'world', 'foo', 'b/ar').toString(), 'hello/world/foo/b\\/ar',
             "should URI encode path contents");
     });
 }());

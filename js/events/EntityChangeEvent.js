@@ -1,28 +1,28 @@
-/*global dessert, troop, sntls, evan, bookworm */
-troop.postpone(bookworm, 'EntityChangeEvent', function () {
+/*global giant, giant, giant, giant, giant */
+giant.postpone(giant, 'EntityChangeEvent', function () {
     "use strict";
 
-    var base = evan.Event,
+    var base = giant.Event,
         self = base.extend();
 
     /**
      * Instantiates class.
-     * @name bookworm.EntityChangeEvent.create
+     * @name giant.EntityChangeEvent.create
      * @param {string} eventName Event name
-     * @param {evan.EventSpace} eventSpace Event space associated with event
+     * @param {giant.EventSpace} eventSpace Event space associated with event
      * @function
-     * @returns {bookworm.EntityChangeEvent}
+     * @returns {giant.EntityChangeEvent}
      */
 
     /**
      * @class
-     * @extends evan.Event
+     * @extends giant.Event
      */
-    bookworm.EntityChangeEvent = self
-        .addMethods(/** @lends bookworm.EntityChangeEvent# */{
+    giant.EntityChangeEvent = self
+        .addMethods(/** @lends giant.EntityChangeEvent# */{
             /**
              * @param {string} eventName
-             * @param {evan.EventSpace} eventSpace
+             * @param {giant.EventSpace} eventSpace
              * @ignore
              */
             init: function (eventName, eventSpace) {
@@ -42,15 +42,15 @@ troop.postpone(bookworm, 'EntityChangeEvent', function () {
 
                 /**
                  * Identifies the node that changed if it is different from the observed key.
-                 * @type {bookworm.EntityKey}
+                 * @type {giant.EntityKey}
                  */
                 this.affectedKey = undefined;
             },
 
             /**
              * Clones entity change event.
-             * @param {sntls.Path} [currentPath]
-             * @returns {evan.Event}
+             * @param {giant.Path} [currentPath]
+             * @returns {giant.Event}
              */
             clone: function (currentPath) {
                 return base.clone.call(this, currentPath)
@@ -61,7 +61,7 @@ troop.postpone(bookworm, 'EntityChangeEvent', function () {
             /**
              * Sets event load before the change.
              * @param {*} value
-             * @returns {bookworm.EntityChangeEvent}
+             * @returns {giant.EntityChangeEvent}
              */
             setBeforeNode: function (value) {
                 this.beforeNode = value;
@@ -71,7 +71,7 @@ troop.postpone(bookworm, 'EntityChangeEvent', function () {
             /**
              * Sets event load after the change.
              * @param {*} value
-             * @returns {bookworm.EntityChangeEvent}
+             * @returns {giant.EntityChangeEvent}
              */
             setAfterNode: function (value) {
                 this.afterNode = value;
@@ -80,8 +80,8 @@ troop.postpone(bookworm, 'EntityChangeEvent', function () {
 
             /**
              * Sets key identifying changed node.
-             * @param {bookworm.EntityKey} affectedKey
-             * @returns {bookworm.EntityChangeEvent}
+             * @param {giant.EntityKey} affectedKey
+             * @returns {giant.EntityChangeEvent}
              */
             setAffectedKey: function (affectedKey) {
                 this.affectedKey = affectedKey;
@@ -108,11 +108,11 @@ troop.postpone(bookworm, 'EntityChangeEvent', function () {
         });
 });
 
-troop.amendPostponed(evan, 'Event', function () {
+giant.amendPostponed(giant, 'Event', function () {
     "use strict";
 
-    evan.Event.addSurrogate(bookworm, 'EntityChangeEvent', function (eventName) {
-        var prefix = 'bookworm.entity.change';
+    giant.Event.addSurrogate(giant, 'EntityChangeEvent', function (eventName) {
+        var prefix = 'giant.entity.change';
         return eventName.substr(0, prefix.length) === prefix;
     });
 });
@@ -120,20 +120,20 @@ troop.amendPostponed(evan, 'Event', function () {
 (function () {
     "use strict";
 
-    dessert.addTypes(/** @lends dessert */{
+    giant.addTypes(/** @lends giant */{
         /**
-         * @param {bookworm.EntityChangeEvent} expr
+         * @param {giant.EntityChangeEvent} expr
          */
         isEntityChangeEvent: function (expr) {
-            return bookworm.EntityChangeEvent.isBaseOf(expr);
+            return giant.EntityChangeEvent.isBaseOf(expr);
         },
 
         /**
-         * @param {bookworm.EntityChangeEvent} expr
+         * @param {giant.EntityChangeEvent} expr
          */
         isEntityChangeEventOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   bookworm.EntityChangeEvent.isBaseOf(expr);
+                   giant.EntityChangeEvent.isBaseOf(expr);
         }
     });
 }());

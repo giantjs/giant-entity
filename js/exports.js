@@ -1,7 +1,7 @@
 /**
  * Library exports
  */
-/*global bookworm, module */
+/*global giant, module */
 if (typeof module === 'object') {
-    module.exports = bookworm;
+    module.exports = giant;
 }

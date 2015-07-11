@@ -1,13 +1,13 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'DocumentKeyCollection', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'DocumentKeyCollection', function () {
     "use strict";
 
     /**
      * Creates a DocumentKeyCollection instance.
-     * @name bookworm.DocumentKeyCollection.create
+     * @name giant.DocumentKeyCollection.create
      * @function
      * @param {object} [items]
-     * @returns {bookworm.DocumentKeyCollection}
+     * @returns {giant.DocumentKeyCollection}
      */
 
     /**
@@ -17,23 +17,23 @@ troop.postpone(bookworm, 'DocumentKeyCollection', function () {
      * // retrieves a collection of `Document` instances based on the specified document keys
      * ['user/1234', 'user/4321'].toDocumentKeyCollection().toDocument();
      * @class
-     * @extends {sntls.Collection}
-     * @extends {bookworm.DocumentKey}
+     * @extends {giant.Collection}
+     * @extends {giant.DocumentKey}
      */
-    bookworm.DocumentKeyCollection = sntls.Collection.of(bookworm.DocumentKey);
+    giant.DocumentKeyCollection = giant.Collection.of(giant.DocumentKey);
 });
 
-troop.amendPostponed(sntls, 'Hash', function () {
+giant.amendPostponed(giant, 'Hash', function () {
     "use strict";
 
-    sntls.Hash
-        .addMethods(/** @lends sntls.Hash */{
+    giant.Hash
+        .addMethods(/** @lends giant.Hash */{
             /**
              * Converts `Hash` instance to `DocumentKeyCollection` instance.
-             * @returns {bookworm.DocumentKeyCollection}
+             * @returns {giant.DocumentKeyCollection}
              */
             toDocumentKeyCollection: function () {
-                return bookworm.DocumentKeyCollection.create(this.items);
+                return giant.DocumentKeyCollection.create(this.items);
             }
         });
 });
@@ -41,12 +41,12 @@ troop.amendPostponed(sntls, 'Hash', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         Array.prototype,
         /** @lends Array# */{
             /**
              * Converts `Array` (of `DocumentKey` instances) to a `DocumentKeyCollection` instance.
-             * @returns {bookworm.DocumentKeyCollection}
+             * @returns {giant.DocumentKeyCollection}
              * @example
              * ['foo/bar', 'foo/baz'].toDocumentKeyCollection() // collection of document keys
              */

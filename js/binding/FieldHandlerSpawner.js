@@ -1,26 +1,26 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'FieldHandlerSpawner', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'FieldHandlerSpawner', function () {
     "use strict";
 
-    var base = bookworm.HandlerSpawner,
+    var base = giant.HandlerSpawner,
         self = base.extend();
 
     /**
-     * @name bookworm.FieldHandlerSpawner.create
+     * @name giant.FieldHandlerSpawner.create
      * @function
-     * @returns {bookworm.FieldHandlerSpawner}
+     * @returns {giant.FieldHandlerSpawner}
      */
 
     /**
      * @class
-     * @extends bookworm.HandlerSpawner
+     * @extends giant.HandlerSpawner
      */
-    bookworm.FieldHandlerSpawner = self
-        .addMethods(/** @lends bookworm.FieldHandlerSpawner# */{
+    giant.FieldHandlerSpawner = self
+        .addMethods(/** @lends giant.FieldHandlerSpawner# */{
             /**
-             * @param {bookworm.EntityBound} instance
+             * @param {giant.EntityBound} instance
              * @param {string} methodName
-             * @param {bookworm.FieldKey} fieldKey
+             * @param {giant.FieldKey} fieldKey
              * @returns {Function}
              */
             spawnHandler: function (instance, methodName, fieldKey) {
@@ -39,10 +39,10 @@ troop.postpone(bookworm, 'FieldHandlerSpawner', function () {
                         // document changed
 
                         fieldPath = fieldKey.getEntityPath();
-                        beforeNode = sntls.Tree.create()
+                        beforeNode = giant.Tree.create()
                             .setNode(affectedKey.getEntityPath(), event.beforeNode)
                             .getNode(fieldPath);
-                        afterNode = bookworm.entities.getNode(fieldPath);
+                        afterNode = giant.entities.getNode(fieldPath);
 
                         if (beforeNode !== afterNode) {
                             // field has changed
@@ -61,11 +61,11 @@ troop.postpone(bookworm, 'FieldHandlerSpawner', function () {
         });
 });
 
-troop.amendPostponed(bookworm, 'HandlerSpawner', function () {
+giant.amendPostponed(giant, 'HandlerSpawner', function () {
     "use strict";
 
-    bookworm.HandlerSpawner
-        .addSurrogate(bookworm, 'FieldHandlerSpawner', function (bindingType) {
+    giant.HandlerSpawner
+        .addSurrogate(giant, 'FieldHandlerSpawner', function (bindingType) {
             return bindingType === 'field';
         });
 });

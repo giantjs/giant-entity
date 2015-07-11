@@ -1,17 +1,17 @@
-/*global dessert, troop, sntls, evan, bookworm */
-troop.postpone(bookworm, 'StringUtils', function () {
+/*global giant, giant, giant, giant, giant */
+giant.postpone(giant, 'StringUtils', function () {
     "use strict";
 
-    var base = troop.Base,
+    var base = giant.Base,
         self = base.extend();
 
     /**
-     * TODO: Investigate moving to sntls.
+     * TODO: Investigate moving to giant-utils.
      * @class
-     * @extends troop.Base
+     * @extends giant.Base
      */
-    bookworm.StringUtils = self
-        .addMethods(/** @lends bookworm.StringUtils */{
+    giant.StringUtils = self
+        .addMethods(/** @lends giant.StringUtils */{
             /**
              * Splits string along delimiter safely, ignoring backslash-escaped versions of the delimiter.
              * @param {string} str

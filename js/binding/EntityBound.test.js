@@ -1,15 +1,15 @@
-/*global dessert, troop, sntls, flock, bookworm */
+/*global giant, giant, giant, flock, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
 
     module("EntityBound");
 
-    var EntityBound = troop.Base.extend()
-        .addTrait(bookworm.EntityBound)
+    var EntityBound = giant.Base.extend()
+        .addTrait(giant.EntityBound)
         .addMethods({
             init: function () {
-                bookworm.EntityBound.init.call(this);
+                giant.EntityBound.init.call(this);
             },
 
             onEntityEvent: function () {}
@@ -17,7 +17,7 @@
 
     test("Instantiation", function () {
         var entityBound = EntityBound.create();
-        ok(entityBound.entityBindings.isA(sntls.Tree), "should set entityBindings property");
+        ok(entityBound.entityBindings.isA(giant.Tree), "should set entityBindings property");
     });
 
     test("Binding to custom entity content event", function () {
@@ -256,7 +256,7 @@
             entityBound = EntityBound.create()
                 .bindToEntityContentChange(documentKey, 'onEntityEvent'),
             handler = entityBound.entityBindings.getNode([
-                "foo/bar", "bookworm.entity.change", "onEntityEvent", "change"].toPath());
+                "foo/bar", "giant.entity.change", "onEntityEvent", "change"].toPath());
 
         entityBound.addMocks({
             onEntityEvent: function () {
@@ -267,7 +267,7 @@
         entityBound.bindToEntityContentChange(documentKey, 'onEntityEvent');
 
         strictEqual(entityBound.entityBindings.getNode([
-            "foo/bar", "bookworm.entity.change", "onEntityEvent", "change"].toPath()),
+            "foo/bar", "giant.entity.change", "onEntityEvent", "change"].toPath()),
             handler,
             "should not alter current subscription");
 

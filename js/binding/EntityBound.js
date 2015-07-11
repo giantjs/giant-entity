@@ -1,17 +1,17 @@
-/*global dessert, troop, sntls, flock, bookworm */
-troop.postpone(bookworm, 'EntityBound', function () {
+/*global giant, giant, giant, flock, giant */
+giant.postpone(giant, 'EntityBound', function () {
     "use strict";
 
     /**
      * The EntityBound trait binds instances of the host class to entity events.
      * @class
-     * @extends troop.Base
+     * @extends giant.Base
      */
-    bookworm.EntityBound = troop.Base.extend()
-        .addPrivateMethods(/** @lends bookworm.EntityBound# */{
+    giant.EntityBound = giant.Base.extend()
+        .addPrivateMethods(/** @lends giant.EntityBound# */{
             /**
-             * @param {bookworm.EntityKey} targetKey
-             * @param {bookworm.EntityKey} captureKey
+             * @param {giant.EntityKey} targetKey
+             * @param {giant.EntityKey} captureKey
              * @param {string} eventName
              * @param {string} methodName
              * @param {string} bindingType
@@ -24,7 +24,7 @@ troop.postpone(bookworm, 'EntityBound', function () {
                     handler;
 
                 if (!bindingInfo) {
-                    handler = bookworm.HandlerSpawner.create(bindingType)
+                    handler = giant.HandlerSpawner.create(bindingType)
                         .spawnHandler(this, methodName, targetKey);
                     captureKey.subscribeTo(eventName, handler);
                     entityBindings.setNode(bindingPath, {
@@ -39,8 +39,8 @@ troop.postpone(bookworm, 'EntityBound', function () {
             },
 
             /**
-             * @param {bookworm.EntityKey} targetKey
-             * @param {bookworm.EntityKey} captureKey
+             * @param {giant.EntityKey} targetKey
+             * @param {giant.EntityKey} captureKey
              * @param {string} eventName
              * @param {string} methodName
              * @param {string} bindingType
@@ -59,22 +59,22 @@ troop.postpone(bookworm, 'EntityBound', function () {
                 }
             }
         })
-        .addMethods(/** @lends bookworm.EntityBound# */{
+        .addMethods(/** @lends giant.EntityBound# */{
             /** Call from host class .init(). */
             init: function () {
-                /** @type {sntls.Tree} */
-                this.entityBindings = sntls.Tree.create();
+                /** @type {giant.Tree} */
+                this.entityBindings = giant.Tree.create();
             },
 
             /**
              * Subscribes method to be triggered on the specified custom event passing through the entity.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} eventName
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             bindToEntityContent: function (entityKey, eventName, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isString(eventName, "Invalid event name")
                     .isFunction(this[methodName], "Attempting to bind non-method");
@@ -86,13 +86,13 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from the specified custom event passing through the entity.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} eventName
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             unbindFromEntityContent: function (entityKey, eventName, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isString(eventName, "Invalid event name")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
@@ -104,13 +104,13 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered on the specified custom event is triggered on the specified entity.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} eventName
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             bindToEntity: function (entityKey, eventName, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isString(eventName, "Invalid event name")
                     .isFunction(this[methodName], "Attempting to bind non-method");
@@ -122,13 +122,13 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from the specified custom event triggered on the specified entity.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} eventName
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             unbindFromEntity: function (entityKey, eventName, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isString(eventName, "Invalid event name")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
@@ -140,19 +140,19 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered on any access event passing through the entity.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             bindToEntityContentAccess: function (entityKey, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    bookworm.Entity.EVENT_ENTITY_ACCESS,
+                    giant.Entity.EVENT_ENTITY_ACCESS,
                     methodName,
                     'content');
 
@@ -161,19 +161,19 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from access events passing through the entity.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             unbindFromEntityContentAccess: function (entityKey, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    bookworm.Entity.EVENT_ENTITY_ACCESS,
+                    giant.Entity.EVENT_ENTITY_ACCESS,
                     methodName,
                     'content');
 
@@ -182,19 +182,19 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered when the specified entity is accessed.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             bindToEntityAccess: function (entityKey, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    bookworm.Entity.EVENT_ENTITY_ACCESS,
+                    giant.Entity.EVENT_ENTITY_ACCESS,
                     methodName,
                     'strict');
 
@@ -203,19 +203,19 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from access events triggered on the specified entity.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             unbindFromEntityAccess: function (entityKey, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    bookworm.Entity.EVENT_ENTITY_ACCESS,
+                    giant.Entity.EVENT_ENTITY_ACCESS,
                     methodName,
                     'strict');
 
@@ -224,19 +224,19 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered on any change event passing through the entity.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             bindToEntityContentChange: function (entityKey, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    bookworm.Entity.EVENT_ENTITY_CHANGE,
+                    giant.Entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'content');
 
@@ -245,19 +245,19 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from change events passing through the entity.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             unbindFromEntityContentChange: function (entityKey, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    bookworm.Entity.EVENT_ENTITY_CHANGE,
+                    giant.Entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'content');
 
@@ -266,19 +266,19 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered only when specified entity is replaced.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             bindToEntityChange: function (entityKey, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    bookworm.Entity.EVENT_ENTITY_CHANGE,
+                    giant.Entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'strict');
 
@@ -287,19 +287,19 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from change events triggered on the specified entity.
-             * @param {bookworm.EntityKey} entityKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             unbindFromEntityChange: function (entityKey, methodName) {
-                dessert
+                giant
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    bookworm.Entity.EVENT_ENTITY_CHANGE,
+                    giant.Entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'strict');
 
@@ -309,19 +309,19 @@ troop.postpone(bookworm, 'EntityBound', function () {
             /**
              * Subscribes method to be triggered when field or document changes.
              * Adds `affectedKey` payload / property to event.
-             * @param {bookworm.FieldKey} fieldKey
+             * @param {giant.FieldKey} fieldKey
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             bindToFieldChange: function (fieldKey, methodName) {
-                dessert
+                giant
                     .isFieldKeyStrict(fieldKey, "Invalid field key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
                 this._bindToEntity(
                     fieldKey,
                     fieldKey.documentKey,
-                    bookworm.Entity.EVENT_ENTITY_CHANGE,
+                    giant.Entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'field');
 
@@ -330,19 +330,19 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from field changes.
-             * @param {bookworm.FieldKey} fieldKey
+             * @param {giant.FieldKey} fieldKey
              * @param {string} methodName
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             unbindFromFieldChange: function (fieldKey, methodName) {
-                dessert
+                giant
                     .isFieldKeyStrict(fieldKey, "Invalid field key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 
                 this._unbindFromEntity(
                     fieldKey,
                     fieldKey.documentKey,
-                    bookworm.Entity.EVENT_ENTITY_CHANGE,
+                    giant.Entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'field');
 
@@ -351,7 +351,7 @@ troop.postpone(bookworm, 'EntityBound', function () {
 
             /**
              * Removes and unsubscribes all bindings associated with the current instance.
-             * @returns {bookworm.EntityBound}
+             * @returns {giant.EntityBound}
              */
             unbindAll: function () {
                 var that = this;

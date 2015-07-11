@@ -1,27 +1,27 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'AttributeKey', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'AttributeKey', function () {
     "use strict";
 
-    var base = bookworm.EntityKey,
+    var base = giant.EntityKey,
         self = base.extend();
 
     /**
-     * @name bookworm.AttributeKey.create
+     * @name giant.AttributeKey.create
      * @function
-     * @param {bookworm.EntityKey} parentKey Identifies the entity the attribute belongs to.
+     * @param {giant.EntityKey} parentKey Identifies the entity the attribute belongs to.
      * @param {string} attributeName Identifies the attribute relative to the parent entity.
-     * @returns {bookworm.AttributeKey}
+     * @returns {giant.AttributeKey}
      */
 
     /**
      * @class
-     * @extends bookworm.EntityKey
+     * @extends giant.EntityKey
      */
-    bookworm.AttributeKey = self
+    giant.AttributeKey = self
         .setEventPath(['document'].toPath().prepend(base.eventPath))
-        .addMethods(/** @lends bookworm.AttributeKey# */{
+        .addMethods(/** @lends giant.AttributeKey# */{
             /**
-             * @param {bookworm.EntityKey} parentKey
+             * @param {giant.EntityKey} parentKey
              * @param {string} attributeName
              * @ignore
              */
@@ -29,7 +29,7 @@ troop.postpone(bookworm, 'AttributeKey', function () {
                 base.init.call(this);
 
                 /**
-                 * @type {bookworm.EntityKey}
+                 * @type {giant.EntityKey}
                  */
                 this.parentKey = parentKey;
 
@@ -43,7 +43,7 @@ troop.postpone(bookworm, 'AttributeKey', function () {
 
             /**
              * Tells whether the specified `AttributeKey` instance is equivalent to the current one.
-             * @param {bookworm.AttributeKey} attributeKey
+             * @param {giant.AttributeKey} attributeKey
              * @returns {boolean}
              */
             equals: function (attributeKey) {
@@ -54,7 +54,7 @@ troop.postpone(bookworm, 'AttributeKey', function () {
 
             /**
              * Resolves attribute key based on the parent key and attribute name.
-             * @returns {sntls.Path}
+             * @returns {giant.Path}
              */
             getEntityPath: function () {
                 return this.parentKey.getEntityPath().appendKey(this.attributeName);
@@ -65,16 +65,16 @@ troop.postpone(bookworm, 'AttributeKey', function () {
 (function () {
     "use strict";
 
-    dessert.addTypes(/** @lends dessert */{
-        /** @param {bookworm.AttributeKey} expr */
+    giant.addTypes(/** @lends giant */{
+        /** @param {giant.AttributeKey} expr */
         isAttributeKey: function (expr) {
-            return bookworm.AttributeKey.isBaseOf(expr);
+            return giant.AttributeKey.isBaseOf(expr);
         },
 
-        /** @param {bookworm.AttributeKey} [expr] */
+        /** @param {giant.AttributeKey} [expr] */
         isAttributeKeyOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                bookworm.AttributeKey.isBaseOf(expr);
+                giant.AttributeKey.isBaseOf(expr);
         }
     });
 }());

@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, flock, bookworm */
+/*global giant, giant, giant, flock, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -6,9 +6,9 @@
     module("StrictHandlerSpawner");
 
     test("Conversion from HandlerSpawner", function () {
-        var handlerSpawner = bookworm.HandlerSpawner.create('strict');
+        var handlerSpawner = giant.HandlerSpawner.create('strict');
 
-        ok(handlerSpawner.isA(bookworm.StrictHandlerSpawner),
+        ok(handlerSpawner.isA(giant.StrictHandlerSpawner),
             "should return StrictHandlerSpawner instance");
     });
 }());

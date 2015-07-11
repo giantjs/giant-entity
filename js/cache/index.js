@@ -1,10 +1,10 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'index', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'index', function () {
     "use strict";
 
     /**
      * Contains indexes and lookups.
-     * @type {sntls.Tree}
+     * @type {giant.Tree}
      */
-    bookworm.index = sntls.Tree.create();
+    giant.index = giant.Tree.create();
 });

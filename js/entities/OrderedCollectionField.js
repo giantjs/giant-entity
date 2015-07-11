@@ -1,28 +1,28 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'OrderedCollectionField', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'OrderedCollectionField', function () {
     "use strict";
 
-    var base = bookworm.CollectionField,
+    var base = giant.CollectionField,
         self = base.extend();
 
     /**
      * Creates an OrderedCollectionField instance.
-     * OrderedCollectionField instances may be created via `bookworm.Field.create` provided that the `config`
+     * OrderedCollectionField instances may be created via `giant.Field.create` provided that the `config`
      * cache defines the field type as 'ordered-collection'.
-     * @name bookworm.OrderedCollectionField.create
+     * @name giant.OrderedCollectionField.create
      * @function
      * @param {string} fieldKey Identifies ordered collection field.
-     * @returns {bookworm.OrderedCollectionField}
+     * @returns {giant.OrderedCollectionField}
      */
 
     /**
      * The OrderedCollectionField class defines an API for collections the items of which are in a pre-defined order.
      * Provides methods for accessing information about item order, as well as retrieving items based on order.
      * @class
-     * @extends bookworm.CollectionField
+     * @extends giant.CollectionField
      */
-    bookworm.OrderedCollectionField = self
-        .addMethods(/** @lends bookworm.OrderedCollectionField# */{
+    giant.OrderedCollectionField = self
+        .addMethods(/** @lends giant.OrderedCollectionField# */{
             /**
              * Fetches item order for specified item ID.
              * TODO: Add more tests.
@@ -40,7 +40,7 @@ troop.postpone(bookworm, 'OrderedCollectionField', function () {
             /**
              * Retrieves `ItemKey` from collection matching the specified order.
              * @param {number} order
-             * @returns {bookworm.ItemKey}
+             * @returns {giant.ItemKey}
              */
             getItemKeyByOrder: function (order) {
                 var item = this.getItemByOrder(order);
@@ -52,7 +52,7 @@ troop.postpone(bookworm, 'OrderedCollectionField', function () {
              * Iterates ove all items. Avoid using it for large collections.
              * TODO: Implement indexed version.
              * @param {number} order
-             * @returns {bookworm.Item}
+             * @returns {giant.Item}
              */
             getItemByOrder: function (order) {
                 var result,
@@ -100,11 +100,11 @@ troop.postpone(bookworm, 'OrderedCollectionField', function () {
         });
 });
 
-troop.amendPostponed(bookworm, 'Field', function () {
+giant.amendPostponed(giant, 'Field', function () {
     "use strict";
 
-    bookworm.Field
-        .addSurrogate(bookworm, 'OrderedCollectionField', function (/**bookworm.FieldKey*/fieldKey) {
+    giant.Field
+        .addSurrogate(giant, 'OrderedCollectionField', function (/**giant.FieldKey*/fieldKey) {
             return fieldKey.getFieldType() === 'ordered-collection';
         });
 });

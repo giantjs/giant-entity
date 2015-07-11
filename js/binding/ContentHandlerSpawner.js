@@ -1,24 +1,24 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'ContentHandlerSpawner', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'ContentHandlerSpawner', function () {
     "use strict";
 
-    var base = bookworm.HandlerSpawner,
+    var base = giant.HandlerSpawner,
         self = base.extend();
 
     /**
-     * @name bookworm.ContentHandlerSpawner.create
+     * @name giant.ContentHandlerSpawner.create
      * @function
-     * @returns {bookworm.ContentHandlerSpawner}
+     * @returns {giant.ContentHandlerSpawner}
      */
 
     /**
      * @class
-     * @extends bookworm.HandlerSpawner
+     * @extends giant.HandlerSpawner
      */
-    bookworm.ContentHandlerSpawner = self
-        .addMethods(/** @lends bookworm.ContentHandlerSpawner# */{
+    giant.ContentHandlerSpawner = self
+        .addMethods(/** @lends giant.ContentHandlerSpawner# */{
             /**
-             * @param {bookworm.EntityBound} instance
+             * @param {giant.EntityBound} instance
              * @param {string} methodName
              * @returns {Function}
              */
@@ -28,11 +28,11 @@ troop.postpone(bookworm, 'ContentHandlerSpawner', function () {
         });
 });
 
-troop.amendPostponed(bookworm, 'HandlerSpawner', function () {
+giant.amendPostponed(giant, 'HandlerSpawner', function () {
     "use strict";
 
-    bookworm.HandlerSpawner
-        .addSurrogate(bookworm, 'ContentHandlerSpawner', function (bindingType) {
+    giant.HandlerSpawner
+        .addSurrogate(giant, 'ContentHandlerSpawner', function (bindingType) {
             return bindingType === 'content';
         });
 });

@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, bookworm */
+/*global giant, giant, giant, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -7,7 +7,7 @@
 
     test("Instantiation", function () {
         var documentKey = 'foo/bar'.toDocumentKey(),
-            attributeKey = bookworm.AttributeKey.create(documentKey, 'baz');
+            attributeKey = giant.AttributeKey.create(documentKey, 'baz');
 
         strictEqual(attributeKey.parentKey, documentKey, "should set parentKey property");
         equal(attributeKey.attributeName, 'baz', "should set attributeName property");
@@ -17,10 +17,10 @@
     });
 
     test("Equivalence tester", function () {
-        var attributeKey1 = bookworm.AttributeKey.create('foo/bar'.toDocumentKey(), 'baz'),
-            attributeKey2 = bookworm.AttributeKey.create('foo/bar/baz'.toFieldKey(), 'baz'),
-            attributeKey3 = bookworm.AttributeKey.create('foo/bar'.toDocumentKey(), 'hello'),
-            attributeKey4 = bookworm.AttributeKey.create('foo/bar'.toDocumentKey(), 'baz');
+        var attributeKey1 = giant.AttributeKey.create('foo/bar'.toDocumentKey(), 'baz'),
+            attributeKey2 = giant.AttributeKey.create('foo/bar/baz'.toFieldKey(), 'baz'),
+            attributeKey3 = giant.AttributeKey.create('foo/bar'.toDocumentKey(), 'hello'),
+            attributeKey4 = giant.AttributeKey.create('foo/bar'.toDocumentKey(), 'baz');
 
         ok(!attributeKey1.equals(undefined), "should fail on undefined");
         ok(!attributeKey1.equals(attributeKey2), "should fail on parent key mismatch");
@@ -30,7 +30,7 @@
 
     test("Entity path getter", function () {
         var documentKey = 'foo/bar'.toDocumentKey(),
-            attributeKey = bookworm.AttributeKey.create(documentKey, 'baz');
+            attributeKey = giant.AttributeKey.create(documentKey, 'baz');
 
         ok(attributeKey.getEntityPath().equals('document>foo>bar>baz'.toPath()),
             "should append attribute name to document path");

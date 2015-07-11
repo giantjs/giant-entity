@@ -1,26 +1,26 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'StrictHandlerSpawner', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'StrictHandlerSpawner', function () {
     "use strict";
 
-    var base = bookworm.HandlerSpawner,
+    var base = giant.HandlerSpawner,
         self = base.extend();
 
     /**
-     * @name bookworm.StrictHandlerSpawner.create
+     * @name giant.StrictHandlerSpawner.create
      * @function
-     * @returns {bookworm.StrictHandlerSpawner}
+     * @returns {giant.StrictHandlerSpawner}
      */
 
     /**
      * @class
-     * @extends bookworm.HandlerSpawner
+     * @extends giant.HandlerSpawner
      */
-    bookworm.StrictHandlerSpawner = self
-        .addMethods(/** @lends bookworm.StrictHandlerSpawner# */{
+    giant.StrictHandlerSpawner = self
+        .addMethods(/** @lends giant.StrictHandlerSpawner# */{
             /**
-             * @param {bookworm.EntityBound} instance
+             * @param {giant.EntityBound} instance
              * @param {string} methodName
-             * @param {bookworm.FieldKey} entityKey
+             * @param {giant.FieldKey} entityKey
              * @returns {Function}
              */
             spawnHandler: function (instance, methodName, entityKey) {
@@ -33,11 +33,11 @@ troop.postpone(bookworm, 'StrictHandlerSpawner', function () {
         });
 });
 
-troop.amendPostponed(bookworm, 'HandlerSpawner', function () {
+giant.amendPostponed(giant, 'HandlerSpawner', function () {
     "use strict";
 
-    bookworm.HandlerSpawner
-        .addSurrogate(bookworm, 'StrictHandlerSpawner', function (bindingType) {
+    giant.HandlerSpawner
+        .addSurrogate(giant, 'StrictHandlerSpawner', function (bindingType) {
             return bindingType === 'strict';
         });
 });

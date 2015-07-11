@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, bookworm */
+/*global giant, giant, giant, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -9,29 +9,29 @@
         var collection,
             testedField;
 
-        bookworm.FieldKey.addMocks({
+        giant.FieldKey.addMocks({
             getFieldType: function () {
                 testedField = this.toString();
                 return 'ordered-collection';
             }
         });
 
-        collection = bookworm.Field.create('foo/bar/baz'.toFieldKey());
+        collection = giant.Field.create('foo/bar/baz'.toFieldKey());
 
-        bookworm.FieldKey.removeMocks();
+        giant.FieldKey.removeMocks();
 
         equal(testedField, 'foo/bar/baz', "should test field type");
-        ok(collection.isA(bookworm.OrderedCollectionField),
+        ok(collection.isA(giant.OrderedCollectionField),
             "should return OrderedCollectionField instance when field type is 'ordered-collection'");
     });
 
     test("Item order getter", function () {
         expect(4);
 
-        var orderedCollection = bookworm.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
+        var orderedCollection = giant.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
             orderNode = {};
 
-        bookworm.Item.addMocks({
+        giant.Item.addMocks({
             getAttribute: function (attribute) {
                 equal(this.entityKey.toString(), 'foo/bar/baz/hello', "should fetch attribute for specified item");
                 ok(attribute, 'order', "should attempt to fetch order attribute");
@@ -46,13 +46,13 @@
 
         strictEqual(orderedCollection.getItemOrder('hello'), orderNode, "should return order node");
 
-        bookworm.Item.removeMocks();
+        giant.Item.removeMocks();
     });
 
     test("Item key getter by order", function () {
         expect(5);
 
-        var orderedCollection = bookworm.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
+        var orderedCollection = giant.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
             itemsNode = {
                 a: 3,
                 b: 1,
@@ -76,7 +76,7 @@
 
         itemKey = orderedCollection.getItemKeyByOrder(2);
 
-        ok(itemKey.isA(bookworm.ItemKey), "should return ItemKey instance");
+        ok(itemKey.isA(giant.ItemKey), "should return ItemKey instance");
         strictEqual(itemKey.toString(), 'foo/bar/baz/d',
             "should return ItemKey matching the specified order");
     });
@@ -84,7 +84,7 @@
     test("Item getter by order", function () {
         expect(5);
 
-        var orderedCollection = bookworm.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
+        var orderedCollection = giant.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
             itemsNode = {
                 a: 3,
                 b: 1,
@@ -108,13 +108,13 @@
 
         item = orderedCollection.getItemByOrder(2);
 
-        ok(item.isA(bookworm.Item), "should return Item instance");
+        ok(item.isA(giant.Item), "should return Item instance");
         strictEqual(item.entityKey.toString(), 'foo/bar/baz/d',
             "should return item with ItemKey matching the specified order");
     });
 
     test("Max order getter", function () {
-        var orderedCollection = bookworm.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
+        var orderedCollection = giant.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
             itemsNode = {
                 A: 2,
                 B: 12,

@@ -1,10 +1,10 @@
-/*global dessert, troop, sntls, evan, bookworm */
-troop.postpone(bookworm, 'entityEventSpace', function () {
+/*global giant, giant, giant, giant, giant */
+giant.postpone(giant, 'entityEventSpace', function () {
     "use strict";
 
     /**
      * Event space dedicated to entity events.
-     * @type {evan.EventSpace}
+     * @type {giant.EventSpace}
      */
-    bookworm.entityEventSpace = evan.EventSpace.create();
+    giant.entityEventSpace = giant.EventSpace.create();
 });

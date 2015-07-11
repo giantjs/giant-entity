@@ -1,27 +1,27 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'CollectionField', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'CollectionField', function () {
     "use strict";
 
-    var base = bookworm.Field,
+    var base = giant.Field,
         self = base.extend();
 
     /**
      * Creates a CollectionField instance.
-     * CollectionField instances may be created via `bookworm.Field.create` provided that the `config` cache defines
+     * CollectionField instances may be created via `giant.Field.create` provided that the `config` cache defines
      * the field type as 'collection'.
-     * @name bookworm.CollectionField.create
+     * @name giant.CollectionField.create
      * @function
-     * @param {bookworm.FieldKey} fieldKey Identifies collection field.
-     * @returns {bookworm.CollectionField}
+     * @param {giant.FieldKey} fieldKey Identifies collection field.
+     * @returns {giant.CollectionField}
      */
 
     /**
      * The CollectionField class implements an API for composite document fields, granting access to items.
      * @class
-     * @extends bookworm.Field
+     * @extends giant.Field
      */
-    bookworm.CollectionField = self
-        .addMethods(/** @lends bookworm.CollectionField# */{
+    giant.CollectionField = self
+        .addMethods(/** @lends giant.CollectionField# */{
             /**
              * Fetches node from cache containing the collection items.
              * @returns {object}
@@ -32,16 +32,16 @@ troop.postpone(bookworm, 'CollectionField', function () {
 
             /**
              * Fetches items node wrapped in a `Collection` instance.
-             * @returns {sntls.Collection}
+             * @returns {giant.Collection}
              */
             getItemsAsCollection: function () {
-                return sntls.Collection.create(this.getValue());
+                return giant.Collection.create(this.getValue());
             },
 
             /**
              * Retrieves `Item` entity matching the specified item ID.
              * @param {string} itemId
-             * @returns {bookworm.Item}
+             * @returns {giant.Item}
              */
             getItem: function (itemId) {
                 return this.entityKey.getItemKey(itemId).toItem();
@@ -50,7 +50,7 @@ troop.postpone(bookworm, 'CollectionField', function () {
             /**
              * Retrieves an item key for the item matching the specified value.
              * @param {*} value
-             * @returns {bookworm.ItemKey}
+             * @returns {giant.ItemKey}
              */
             getItemKeyByValue: function (value) {
                 var item = this.getItemByValue(value);
@@ -62,7 +62,7 @@ troop.postpone(bookworm, 'CollectionField', function () {
              * Iterates ove all items. Avoid using it for large collections.
              * TODO: Implement indexed version.
              * @param {*} value
-             * @returns {bookworm.Item}
+             * @returns {giant.Item}
              */
             getItemByValue: function (value) {
                 var result,
@@ -86,11 +86,11 @@ troop.postpone(bookworm, 'CollectionField', function () {
         });
 });
 
-troop.amendPostponed(bookworm, 'Field', function () {
+giant.amendPostponed(giant, 'Field', function () {
     "use strict";
 
-    bookworm.Field
-        .addSurrogate(bookworm, 'CollectionField', function (/**bookworm.FieldKey*/fieldKey) {
+    giant.Field
+        .addSurrogate(giant, 'CollectionField', function (/**giant.FieldKey*/fieldKey) {
             return fieldKey.getFieldType() === 'collection';
         });
 });

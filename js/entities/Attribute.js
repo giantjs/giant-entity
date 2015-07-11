@@ -1,44 +1,44 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'Attribute', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'Attribute', function () {
     "use strict";
 
-    var base = bookworm.Entity,
+    var base = giant.Entity,
         self = base.extend();
 
     /**
      * Creates a Attribute instance.
-     * @name bookworm.Attribute.create
+     * @name giant.Attribute.create
      * @function
-     * @param {bookworm.AttributeKey} documentKey Identifies document.
-     * @returns {bookworm.Attribute}
+     * @param {giant.AttributeKey} documentKey Identifies document.
+     * @returns {giant.Attribute}
      */
 
     /**
      * The Attribute class implements an API for attribute nodes.
      * Attribute nodes hold custom information about the entity they are associated with.
      * @class
-     * @extends bookworm.Entity
+     * @extends giant.Entity
      */
-    bookworm.Attribute = self
-        .addMethods(/** @lends bookworm.Attribute# */{
+    giant.Attribute = self
+        .addMethods(/** @lends giant.Attribute# */{
             /**
-             * @param {bookworm.AttributeKey} attributeKey
+             * @param {giant.AttributeKey} attributeKey
              * @ignore
              */
             init: function (attributeKey) {
-                dessert.isAttributeKey(attributeKey, "Invalid attribute key");
+                giant.isAttributeKey(attributeKey, "Invalid attribute key");
                 base.init.call(this, attributeKey);
 
                 /**
                  * Attribute key associated with current entity.
-                 * @name bookworm.Attribute#entityKey
-                 * @type {bookworm.AttributeKey}
+                 * @name giant.Attribute#entityKey
+                 * @type {giant.AttributeKey}
                  */
             },
 
             /**
              * Fetches entity the current attribute belongs to.
-             * @returns {bookworm.Entity}
+             * @returns {giant.Entity}
              */
             getParentEntity: function () {
                 return this.entityKey.parentKey.toEntity();
@@ -46,26 +46,26 @@ troop.postpone(bookworm, 'Attribute', function () {
         });
 });
 
-troop.amendPostponed(bookworm, 'Entity', function () {
+giant.amendPostponed(giant, 'Entity', function () {
     "use strict";
 
-    bookworm.Entity
-        .addSurrogate(bookworm, 'Attribute', function (entityKey) {
-            return bookworm.AttributeKey.isBaseOf(entityKey);
+    giant.Entity
+        .addSurrogate(giant, 'Attribute', function (entityKey) {
+            return giant.AttributeKey.isBaseOf(entityKey);
         });
 });
 
-troop.amendPostponed(bookworm, 'AttributeKey', function () {
+giant.amendPostponed(giant, 'AttributeKey', function () {
     "use strict";
 
-    bookworm.AttributeKey
-        .addMethods(/** @lends bookworm.AttributeKey */{
+    giant.AttributeKey
+        .addMethods(/** @lends giant.AttributeKey */{
             /**
              * Converts `AttributeKey` to `Attribute`.
-             * @returns {bookworm.Attribute}
+             * @returns {giant.Attribute}
              */
             toAttribute: function () {
-                return bookworm.Attribute.create(this);
+                return giant.Attribute.create(this);
             }
         });
 });

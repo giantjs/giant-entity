@@ -1,10 +1,10 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'entities', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'entities', function () {
     "use strict";
 
     /**
      * Contains entities.
-     * @type {sntls.Tree}
+     * @type {giant.Tree}
      */
-    bookworm.entities = sntls.Tree.create();
+    giant.entities = giant.Tree.create();
 });

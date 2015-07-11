@@ -1,82 +1,82 @@
-/*global dessert, troop, sntls, evan, bookworm */
-troop.postpone(bookworm, 'EntityKey', function () {
+/*global giant, giant, giant, giant, giant */
+giant.postpone(giant, 'EntityKey', function () {
     "use strict";
 
-    var base = troop.Base,
+    var base = giant.Base,
         self = base.extend()
-            .addTrait(evan.Evented);
+            .addTrait(giant.Evented);
 
     /**
      * Creates an EntityKey instance.
      * Do not create EntityKey instances directly, only through its subclasses.
-     * @name bookworm.EntityKey.create
+     * @name giant.EntityKey.create
      * @function
-     * @returns {bookworm.EntityKey}
+     * @returns {giant.EntityKey}
      */
 
     /**
      * Base class for entity keys.
      * Entity keys identify entities without relying on their actual content.
      * @class
-     * @extends troop.Base
-     * @extends evan.Evented
-     * @extends rubberband.Stringifiable
+     * @extends giant.Base
+     * @extends giant.Evented
+     * @extends giant.Stringifiable
      */
-    bookworm.EntityKey = self
-        .setEventSpace(bookworm.entityEventSpace)
+    giant.EntityKey = self
+        .setEventSpace(giant.entityEventSpace)
         .setEventPath('entity'.toPath())
-        .addMethods(/** @lends bookworm.EntityKey# */{
+        .addMethods(/** @lends giant.EntityKey# */{
             /** @ignore */
             init: function () {
-                evan.Evented.init.call(this);
+                giant.Evented.init.call(this);
             },
 
             /**
              * Fetches an attribute key based on the current key as parent and the specified attribute name.
              * @param {string} attributeName
-             * @returns {bookworm.AttributeKey}
+             * @returns {giant.AttributeKey}
              */
             getAttributeKey: function (attributeName) {
-                return bookworm.AttributeKey.create(this, attributeName);
+                return giant.AttributeKey.create(this, attributeName);
             }
         });
 
     /**
      * Tells whether specified entity key is identical to the current one.
-     * @name bookworm.EntityKey#equals
+     * @name giant.EntityKey#equals
      * @function
-     * @param {bookworm.EntityKey} key
+     * @param {giant.EntityKey} key
      * @returns {boolean}
      */
 
     /**
      * Fetches a key to the document that contains the config information about the current entity.
-     * @name bookworm.EntityKey#getConfigKey
+     * @name giant.EntityKey#getConfigKey
      * @function
-     * @returns {bookworm.DocumentKey}
+     * @returns {giant.DocumentKey}
      */
 
     /**
      * Resolves key to a path that points to the entity node in the cache.
-     * @name bookworm.EntityKey#getEntityPath
+     * @name giant.EntityKey#getEntityPath
      * @function
-     * @returns {sntls.Path}
+     * @returns {giant.Path}
      */
 });
 
 (function () {
     "use strict";
 
-    dessert.addTypes(/** @lends dessert */{
-        /** @param {bookworm.EntityKey} expr */
+    giant.addTypes(/** @lends giant */{
+        /** @param {giant.EntityKey} expr */
         isEntityKey: function (expr) {
-            return bookworm.EntityKey.isBaseOf(expr);
+            return giant.EntityKey.isBaseOf(expr);
         },
 
-        /** @param {bookworm.EntityKey} [expr] */
+        /** @param {giant.EntityKey} [expr] */
         isEntityKeyOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   bookworm.EntityKey.isBaseOf(expr);
+                   giant.EntityKey.isBaseOf(expr);
         }
     });
 }());

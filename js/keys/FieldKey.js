@@ -1,29 +1,29 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'FieldKey', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'FieldKey', function () {
     "use strict";
 
-    var base = bookworm.EntityKey,
+    var base = giant.EntityKey,
         self = base.extend();
 
     /**
      * Creates FieldKey instance.
      * FieldKey instances may also be created via conversion from string or array.
-     * @name bookworm.FieldKey.create
+     * @name giant.FieldKey.create
      * @function
      * @param {string} documentType Identifies type of document the field belongs to.
      * @param {string} documentId Identifies document (within document type) the field belongs to.
      * @param {string} fieldName Identifies field (within document).
-     * @returns {bookworm.FieldKey}
+     * @returns {giant.FieldKey}
      */
 
     /**
      * The FieldKey class identifies a field entity nodes in the cache.
      * @class
-     * @extends bookworm.EntityKey
+     * @extends giant.EntityKey
      */
-    bookworm.FieldKey = self
+    giant.FieldKey = self
         .setEventPath(['document'].toPath().prepend(base.eventPath))
-        .addMethods(/** @lends bookworm.FieldKey# */{
+        .addMethods(/** @lends giant.FieldKey# */{
             /**
              * @param {string} documentType
              * @param {string} documentId
@@ -35,9 +35,9 @@ troop.postpone(bookworm, 'FieldKey', function () {
 
                 /**
                  * Document key reference.
-                 * @type {bookworm.DocumentKey}
+                 * @type {giant.DocumentKey}
                  */
-                this.documentKey = bookworm.DocumentKey.create(documentType, documentId);
+                this.documentKey = giant.DocumentKey.create(documentType, documentId);
 
                 /**
                  * Name of current field.
@@ -50,7 +50,7 @@ troop.postpone(bookworm, 'FieldKey', function () {
 
             /**
              * Tells whether current field key is equivalent to the specified one.
-             * @param {bookworm.FieldKey} fieldKey
+             * @param {giant.FieldKey} fieldKey
              * @returns {boolean}
              */
             equals: function (fieldKey) {
@@ -61,7 +61,7 @@ troop.postpone(bookworm, 'FieldKey', function () {
 
             /**
              * Fetches key to config document that describes the current field.
-             * @returns {bookworm.DocumentKey}
+             * @returns {giant.DocumentKey}
              */
             getConfigKey: function () {
                 var documentId = [this.documentKey.documentType, this.fieldName].toDocumentKey().toString();
@@ -71,12 +71,12 @@ troop.postpone(bookworm, 'FieldKey', function () {
             /**
              * Creates an `ItemKey` instance based on the current field key and the specified item ID.
              * @param {string} itemId
-             * @returns {bookworm.ItemKey}
+             * @returns {giant.ItemKey}
              */
             getItemKey: function (itemId) {
                 var documentKey = this.documentKey;
 
-                return bookworm.ItemKey.create(
+                return giant.ItemKey.create(
                     documentKey.documentType,
                     documentKey.documentId,
                     this.fieldName,
@@ -89,7 +89,7 @@ troop.postpone(bookworm, 'FieldKey', function () {
              * In case field node sits on a different path relative to the document node
              * for a certain `documentType` / `fieldName` combination,
              * subclass `FieldKey` and override `.getEntityPath()` to reflect the correct path.
-             * @returns {sntls.Path}
+             * @returns {giant.Path}
              */
             getEntityPath: function () {
                 return this.documentKey
@@ -100,11 +100,11 @@ troop.postpone(bookworm, 'FieldKey', function () {
             /**
              * Retrieves the field type associated with the current field from the config datastore.
              * @returns {string}
-             * @see bookworm.config
+             * @see giant.config
              */
             getFieldType: function () {
                 var field = this.getConfigKey().getFieldKey('fieldType');
-                return bookworm.config.getNode(field.getEntityPath());
+                return giant.config.getNode(field.getEntityPath());
             },
 
             /**
@@ -113,7 +113,7 @@ troop.postpone(bookworm, 'FieldKey', function () {
              */
             getItemType: function () {
                 var field = this.getConfigKey().getFieldKey('itemType');
-                return bookworm.config.getNode(field.getEntityPath());
+                return giant.config.getNode(field.getEntityPath());
             },
 
             /**
@@ -122,18 +122,18 @@ troop.postpone(bookworm, 'FieldKey', function () {
              */
             getItemIdType: function () {
                 var field = this.getConfigKey().getFieldKey('itemIdType');
-                return bookworm.config.getNode(field.getEntityPath());
+                return giant.config.getNode(field.getEntityPath());
             },
 
             /**
              * Serializes current field key.
              * @example
-             * bookworm.FieldKey.create('user', '1234', 'name').toString() // "user/1234/name"
+             * giant.FieldKey.create('user', '1234', 'name').toString() // "user/1234/name"
              * @returns {string}
              */
             toString: function () {
                 return this.documentKey.toString() + '/' +
-                    bookworm.StringUtils.escapeChars(this.fieldName, '/');
+                    giant.StringUtils.escapeChars(this.fieldName, '/');
             }
         });
 });
@@ -141,34 +141,34 @@ troop.postpone(bookworm, 'FieldKey', function () {
 (function () {
     "use strict";
 
-    dessert.addTypes(/** @lends dessert */{
-        /** @param {bookworm.FieldKey} expr */
+    giant.addTypes(/** @lends giant */{
+        /** @param {giant.FieldKey} expr */
         isFieldKey: function (expr) {
-            return bookworm.FieldKey.isBaseOf(expr);
+            return giant.FieldKey.isBaseOf(expr);
         },
 
-        /** @param {bookworm.FieldKey} expr */
+        /** @param {giant.FieldKey} expr */
         isFieldKeyStrict: function (expr) {
-            return bookworm.FieldKey.isBaseOf(expr) &&
-                expr.getBase() === bookworm.FieldKey;
+            return giant.FieldKey.isBaseOf(expr) &&
+                expr.getBase() === giant.FieldKey;
         },
 
-        /** @param {bookworm.FieldKey} [expr] */
+        /** @param {giant.FieldKey} [expr] */
         isFieldKeyOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                bookworm.FieldKey.isBaseOf(expr);
+                giant.FieldKey.isBaseOf(expr);
         }
     });
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         String.prototype,
         /** @lends String# */{
             /**
              * Converts `String` to a `FieldKey`. Assumes that string is a serialized `FieldKey`.
-             * @returns {bookworm.FieldKey}
+             * @returns {giant.FieldKey}
              */
             toFieldKey: function () {
-                var StringUtils = bookworm.StringUtils,
+                var StringUtils = giant.StringUtils,
                     parts = StringUtils.safeSplit(this, '/'),
                     documentType = parts[0],
                     documentId = parts[1],
@@ -177,7 +177,7 @@ troop.postpone(bookworm, 'FieldKey', function () {
                 return typeof documentType === 'string' &&
                     typeof documentId === 'string' &&
                     typeof fieldName === 'string' ?
-                    bookworm.FieldKey.create(
+                    giant.FieldKey.create(
                         StringUtils.unescapeChars(documentType, '/'),
                         StringUtils.unescapeChars(documentId, '/'),
                         StringUtils.unescapeChars(fieldName, '/')) :
@@ -187,13 +187,13 @@ troop.postpone(bookworm, 'FieldKey', function () {
         false, false, false
     );
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         Array.prototype,
         /** @lends Array# */{
             /**
              * Converts `Array` (of strings) to a `FieldKey` instance.
              * Assumes that array is a field key in array notation.
-             * @returns {bookworm.FieldKey}
+             * @returns {giant.FieldKey}
              */
             toFieldKey: function () {
                 var documentType = this[0],
@@ -203,7 +203,7 @@ troop.postpone(bookworm, 'FieldKey', function () {
                 return typeof documentType !== 'undefined' &&
                     typeof documentId !== 'undefined' &&
                     typeof fieldName !== 'undefined' ?
-                    bookworm.FieldKey.create(documentType, documentId, fieldName) :
+                    giant.FieldKey.create(documentType, documentId, fieldName) :
                     undefined;
             }
         },

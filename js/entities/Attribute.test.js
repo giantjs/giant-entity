@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, bookworm */
+/*global giant, giant, giant, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -7,45 +7,45 @@
 
     test("Instantiation", function () {
         raises(function () {
-            bookworm.Attribute.create();
+            giant.Attribute.create();
         }, "should raise exception on missing document key argument");
 
         raises(function () {
-            bookworm.Attribute.create('foo');
+            giant.Attribute.create('foo');
         }, "should raise exception on invalid document key argument");
     });
 
     test("Conversion from AttributeKey", function () {
-        var attributeKey = bookworm.AttributeKey.create('foo/bar'.toDocumentKey(), 'baz'),
+        var attributeKey = giant.AttributeKey.create('foo/bar'.toDocumentKey(), 'baz'),
             attribute = attributeKey.toAttribute();
 
-        ok(attribute.isA(bookworm.Attribute), "should return Attribute instance");
+        ok(attribute.isA(giant.Attribute), "should return Attribute instance");
         strictEqual(attribute.entityKey, attributeKey, "should set attribute key");
     });
 
     test("Entity surrogate", function () {
-        var attributeKey = bookworm.AttributeKey.create('foo/bar'.toDocumentKey(), 'baz'),
-            entity = bookworm.Entity.create(attributeKey);
+        var attributeKey = giant.AttributeKey.create('foo/bar'.toDocumentKey(), 'baz'),
+            entity = giant.Entity.create(attributeKey);
 
-        ok(entity.isA(bookworm.Attribute), "should return Attribute instance");
+        ok(entity.isA(giant.Attribute), "should return Attribute instance");
         strictEqual(entity.entityKey, attributeKey, "should set attribute key");
     });
 
     test("Conversion from EntityKey", function () {
-        var attributeKey = bookworm.AttributeKey.create('foo/bar'.toDocumentKey(), 'baz'),
+        var attributeKey = giant.AttributeKey.create('foo/bar'.toDocumentKey(), 'baz'),
             entity = attributeKey.toEntity();
 
-        ok(entity.isA(bookworm.Attribute), "should return Attribute instance");
+        ok(entity.isA(giant.Attribute), "should return Attribute instance");
         strictEqual(entity.entityKey, attributeKey, "should set attribute key");
     });
 
     test("Parent entity getter", function () {
         var parentKey = 'foo/bar'.toDocumentKey(),
-            attributeKey = bookworm.AttributeKey.create(parentKey, 'baz'),
+            attributeKey = giant.AttributeKey.create(parentKey, 'baz'),
             attribute = attributeKey.toEntity(),
             parentEntity = attribute.getParentEntity();
 
-        ok(parentEntity.isA(bookworm.Entity), "should return Entity instance");
+        ok(parentEntity.isA(giant.Entity), "should return Entity instance");
         ok(parentEntity.entityKey.equals(parentKey),
             "should return corresponding parent entity");
     });

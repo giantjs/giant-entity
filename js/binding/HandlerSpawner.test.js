@@ -1,4 +1,4 @@
-/*global dessert, troop, sntls, flock, bookworm */
+/*global giant, giant, giant, flock, giant */
 /*global module, test, expect, ok, equal, strictEqual, notStrictEqual, deepEqual, notDeepEqual, raises */
 (function () {
     "use strict";
@@ -6,7 +6,7 @@
     module("HandlerSpawner");
 
     test("Instantiation", function () {
-        var handlerSpawner = bookworm.HandlerSpawner.create('foo');
+        var handlerSpawner = giant.HandlerSpawner.create('foo');
 
         equal(handlerSpawner.bindingType, 'foo', "should set bindingType property");
     });

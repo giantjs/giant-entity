@@ -1,12 +1,12 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'config', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'config', function () {
     "use strict";
 
     /**
      * Contains meta-entities describing document types and their fields.
-     * @type {sntls.Tree}
+     * @type {giant.Tree}
      */
-    bookworm.config = sntls.Tree.create({
+    giant.config = giant.Tree.create({
         document: {
             document: {
             },

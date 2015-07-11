@@ -1,46 +1,46 @@
-/*global dessert, troop, sntls, bookworm, rubberband */
-troop.postpone(bookworm, 'Field', function () {
+/*global giant, giant, giant, giant, giant */
+giant.postpone(giant, 'Field', function () {
     "use strict";
 
-    var base = bookworm.Entity,
+    var base = giant.Entity,
         self = base.extend();
 
     /**
      * Creates a Field instance.
-     * @name bookworm.Field.create
+     * @name giant.Field.create
      * @function
-     * @param {bookworm.FieldKey} fieldKey
-     * @returns {bookworm.Field}
+     * @param {giant.FieldKey} fieldKey
+     * @returns {giant.Field}
      */
 
     /**
      * The Field entity class implements an API for document field nodes in the cache. Allows access and modification
      * of the field's value and attributes.
      * @class
-     * @extends bookworm.Entity
-     * @extends rubberband.Stringifiable
+     * @extends giant.Entity
+     * @extends giant.Stringifiable
      */
-    bookworm.Field = self
-        .addMethods(/** @lends bookworm.Field# */{
+    giant.Field = self
+        .addMethods(/** @lends giant.Field# */{
             /**
-             * @param {bookworm.FieldKey} fieldKey
+             * @param {giant.FieldKey} fieldKey
              * @ignore
              */
             init: function (fieldKey) {
-                dessert.isFieldKey(fieldKey, "Invalid field key");
+                giant.isFieldKey(fieldKey, "Invalid field key");
 
                 base.init.call(this, fieldKey);
 
                 /**
                  * Field key associated with current entity.
-                 * @name bookworm.Field#entityKey
-                 * @type {bookworm.FieldKey}
+                 * @name giant.Field#entityKey
+                 * @type {giant.FieldKey}
                  */
             },
 
             /**
              * Fetches fields entity from the document the current field belongs to.
-             * @returns {bookworm.Entity}
+             * @returns {giant.Entity}
              */
             getParentEntity: function () {
                 return this.entityKey.documentKey.toDocument()
@@ -50,7 +50,7 @@ troop.postpone(bookworm, 'Field', function () {
             /**
              * Fetches entity associated with the field's value.
              * Returns self by default.
-             * @returns {bookworm.Entity}
+             * @returns {giant.Entity}
              */
             getValueEntity: function () {
                 return this;
@@ -76,7 +76,7 @@ troop.postpone(bookworm, 'Field', function () {
             /**
              * Sets field value node to the specified value.
              * @param {*} value
-             * @returns {bookworm.Field}
+             * @returns {giant.Field}
              */
             setValue: function (value) {
                 this.getValueEntity().setNode(value);
@@ -88,31 +88,31 @@ troop.postpone(bookworm, 'Field', function () {
              * @returns {string}
              */
             toString: function () {
-                return rubberband.Stringifier.stringify(this.getValue());
+                return giant.Stringifier.stringify(this.getValue());
             }
         });
 });
 
-troop.amendPostponed(bookworm, 'Entity', function () {
+giant.amendPostponed(giant, 'Entity', function () {
     "use strict";
 
-    bookworm.Entity
-        .addSurrogate(bookworm, 'Field', function (entityKey) {
-            return entityKey.instanceOf(bookworm.FieldKey);
+    giant.Entity
+        .addSurrogate(giant, 'Field', function (entityKey) {
+            return entityKey.instanceOf(giant.FieldKey);
         });
 });
 
-troop.amendPostponed(bookworm, 'FieldKey', function () {
+giant.amendPostponed(giant, 'FieldKey', function () {
     "use strict";
 
-    bookworm.FieldKey
-        .addMethods(/** @lends bookworm.FieldKey */{
+    giant.FieldKey
+        .addMethods(/** @lends giant.FieldKey */{
             /**
              * Converts `FieldKey` to `Field`.
-             * @returns {bookworm.Field}
+             * @returns {giant.Field}
              */
             toField: function () {
-                return bookworm.Field.create(this);
+                return giant.Field.create(this);
             }
         });
 });
@@ -120,29 +120,29 @@ troop.amendPostponed(bookworm, 'FieldKey', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         String.prototype,
         /** @lends String# */{
             /**
              * Converts `String` to `Field` instance, assuming the string is a serialized `FieldKey`.
-             * @returns {bookworm.Field}
+             * @returns {giant.Field}
              */
             toField: function () {
-                return bookworm.Field.create(this.toFieldKey());
+                return giant.Field.create(this.toFieldKey());
             }
         },
         false, false, false
     );
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         Array.prototype,
         /** @lends Array# */{
             /**
              * Converts `Array` to `Field` instance, assuming the array is a field key in array notation.
-             * @returns {bookworm.Field}
+             * @returns {giant.Field}
              */
             toField: function () {
-                return bookworm.Field.create(this.toFieldKey());
+                return giant.Field.create(this.toFieldKey());
             }
         },
         false, false, false

@@ -1,46 +1,46 @@
-/*global dessert, troop, sntls, bookworm */
-troop.postpone(bookworm, 'Document', function () {
+/*global giant, giant, giant, giant */
+giant.postpone(giant, 'Document', function () {
     "use strict";
 
-    var base = bookworm.Entity,
+    var base = giant.Entity,
         self = base.extend();
 
     /**
      * Creates a Document instance.
      * A `Document` instance may also be created via conversion from string, array, and `DocumentKey`.
-     * @name bookworm.Document.create
+     * @name giant.Document.create
      * @function
-     * @param {bookworm.DocumentKey} documentKey Identifies document.
-     * @returns {bookworm.Document}
+     * @param {giant.DocumentKey} documentKey Identifies document.
+     * @returns {giant.Document}
      */
 
     /**
      * The Document class implements an API for document nodes,
      * granting access to the document's fields and attributes.
      * @class
-     * @extends bookworm.Entity
+     * @extends giant.Entity
      */
-    bookworm.Document = self
-        .addMethods(/** @lends bookworm.Document# */{
+    giant.Document = self
+        .addMethods(/** @lends giant.Document# */{
             /**
-             * @param {bookworm.DocumentKey} documentKey
+             * @param {giant.DocumentKey} documentKey
              * @ignore
              */
             init: function (documentKey) {
-                dessert.isDocumentKey(documentKey, "Invalid document key");
+                giant.isDocumentKey(documentKey, "Invalid document key");
                 base.init.call(this, documentKey);
 
                 /**
                  * Document key associated with current entity.
-                 * @name bookworm.Document#entityKey
-                 * @type {bookworm.DocumentKey}
+                 * @name giant.Document#entityKey
+                 * @type {giant.DocumentKey}
                  */
             },
 
             /**
              * Fetches entity associated with the document's fields.
              * Returns self by default.
-             * @returns {bookworm.Document}
+             * @returns {giant.Document}
              */
             getFieldsEntity: function () {
                 return this;
@@ -49,7 +49,7 @@ troop.postpone(bookworm, 'Document', function () {
             /**
              * Retrieves Field entity matching the specified field name.
              * @param {string} fieldName
-             * @returns {bookworm.Field}
+             * @returns {giant.Field}
              */
             getField: function (fieldName) {
                 return this.entityKey.getFieldKey(fieldName).toField();
@@ -57,26 +57,26 @@ troop.postpone(bookworm, 'Document', function () {
         });
 });
 
-troop.amendPostponed(bookworm, 'Entity', function () {
+giant.amendPostponed(giant, 'Entity', function () {
     "use strict";
 
-    bookworm.Entity
-        .addSurrogate(bookworm, 'Document', function (entityKey) {
-            return bookworm.DocumentKey.isBaseOf(entityKey);
+    giant.Entity
+        .addSurrogate(giant, 'Document', function (entityKey) {
+            return giant.DocumentKey.isBaseOf(entityKey);
         });
 });
 
-troop.amendPostponed(bookworm, 'DocumentKey', function () {
+giant.amendPostponed(giant, 'DocumentKey', function () {
     "use strict";
 
-    bookworm.DocumentKey
-        .addMethods(/** @lends bookworm.DocumentKey */{
+    giant.DocumentKey
+        .addMethods(/** @lends giant.DocumentKey */{
             /**
              * Converts `DocumentKey` to `Document`.
-             * @returns {bookworm.Document}
+             * @returns {giant.Document}
              */
             toDocument: function () {
-                return bookworm.Document.create(this);
+                return giant.Document.create(this);
             }
         });
 });
@@ -84,29 +84,29 @@ troop.amendPostponed(bookworm, 'DocumentKey', function () {
 (function () {
     "use strict";
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         String.prototype,
         /** @lends String# */{
             /**
              * Converts `String` to `Document` instance, assuming the string is a serialized `DocumentKey`.
-             * @returns {bookworm.Document}
+             * @returns {giant.Document}
              */
             toDocument: function () {
-                return bookworm.Document.create(this.toDocumentKey());
+                return giant.Document.create(this.toDocumentKey());
             }
         },
         false, false, false
     );
 
-    troop.Properties.addProperties.call(
+    giant.Properties.addProperties.call(
         Array.prototype,
         /** @lends Array# */{
             /**
              * Converts `Array` to `Document` instance, assuming the array is a document key in array notation.
-             * @returns {bookworm.Document}
+             * @returns {giant.Document}
              */
             toDocument: function () {
-                return bookworm.Document.create(this.toDocumentKey());
+                return giant.Document.create(this.toDocumentKey());
             }
         },
         false, false, false
