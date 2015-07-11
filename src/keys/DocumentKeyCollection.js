@@ -1,4 +1,4 @@
-/*global giant, giant, giant, giant */
+/*global giant */
 giant.postpone(giant, 'DocumentKeyCollection', function () {
     "use strict";
 

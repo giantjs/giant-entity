@@ -1,4 +1,4 @@
-/*global giant, giant, giant, flock, giant */
+/*global giant, flock */
 giant.postpone(giant, 'EntityBound', function () {
     "use strict";
 
