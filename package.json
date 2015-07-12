@@ -1,6 +1,6 @@
 {
     "name"           : "giant-entity",
-    "version"        : "0.0.3",
+    "version"        : "0.0.4",
     "description"    : "Entity module for Giant",
     "keywords"       : [
         "document",
@@ -14,13 +14,13 @@
     "copyright"      : "Copyright (c) 2014-2015 Dan Stocker",
     "license"        : "MIT",
     "dependencies"   : {
-        "giant-assertion" : "0.0.3",
-        "giant-data"      : "0.0.3",
-        "giant-event"     : "0.0.3",
-        "giant-namespace" : "0.0.3",
-        "giant-oop"       : "0.0.3",
-        "giant-templating": "0.0.3",
-        "giant-utils"     : "0.0.3"
+        "giant-assertion" : "0.0.4",
+        "giant-data"      : "0.0.4",
+        "giant-event"     : "0.0.4",
+        "giant-namespace" : "0.0.4",
+        "giant-oop"       : "0.0.4",
+        "giant-templating": "0.0.4",
+        "giant-utils"     : "0.0.4"
     },
     "repository"     : {
         "type": "git",
