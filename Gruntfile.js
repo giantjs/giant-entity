@@ -9,7 +9,6 @@ module.exports = function (grunt) {
             'src/cache/config.js',
             'src/cache/entities.js',
             'src/cache/index.js',
-            'src/utils/StringUtils.js',
             'src/events/EntityChangeEvent.js',
             'src/keys/EntityKey.js',
             'src/keys/AttributeKey.js',
@@ -37,8 +36,7 @@ module.exports = function (grunt) {
             'src/keys/jsTestDriver.conf',
             'src/entities/jsTestDriver.conf',
             'src/events/jsTestDriver.conf',
-            'src/binding/jsTestDriver.conf',
-            'src/utils/jsTestDriver.conf'
+            'src/binding/jsTestDriver.conf'
         ],
 
         globals: {}

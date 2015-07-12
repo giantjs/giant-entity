@@ -19,7 +19,8 @@
         "giant-event"     : "0.0.3",
         "giant-namespace" : "0.0.3",
         "giant-oop"       : "0.0.3",
-        "giant-templating": "0.0.3"
+        "giant-templating": "0.0.3",
+        "giant-utils"     : "0.0.3"
     },
     "repository"     : {
         "type": "git",
