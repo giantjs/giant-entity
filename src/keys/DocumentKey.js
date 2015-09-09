@@ -118,46 +118,40 @@ giant.postpone(giant, 'DocumentKey', function () {
         }
     });
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts `String` to a `DocumentKey` instance. Assumes string is a serialized document key.
-             * @returns {giant.DocumentKey}
-             */
-            toDocumentKey: function () {
-                var StringUtils = giant.StringUtils,
-                    parts = StringUtils.safeSplit(this, '/'),
-                    documentType = parts[0],
-                    documentId = parts[1];
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts `String` to a `DocumentKey` instance. Assumes string is a serialized document key.
+         * @returns {giant.DocumentKey}
+         */
+        toDocumentKey: function () {
+            var StringUtils = giant.StringUtils,
+                parts = StringUtils.safeSplit(this, '/'),
+                documentType = parts[0],
+                documentId = parts[1];
 
-                return typeof documentType === 'string' && typeof documentId === 'string' ?
-                    giant.DocumentKey.create(
-                        StringUtils.unescapeChars(documentType, '/'),
-                        StringUtils.unescapeChars(documentId, '/')) :
-                    undefined;
-            }
-        },
-        false, false, false);
+            return typeof documentType === 'string' && typeof documentId === 'string' ?
+                giant.DocumentKey.create(
+                    StringUtils.unescapeChars(documentType, '/'),
+                    StringUtils.unescapeChars(documentId, '/')) :
+                undefined;
+        }
+    });
 
-    giant.Properties.addProperties.call(
-        Array.prototype,
-        /** @lends Array# */{
-            /**
-             * Converts `Array` (of strings) to a `DocumentKey` instance.
-             * Assumes array is a document key in array notation.
-             * @returns {giant.DocumentKey}
-             * @example
-             * ['foo', 'bar'].toDocumentKey() // single document key
-             */
-            toDocumentKey: function () {
-                var documentType = this[0],
-                    documentId = this[1];
+    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+        /**
+         * Converts `Array` (of strings) to a `DocumentKey` instance.
+         * Assumes array is a document key in array notation.
+         * @returns {giant.DocumentKey}
+         * @example
+         * ['foo', 'bar'].toDocumentKey() // single document key
+         */
+        toDocumentKey: function () {
+            var documentType = this[0],
+                documentId = this[1];
 
-                return typeof documentType !== 'undefined' && typeof documentId !== 'undefined' ?
-                    giant.DocumentKey.create(documentType, documentId) :
-                    undefined;
-            }
-        },
-        false, false, false);
+            return typeof documentType !== 'undefined' && typeof documentId !== 'undefined' ?
+                giant.DocumentKey.create(documentType, documentId) :
+                undefined;
+        }
+    });
 }());

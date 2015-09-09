@@ -106,57 +106,49 @@ giant.postpone(giant, 'ItemKey', function () {
         }
     });
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts `String` to `ItemKey`. Assumes the string to be serialized `ItemKey`.
-             * @returns {giant.ItemKey}
-             */
-            toItemKey: function () {
-                var StringUtils = giant.StringUtils,
-                    parts = StringUtils.safeSplit(this, '/'),
-                    documentType = parts[0],
-                    documentId = parts[1],
-                    fieldName = parts[2],
-                    itemId = parts[3];
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts `String` to `ItemKey`. Assumes the string to be serialized `ItemKey`.
+         * @returns {giant.ItemKey}
+         */
+        toItemKey: function () {
+            var StringUtils = giant.StringUtils,
+                parts = StringUtils.safeSplit(this, '/'),
+                documentType = parts[0],
+                documentId = parts[1],
+                fieldName = parts[2],
+                itemId = parts[3];
 
-                return typeof documentType === 'string' &&
-                    typeof documentId === 'string' &&
-                    typeof fieldName === 'string' &&
-                    typeof itemId === 'string' ?
-                    giant.ItemKey.create(
-                        StringUtils.unescapeChars(documentType, '/'),
-                        StringUtils.unescapeChars(documentId, '/'),
-                        StringUtils.unescapeChars(fieldName, '/'),
-                        StringUtils.unescapeChars(itemId, '/')) :
-                    undefined;
-            }
-        },
-        false, false, false
-    );
+            return typeof documentType === 'string' &&
+                typeof documentId === 'string' &&
+                typeof fieldName === 'string' &&
+                typeof itemId === 'string' ?
+                giant.ItemKey.create(
+                    StringUtils.unescapeChars(documentType, '/'),
+                    StringUtils.unescapeChars(documentId, '/'),
+                    StringUtils.unescapeChars(fieldName, '/'),
+                    StringUtils.unescapeChars(itemId, '/')) :
+                undefined;
+        }
+    });
 
-    giant.Properties.addProperties.call(
-        Array.prototype,
-        /** @lends Array# */{
-            /**
-             * Converts `Array` (of strings) to `ItemKey`. Assumes the array is an item key in array notation.
-             * @returns {giant.ItemKey}
-             */
-            toItemKey: function () {
-                var documentType = this[0],
-                    documentId = this[1],
-                    fieldName = this[2],
-                    itemId = this[3];
+    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+        /**
+         * Converts `Array` (of strings) to `ItemKey`. Assumes the array is an item key in array notation.
+         * @returns {giant.ItemKey}
+         */
+        toItemKey: function () {
+            var documentType = this[0],
+                documentId = this[1],
+                fieldName = this[2],
+                itemId = this[3];
 
-                return typeof documentType !== 'undefined' &&
-                    typeof documentId !== 'undefined' &&
-                    typeof fieldName !== 'undefined' &&
-                    typeof itemId !== 'undefined' ?
-                    giant.ItemKey.create(documentType, documentId, fieldName, itemId) :
-                    undefined;
-            }
-        },
-        false, false, false
-    );
+            return typeof documentType !== 'undefined' &&
+                typeof documentId !== 'undefined' &&
+                typeof fieldName !== 'undefined' &&
+                typeof itemId !== 'undefined' ?
+                giant.ItemKey.create(documentType, documentId, fieldName, itemId) :
+                undefined;
+        }
+    });
 }());

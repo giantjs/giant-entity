@@ -120,31 +120,23 @@ giant.amendPostponed(giant, 'FieldKey', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts `String` to `Field` instance, assuming the string is a serialized `FieldKey`.
-             * @returns {giant.Field}
-             */
-            toField: function () {
-                return giant.Field.create(this.toFieldKey());
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts `String` to `Field` instance, assuming the string is a serialized `FieldKey`.
+         * @returns {giant.Field}
+         */
+        toField: function () {
+            return giant.Field.create(this.toFieldKey());
+        }
+    });
 
-    giant.Properties.addProperties.call(
-        Array.prototype,
-        /** @lends Array# */{
-            /**
-             * Converts `Array` to `Field` instance, assuming the array is a field key in array notation.
-             * @returns {giant.Field}
-             */
-            toField: function () {
-                return giant.Field.create(this.toFieldKey());
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+        /**
+         * Converts `Array` to `Field` instance, assuming the array is a field key in array notation.
+         * @returns {giant.Field}
+         */
+        toField: function () {
+            return giant.Field.create(this.toFieldKey());
+        }
+    });
 }());

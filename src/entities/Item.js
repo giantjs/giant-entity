@@ -74,31 +74,23 @@ giant.amendPostponed(giant, 'ItemKey', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts `String` to `Item` instance, assuming the string is a serialized `ItemKey`.
-             * @returns {giant.Item}
-             */
-            toItem: function () {
-                return giant.Item.create(this.toItemKey());
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts `String` to `Item` instance, assuming the string is a serialized `ItemKey`.
+         * @returns {giant.Item}
+         */
+        toItem: function () {
+            return giant.Item.create(this.toItemKey());
+        }
+    });
 
-    giant.Properties.addProperties.call(
-        Array.prototype,
-        /** @lends Array# */{
-            /**
-             * Converts `Array` to `Item` instance, assuming the array is an item key in array notation.
-             * @returns {giant.Item}
-             */
-            toItem: function () {
-                return giant.Item.create(this.toItemKey());
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+        /**
+         * Converts `Array` to `Item` instance, assuming the array is an item key in array notation.
+         * @returns {giant.Item}
+         */
+        toItem: function () {
+            return giant.Item.create(this.toItemKey());
+        }
+    });
 }());

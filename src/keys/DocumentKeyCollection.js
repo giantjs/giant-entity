@@ -41,21 +41,18 @@ giant.amendPostponed(giant, 'Hash', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        Array.prototype,
-        /** @lends Array# */{
-            /**
-             * Converts `Array` (of `DocumentKey` instances) to a `DocumentKeyCollection` instance.
-             * @returns {giant.DocumentKeyCollection}
-             * @example
-             * ['foo/bar', 'foo/baz'].toDocumentKeyCollection() // collection of document keys
-             */
-            toDocumentKeyCollection: function () {
-                return this
-                    .toCollection()
-                    .callOnEachItem('toDocumentKey')
-                    .toDocumentKeyCollection();
-            }
-        },
-        false, false, false);
+    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+        /**
+         * Converts `Array` (of `DocumentKey` instances) to a `DocumentKeyCollection` instance.
+         * @returns {giant.DocumentKeyCollection}
+         * @example
+         * ['foo/bar', 'foo/baz'].toDocumentKeyCollection() // collection of document keys
+         */
+        toDocumentKeyCollection: function () {
+            return this
+                .toCollection()
+                .callOnEachItem('toDocumentKey')
+                .toDocumentKeyCollection();
+        }
+    });
 }());

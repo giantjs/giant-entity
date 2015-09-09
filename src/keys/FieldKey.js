@@ -160,53 +160,45 @@ giant.postpone(giant, 'FieldKey', function () {
         }
     });
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts `String` to a `FieldKey`. Assumes that string is a serialized `FieldKey`.
-             * @returns {giant.FieldKey}
-             */
-            toFieldKey: function () {
-                var StringUtils = giant.StringUtils,
-                    parts = StringUtils.safeSplit(this, '/'),
-                    documentType = parts[0],
-                    documentId = parts[1],
-                    fieldName = parts[2];
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts `String` to a `FieldKey`. Assumes that string is a serialized `FieldKey`.
+         * @returns {giant.FieldKey}
+         */
+        toFieldKey: function () {
+            var StringUtils = giant.StringUtils,
+                parts = StringUtils.safeSplit(this, '/'),
+                documentType = parts[0],
+                documentId = parts[1],
+                fieldName = parts[2];
 
-                return typeof documentType === 'string' &&
-                    typeof documentId === 'string' &&
-                    typeof fieldName === 'string' ?
-                    giant.FieldKey.create(
-                        StringUtils.unescapeChars(documentType, '/'),
-                        StringUtils.unescapeChars(documentId, '/'),
-                        StringUtils.unescapeChars(fieldName, '/')) :
-                    undefined;
-            }
-        },
-        false, false, false
-    );
+            return typeof documentType === 'string' &&
+                typeof documentId === 'string' &&
+                typeof fieldName === 'string' ?
+                giant.FieldKey.create(
+                    StringUtils.unescapeChars(documentType, '/'),
+                    StringUtils.unescapeChars(documentId, '/'),
+                    StringUtils.unescapeChars(fieldName, '/')) :
+                undefined;
+        }
+    });
 
-    giant.Properties.addProperties.call(
-        Array.prototype,
-        /** @lends Array# */{
-            /**
-             * Converts `Array` (of strings) to a `FieldKey` instance.
-             * Assumes that array is a field key in array notation.
-             * @returns {giant.FieldKey}
-             */
-            toFieldKey: function () {
-                var documentType = this[0],
-                    documentId = this[1],
-                    fieldName = this[2];
+    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+        /**
+         * Converts `Array` (of strings) to a `FieldKey` instance.
+         * Assumes that array is a field key in array notation.
+         * @returns {giant.FieldKey}
+         */
+        toFieldKey: function () {
+            var documentType = this[0],
+                documentId = this[1],
+                fieldName = this[2];
 
-                return typeof documentType !== 'undefined' &&
-                    typeof documentId !== 'undefined' &&
-                    typeof fieldName !== 'undefined' ?
-                    giant.FieldKey.create(documentType, documentId, fieldName) :
-                    undefined;
-            }
-        },
-        false, false, false
-    );
+            return typeof documentType !== 'undefined' &&
+                typeof documentId !== 'undefined' &&
+                typeof fieldName !== 'undefined' ?
+                giant.FieldKey.create(documentType, documentId, fieldName) :
+                undefined;
+        }
+    });
 }());

@@ -84,31 +84,23 @@ giant.amendPostponed(giant, 'DocumentKey', function () {
 (function () {
     "use strict";
 
-    giant.Properties.addProperties.call(
-        String.prototype,
-        /** @lends String# */{
-            /**
-             * Converts `String` to `Document` instance, assuming the string is a serialized `DocumentKey`.
-             * @returns {giant.Document}
-             */
-            toDocument: function () {
-                return giant.Document.create(this.toDocumentKey());
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+        /**
+         * Converts `String` to `Document` instance, assuming the string is a serialized `DocumentKey`.
+         * @returns {giant.Document}
+         */
+        toDocument: function () {
+            return giant.Document.create(this.toDocumentKey());
+        }
+    });
 
-    giant.Properties.addProperties.call(
-        Array.prototype,
-        /** @lends Array# */{
-            /**
-             * Converts `Array` to `Document` instance, assuming the array is a document key in array notation.
-             * @returns {giant.Document}
-             */
-            toDocument: function () {
-                return giant.Document.create(this.toDocumentKey());
-            }
-        },
-        false, false, false
-    );
+    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+        /**
+         * Converts `Array` to `Document` instance, assuming the array is a document key in array notation.
+         * @returns {giant.Document}
+         */
+        toDocument: function () {
+            return giant.Document.create(this.toDocumentKey());
+        }
+    });
 }());
