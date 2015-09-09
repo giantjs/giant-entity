@@ -2,7 +2,7 @@
 giant.postpone(giant, 'Entity', function () {
     "use strict";
 
-    var shallowCopy = giant.Utils.shallowCopy;
+    var shallowCopy = giant.DataUtils.shallowCopy;
 
     /**
      * Creates an Entity instance.
