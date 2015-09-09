@@ -9,6 +9,7 @@ if (typeof require === 'function') {
     require('giant-data');
     require('giant-event');
     require('giant-templating');
+    require('giant-utils');
 }
 
 /**
