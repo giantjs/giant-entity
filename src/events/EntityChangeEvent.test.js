@@ -1,5 +1,4 @@
 /*global giant */
-/*global module, test, expect, ok, raises, equal, notEqual, strictEqual, notStrictEqual, deepEqual, notDeepEqual */
 (function () {
     "use strict";
 
