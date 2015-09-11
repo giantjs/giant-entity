@@ -5,11 +5,11 @@
     module("Field");
 
     test("Instantiation", function () {
-        raises(function () {
+        throws(function () {
             giant.Field.create();
         }, "should raise exception on missing field key argument");
 
-        raises(function () {
+        throws(function () {
             giant.Field.create('foo/bar/baz');
         }, "should raise exception on invalid field key argument");
     });

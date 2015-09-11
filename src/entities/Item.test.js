@@ -5,11 +5,11 @@
     module("Item");
 
     test("Instantiation", function () {
-        raises(function () {
+        throws(function () {
             giant.Item.create();
         }, "should raise exception on missing item key argument");
 
-        raises(function () {
+        throws(function () {
             giant.Item.create('foo/bar/baz'.toFieldKey());
         }, "should raise exception on invalid item key argument");
     });

@@ -5,11 +5,11 @@
     module("Attribute");
 
     test("Instantiation", function () {
-        raises(function () {
+        throws(function () {
             giant.Attribute.create();
         }, "should raise exception on missing document key argument");
 
-        raises(function () {
+        throws(function () {
             giant.Attribute.create('foo');
         }, "should raise exception on invalid document key argument");
     });
