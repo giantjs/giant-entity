@@ -27,6 +27,12 @@
     "url": "git@github.com:giantjs/giant-entity.git"
   },
   "devDependencies": {
+    "grocer": "^0.5.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-karma": "^0.12.1",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-qunit": "^0.1.5",
     "q": "^1.4.0"
   },
   "files": [
