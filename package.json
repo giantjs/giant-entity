@@ -30,7 +30,7 @@
     "q": "^1.4.0"
   },
   "files": [
-    "giant-entity.js"
+    "lib"
   ],
-  "main": "giant-entity.js"
+  "main": "lib/giant-entity.js"
 }
