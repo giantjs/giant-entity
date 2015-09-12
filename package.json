@@ -1,46 +1,36 @@
 {
-    "name"           : "giant-entity",
-    "version"        : "0.0.5",
-    "description"    : "Entity module for Giant",
-    "keywords"       : [
-        "document",
-        "entity",
-        "datastore",
-        "in-memory",
-        "nosql",
-        "evented"
-    ],
-    "author"         : "Dan Stocker <dan@kwaia.com>",
-    "copyright"      : "Copyright (c) 2014-2015 Dan Stocker",
-    "license"        : "MIT",
-    "dependencies"   : {
-        "giant-assertion" : "0.0.5",
-        "giant-data"      : "0.0.5",
-        "giant-event"     : "0.0.5",
-        "giant-namespace" : "0.0.5",
-        "giant-oop"       : "0.0.5",
-        "giant-templating": "0.0.5",
-        "giant-utils"     : "0.0.5"
-    },
-    "repository"     : {
-        "type": "git",
-        "url" : "git@github.com:giantjs/giant-entity.git"
-    },
-    "devDependencies": {
-        "QUnitAdapter"        : "https://dl.dropboxusercontent.com/u/9258903/packages/QUnitAdapter-0.1.0.tgz",
-        "common-gruntfile"    : "git://github.com/danstocker/common-gruntfile.git#0.1.5",
-        "grunt"               : "~0.4.5",
-        "grunt-contrib-concat": "~0.5.1",
-        "grunt-contrib-copy"  : "~0.8.0",
-        "grunt-contrib-jshint": "~0.11.1",
-        "grunt-jsdoc"         : "~0.3.3",
-        "grunt-jstestdriver"  : "git://github.com/danstocker/grunt-jstestdriver.git",
-        "grunt-regex-replace" : "~0.2.6",
-        "grunt-yui-compressor": "~0.4.0",
-        "q"                   : "^1.4.0"
-    },
-    "files"          : [
-        "giant-entity.js"
-    ],
-    "main"           : "giant-entity.js"
+  "name": "giant-entity",
+  "version": "0.0.5",
+  "description": "Entity module for Giant",
+  "keywords": [
+    "document",
+    "entity",
+    "datastore",
+    "in-memory",
+    "nosql",
+    "evented"
+  ],
+  "author": "Dan Stocker <dan@kwaia.com>",
+  "copyright": "Copyright (c) 2014-2015 Dan Stocker",
+  "license": "MIT",
+  "dependencies": {
+    "giant-assertion": "0.0.5",
+    "giant-data": "0.0.5",
+    "giant-event": "0.0.5",
+    "giant-namespace": "0.0.5",
+    "giant-oop": "0.0.5",
+    "giant-templating": "0.0.5",
+    "giant-utils": "0.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:giantjs/giant-entity.git"
+  },
+  "devDependencies": {
+    "q": "^1.4.0"
+  },
+  "files": [
+    "giant-entity.js"
+  ],
+  "main": "giant-entity.js"
 }
