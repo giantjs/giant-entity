@@ -1,4 +1,4 @@
-/*global giant, flock */
+/*global giant */
 (function () {
     "use strict";
 
