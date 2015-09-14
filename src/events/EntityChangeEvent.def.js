@@ -112,7 +112,7 @@ giant.amendPostponed(giant, 'Event', function () {
     "use strict";
 
     giant.Event.addSurrogate(giant, 'EntityChangeEvent', function (eventName) {
-        var prefix = 'giant.entity.change';
+        var prefix = 'giant.Entity.change';
         return eventName.substr(0, prefix.length) === prefix;
     });
 });
