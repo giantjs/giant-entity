@@ -152,7 +152,7 @@ giant.postpone(giant, 'EntityBound', function () {
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    giant.Entity.EVENT_ENTITY_ACCESS,
+                    giant.EVENT_ENTITY_ACCESS,
                     methodName,
                     'content');
 
@@ -173,7 +173,7 @@ giant.postpone(giant, 'EntityBound', function () {
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    giant.Entity.EVENT_ENTITY_ACCESS,
+                    giant.EVENT_ENTITY_ACCESS,
                     methodName,
                     'content');
 
@@ -194,7 +194,7 @@ giant.postpone(giant, 'EntityBound', function () {
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    giant.Entity.EVENT_ENTITY_ACCESS,
+                    giant.EVENT_ENTITY_ACCESS,
                     methodName,
                     'strict');
 
@@ -215,7 +215,7 @@ giant.postpone(giant, 'EntityBound', function () {
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    giant.Entity.EVENT_ENTITY_ACCESS,
+                    giant.EVENT_ENTITY_ACCESS,
                     methodName,
                     'strict');
 
@@ -236,7 +236,7 @@ giant.postpone(giant, 'EntityBound', function () {
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    giant.Entity.EVENT_ENTITY_CHANGE,
+                    giant.EVENT_ENTITY_CHANGE,
                     methodName,
                     'content');
 
@@ -257,7 +257,7 @@ giant.postpone(giant, 'EntityBound', function () {
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    giant.Entity.EVENT_ENTITY_CHANGE,
+                    giant.EVENT_ENTITY_CHANGE,
                     methodName,
                     'content');
 
@@ -278,7 +278,7 @@ giant.postpone(giant, 'EntityBound', function () {
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    giant.Entity.EVENT_ENTITY_CHANGE,
+                    giant.EVENT_ENTITY_CHANGE,
                     methodName,
                     'strict');
 
@@ -299,7 +299,7 @@ giant.postpone(giant, 'EntityBound', function () {
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    giant.Entity.EVENT_ENTITY_CHANGE,
+                    giant.EVENT_ENTITY_CHANGE,
                     methodName,
                     'strict');
 
@@ -321,7 +321,7 @@ giant.postpone(giant, 'EntityBound', function () {
                 this._bindToEntity(
                     fieldKey,
                     fieldKey.documentKey,
-                    giant.Entity.EVENT_ENTITY_CHANGE,
+                    giant.EVENT_ENTITY_CHANGE,
                     methodName,
                     'field');
 
@@ -342,7 +342,7 @@ giant.postpone(giant, 'EntityBound', function () {
                 this._unbindFromEntity(
                     fieldKey,
                     fieldKey.documentKey,
-                    giant.Entity.EVENT_ENTITY_CHANGE,
+                    giant.EVENT_ENTITY_CHANGE,
                     methodName,
                     'field');
 

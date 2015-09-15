@@ -67,11 +67,11 @@
             ok(true, "should trigger access event");
         }
 
-        documentKey.subscribeTo(giant.Entity.EVENT_ENTITY_ACCESS, onAccess);
+        documentKey.subscribeTo(giant.EVENT_ENTITY_ACCESS, onAccess);
 
         equal(typeof entity.getNode(), 'undefined', "should return undefined");
 
-        documentKey.unsubscribeFrom(giant.Entity.EVENT_ENTITY_ACCESS, onAccess);
+        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_ACCESS, onAccess);
         giant.entities.removeMocks();
     });
 
@@ -113,11 +113,11 @@
             ok(false, "should NOT trigger access event");
         }
 
-        documentKey.subscribeTo(giant.Entity.EVENT_ENTITY_ACCESS, onAccess);
+        documentKey.subscribeTo(giant.EVENT_ENTITY_ACCESS, onAccess);
 
         strictEqual(entity.getSilentNode(), entityNode, "should return node retrieved from cache");
 
-        documentKey.unsubscribeFrom(giant.Entity.EVENT_ENTITY_ACCESS, onAccess);
+        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_ACCESS, onAccess);
         giant.entities.removeMocks();
     });
 
@@ -156,11 +156,11 @@
             ok(true, "should trigger access event");
         }
 
-        documentKey.subscribeTo(giant.Entity.EVENT_ENTITY_ACCESS, onAccess);
+        documentKey.subscribeTo(giant.EVENT_ENTITY_ACCESS, onAccess);
 
         strictEqual(entity.touchNode(), entity, "should be chainable");
 
-        documentKey.unsubscribeFrom(giant.Entity.EVENT_ENTITY_ACCESS, onAccess);
+        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_ACCESS, onAccess);
         giant.entities.removeMocks();
     });
 
@@ -191,11 +191,11 @@
             equal(event.afterNode, 'hello', "should set afterNode property on event");
         }
 
-        documentKey.subscribeTo(giant.Entity.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
 
         strictEqual(entity.setNode('hello'), entity, "should be chainable");
 
-        documentKey.unsubscribeFrom(giant.Entity.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
         giant.entities.removeMocks();
     });
 
@@ -222,11 +222,11 @@
             ok(false, "should NOT trigger change event");
         }
 
-        documentKey.subscribeTo(giant.Entity.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
 
         entity.setNode(entityNode);
 
-        documentKey.unsubscribeFrom(giant.Entity.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
         giant.entities.removeMocks();
     });
 
@@ -245,7 +245,7 @@
         }
 
         document.entityKey
-            .subscribeTo(document.EVENT_ENTITY_CHANGE, onChange);
+            .subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
 
         strictEqual(document.appendNode({
             hello: "world",
@@ -253,7 +253,7 @@
         }), document, "should be chainable");
 
         document.entityKey
-            .unsubscribeFrom(document.EVENT_ENTITY_CHANGE, onChange);
+            .unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
     });
 
     test("Appending node", function () {
@@ -280,12 +280,12 @@
         }
 
         document.entityKey
-            .subscribeTo(document.EVENT_ENTITY_CHANGE, onChange);
+            .subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
 
         document.appendNode(nodeToAppend);
 
         document.entityKey
-            .unsubscribeFrom(document.EVENT_ENTITY_CHANGE, onChange);
+            .unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
     });
 
     test("Node removal", function () {
@@ -315,11 +315,11 @@
             equal(typeof event.afterNode, 'undefined', "should set afterNode property on event");
         }
 
-        documentKey.subscribeTo(giant.Entity.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
 
         strictEqual(entity.unsetNode(), entity, "should be chainable");
 
-        documentKey.unsubscribeFrom(giant.Entity.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
         giant.entities.removeMocks();
     });
 
@@ -346,11 +346,11 @@
             ok(false, "should NOT trigger change event");
         }
 
-        documentKey.subscribeTo(giant.Entity.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
 
         entity.unsetNode(entityNode);
 
-        documentKey.unsubscribeFrom(giant.Entity.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
         giant.entities.removeMocks();
     });
 
@@ -375,11 +375,11 @@
         }
 
         document.entityKey
-            .subscribeTo(document.EVENT_ENTITY_CHANGE, onChange);
+            .subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
 
         field.unsetKey();
 
         document.entityKey
-            .unsubscribeFrom(document.EVENT_ENTITY_CHANGE, onChange);
+            .unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
     });
 }());

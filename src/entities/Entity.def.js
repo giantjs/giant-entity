@@ -22,19 +22,6 @@ giant.postpone(giant, 'Entity', function () {
      * @extends giant.Base
      */
     giant.Entity = self
-        .addConstants(/** @lends giant.Entity */{
-            /**
-             * Signals that an absent entity has been accessed.
-             * @constant
-             */
-            EVENT_ENTITY_ACCESS: 'giant.Entity.access',
-
-            /**
-             * Signals that an entity node was changed.
-             * @constant
-             */
-            EVENT_ENTITY_CHANGE: 'giant.Entity.change'
-        })
         .addMethods(/** @lends giant.Entity# */{
             /**
              * @param {giant.EntityKey} entityKey
@@ -76,7 +63,7 @@ giant.postpone(giant, 'Entity', function () {
 
                 if (typeof entityNode === 'undefined') {
                     // triggering event about absent node
-                    this.entityKey.triggerSync(self.EVENT_ENTITY_ACCESS);
+                    this.entityKey.triggerSync(giant.EVENT_ENTITY_ACCESS);
                 }
 
                 return entityNode;
@@ -128,7 +115,7 @@ giant.postpone(giant, 'Entity', function () {
                 if (node !== beforeNode) {
                     giant.entities.setNode(entityKey.getEntityPath(), node);
 
-                    entityKey.spawnEvent(self.EVENT_ENTITY_CHANGE)
+                    entityKey.spawnEvent(giant.EVENT_ENTITY_CHANGE)
                         .setBeforeNode(beforeNode)
                         .setAfterNode(node)
                         .triggerSync();
@@ -153,7 +140,7 @@ giant.postpone(giant, 'Entity', function () {
                     beforeNode = shallowCopy(entityNode);
 
                 giant.entities.appendNode(entityPath, node, function () {
-                    entityKey.spawnEvent(self.EVENT_ENTITY_CHANGE)
+                    entityKey.spawnEvent(giant.EVENT_ENTITY_CHANGE)
                         .setBeforeNode(beforeNode)
                         .setAfterNode(that.getSilentNode())
                         .triggerSync();
@@ -174,7 +161,7 @@ giant.postpone(giant, 'Entity', function () {
                 if (typeof beforeNode !== 'undefined') {
                     giant.entities.unsetNode(entityPath);
 
-                    entityKey.spawnEvent(self.EVENT_ENTITY_CHANGE)
+                    entityKey.spawnEvent(giant.EVENT_ENTITY_CHANGE)
                         .setBeforeNode(beforeNode)
                         .triggerSync();
                 }
@@ -197,7 +184,7 @@ giant.postpone(giant, 'Entity', function () {
 
                 giant.entities.unsetKey(entityPath, splice, function (parentPath, parentNodeAfter) {
                     parentEntity.entityKey
-                        .spawnEvent(self.EVENT_ENTITY_CHANGE)
+                        .spawnEvent(giant.EVENT_ENTITY_CHANGE)
                         .setBeforeNode(parentNodeBefore)
                         .setAfterNode(parentNodeAfter)
                         .triggerSync();
@@ -207,6 +194,23 @@ giant.postpone(giant, 'Entity', function () {
             }
         });
 });
+
+(function () {
+    "use strict";
+
+    /**
+     * Signals that an absent entity has been accessed.
+     * TODO: Revisit after invalidation is implemented.
+     * @constant
+     */
+    giant.EVENT_ENTITY_ACCESS = 'giant.Entity.access';
+
+    /**
+     * Signals that an entity node was changed.
+     * @constant
+     */
+    giant.EVENT_ENTITY_CHANGE = 'giant.Entity.change';
+}());
 
 giant.amendPostponed(giant, 'EntityKey', function () {
     "use strict";
