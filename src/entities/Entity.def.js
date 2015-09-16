@@ -198,18 +198,20 @@ giant.postpone(giant, 'Entity', function () {
 (function () {
     "use strict";
 
-    /**
-     * Signals that an absent entity has been accessed.
-     * TODO: Revisit after invalidation is implemented.
-     * @constant
-     */
-    giant.EVENT_ENTITY_ACCESS = 'giant.Entity.access';
+    giant.addGlobalConstants(/** @lends giant */{
+        /**
+         * Signals that an absent entity has been accessed.
+         * TODO: Revisit after invalidation is implemented.
+         * @constant
+         */
+        EVENT_ENTITY_ACCESS: 'giant.Entity.access',
 
-    /**
-     * Signals that an entity node was changed.
-     * @constant
-     */
-    giant.EVENT_ENTITY_CHANGE = 'giant.Entity.change';
+        /**
+         * Signals that an entity node was changed.
+         * @constant
+         */
+        EVENT_ENTITY_CHANGE: 'giant.Entity.change'
+    });
 }());
 
 giant.amendPostponed(giant, 'EntityKey', function () {
