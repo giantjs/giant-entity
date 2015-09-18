@@ -59,8 +59,7 @@ giant.postpone(giant, 'CollectionField', function () {
 
             /**
              * Retrieves an Item instance for the item matching the specified value.
-             * Iterates ove all items. Avoid using it for large collections.
-             * TODO: Implement indexed version.
+             * Iterates over all items. Avoid using it for large collections.
              * @param {*} value
              * @returns {giant.Item}
              */
@@ -82,6 +81,16 @@ giant.postpone(giant, 'CollectionField', function () {
                 }
 
                 return result;
+            },
+
+            /**
+             * Appends the specified item nodes to the current collection.
+             * @param {object} itemsNode
+             * @returns {bookworm.CollectionField}
+             */
+            appendItems: function (itemsNode) {
+                this.getValueEntity().appendNode(itemsNode);
+                return this;
             }
         });
 });

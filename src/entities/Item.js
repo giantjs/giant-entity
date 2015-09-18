@@ -3,7 +3,8 @@ giant.postpone(giant, 'Item', function () {
     "use strict";
 
     var base = giant.Field,
-        self = base.extend();
+        self = base.extend(),
+        hOP = Object.prototype.hasOwnProperty;
 
     /**
      * Creates an Item instance.
@@ -43,6 +44,32 @@ giant.postpone(giant, 'Item', function () {
             getParentEntity: function () {
                 return this.entityKey.getFieldKey().toField()
                     .getValueEntity();
+            },
+
+            /**
+             * Sets item in collection. When the item is already present, it just replaces the item node.
+             * When it's not present yet, the item gets appended to the rest, triggering appropriate events.
+             * @param {*} node
+             * @returns {giant.Item}
+             */
+            setNode: function (node) {
+                var itemsEntity = this.getParentEntity().getValueEntity(),
+                    itemsNode = itemsEntity.getSilentNode(),
+                    itemId = this.entityKey.itemId;
+
+                if (itemsNode && hOP.call(itemsNode, itemId)) {
+                    // item already exists in collection
+                    // simply setting node
+                    base.setNode.call(this, node);
+                } else {
+                    // item does not exist in collection yet
+                    // appending to collection
+                    itemsNode = {};
+                    itemsNode[itemId] = node;
+                    itemsEntity.appendNode(itemsNode);
+                }
+
+                return this;
             }
         });
 });
