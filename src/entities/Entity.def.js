@@ -204,13 +204,13 @@ giant.postpone(giant, 'Entity', function () {
          * TODO: Revisit after invalidation is implemented.
          * @constant
          */
-        EVENT_ENTITY_ACCESS: 'giant.Entity.access',
+        EVENT_ENTITY_ACCESS: 'entity.access',
 
         /**
          * Signals that an entity node was changed.
          * @constant
          */
-        EVENT_ENTITY_CHANGE: 'giant.Entity.change'
+        EVENT_ENTITY_CHANGE: 'entity.change'
     });
 }());
 

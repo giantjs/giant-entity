@@ -255,7 +255,7 @@
             entityBound = EntityBound.create()
                 .bindToEntityContentChange(documentKey, 'onEntityEvent'),
             handler = entityBound.entityBindings.getNode([
-                "foo/bar", "giant.Entity.change", "onEntityEvent", "change"].toPath());
+                "foo/bar", "entity.change", "onEntityEvent", "change"].toPath());
 
         entityBound.addMocks({
             onEntityEvent: function () {
@@ -266,7 +266,7 @@
         entityBound.bindToEntityContentChange(documentKey, 'onEntityEvent');
 
         strictEqual(entityBound.entityBindings.getNode([
-            "foo/bar", "giant.Entity.change", "onEntityEvent", "change"].toPath()),
+            "foo/bar", "entity.change", "onEntityEvent", "change"].toPath()),
             handler,
             "should not alter current subscription");
 
