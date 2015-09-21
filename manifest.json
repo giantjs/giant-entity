@@ -25,7 +25,7 @@
         "src/binding/HandlerSpawner.def.js",
         "src/binding/ContentHandlerSpawner.def.js",
         "src/binding/StrictHandlerSpawner.def.js",
-        "src/binding/FieldHandlerSpawner.def.js",
+        "src/binding/DelegateHandlerSpawner.def.js",
         "src/binding/EntityBound.def.js",
         "src/exports.js"
       ]

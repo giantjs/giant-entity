@@ -4,7 +4,7 @@ giant.postpone(giant, 'Item', function () {
 
     var base = giant.Field,
         self = base.extend(),
-        shallowCopy = giant.Utils.shallowCopy;
+        shallowCopy = giant.DataUtils.shallowCopy;
 
     /**
      * Creates an Item instance.
@@ -65,7 +65,7 @@ giant.postpone(giant, 'Item', function () {
                 giant.entities.appendNode(parentKey.getEntityPath(), nodeToAppend, function () {
                     var parentNodeAfter = parentEntity.getNode();
 
-                    parentKey.spawnEvent(that.EVENT_ENTITY_CHANGE)
+                    parentKey.spawnEvent(giant.EVENT_ENTITY_CHANGE)
                         .setBeforeNode(parentNodeBefore)
                         .setAfterNode(parentNodeAfter)
                         .setAffectedKey(that.entityKey)
