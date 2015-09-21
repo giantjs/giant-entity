@@ -4,7 +4,7 @@ giant.postpone(giant, 'Item', function () {
 
     var base = giant.Field,
         self = base.extend(),
-        hOP = Object.prototype.hasOwnProperty;
+        shallowCopy = giant.Utils.shallowCopy;
 
     /**
      * Creates an Item instance.
@@ -49,25 +49,28 @@ giant.postpone(giant, 'Item', function () {
             /**
              * Sets item in collection. When the item is already present, it just replaces the item node.
              * When it's not present yet, the item gets appended to the rest, triggering appropriate events.
-             * @param {*} node
+             * @param {*} node Item node to be set in the collection.
              * @returns {giant.Item}
              */
             setNode: function (node) {
-                var itemsEntity = this.getParentEntity().getValueEntity(),
-                    itemsNode = itemsEntity.getSilentNode(),
+                var that = this,
+                    parentEntity = this.getParentEntity(),
+                    parentKey = parentEntity.entityKey,
+                    parentNodeBefore = shallowCopy(parentEntity.getSilentNode()),
+                    nodeToAppend = {},
                     itemId = this.entityKey.itemId;
 
-                if (itemsNode && hOP.call(itemsNode, itemId)) {
-                    // item already exists in collection
-                    // simply setting node
-                    base.setNode.call(this, node);
-                } else {
-                    // item does not exist in collection yet
-                    // appending to collection
-                    itemsNode = {};
-                    itemsNode[itemId] = node;
-                    itemsEntity.appendNode(itemsNode);
-                }
+                nodeToAppend[itemId] = node;
+
+                giant.entities.appendNode(parentKey.getEntityPath(), nodeToAppend, function () {
+                    var parentNodeAfter = parentEntity.getNode();
+
+                    parentKey.spawnEvent(that.EVENT_ENTITY_CHANGE)
+                        .setBeforeNode(parentNodeBefore)
+                        .setAfterNode(parentNodeAfter)
+                        .setAffectedKey(that.entityKey)
+                        .triggerSync();
+                });
 
                 return this;
             }

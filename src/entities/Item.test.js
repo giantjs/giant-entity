@@ -66,7 +66,7 @@
     });
 
     test("Node replacement", function () {
-        expect(4);
+        expect(5);
 
         'foo/bar'.toDocument().setNode({
             collection: {
@@ -74,7 +74,19 @@
             }
         });
 
-        var item = 'foo/bar/collection/baz'.toItem();
+        var fieldKey = 'foo/bar/collection'.toFieldKey(),
+            itemKey = fieldKey.getItemKey('baz'),
+            item = itemKey.toEntity();
+
+        function onFieldChange (event) {
+            deepEqual(event.beforeNode, {
+                baz: 'BAZ'
+            }, "should set correct beforeNode on event");
+            deepEqual(event.afterNode, {
+                baz: 'QUX'
+            }, "should set correct afterNode on event");
+            ok(event.affectedKey.equals(itemKey), "should set affectedKey on event");
+        }
 
         giant.FieldKey.addMocks({
             getFieldType: function () {
@@ -83,21 +95,17 @@
             }
         });
 
-        giant.Entity.addMocks({
-            setNode: function (node) {
-                ok(this.entityKey.equals('foo/bar/collection/baz'.toItemKey()), "should replace item node");
-                equal(node, "QUX", "should pass item value to setter");
-            }
-        });
+        fieldKey.subscribeTo(giant.EVENT_ENTITY_CHANGE, onFieldChange);
 
         strictEqual(item.setNode("QUX"), item, "should be chainable");
 
         giant.FieldKey.removeMocks();
-        giant.Entity.removeMocks();
+
+        fieldKey.unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onFieldChange);
     });
 
     test("Node addition", function () {
-        expect(4);
+        expect(5);
 
         'foo/bar'.toDocument().setNode({
             collection: {
@@ -105,7 +113,20 @@
             }
         });
 
-        var item = 'foo/bar/collection/qux'.toItem();
+        var fieldKey = 'foo/bar/collection'.toFieldKey(),
+            itemKey = fieldKey.getItemKey('qux'),
+            item = itemKey.toEntity();
+
+        function onFieldChange (event) {
+            deepEqual(event.beforeNode, {
+                baz: 'BAZ'
+            }, "should set correct beforeNode on event");
+            deepEqual(event.afterNode, {
+                baz: 'BAZ',
+                qux: 'QUX'
+            }, "should set correct afterNode on event");
+            ok(event.affectedKey.equals(itemKey), "should set affectedKey on event");
+        }
 
         giant.FieldKey.addMocks({
             getFieldType: function () {
@@ -114,18 +135,12 @@
             }
         });
 
-        giant.Entity.addMocks({
-            appendNode: function (node) {
-                ok(this.entityKey.equals('foo/bar/collection/qux'.toItemKey()), "should append collection node");
-                deepEqual(node, {
-                    qux: "QUX"
-                }, "should pass items node to setter");
-            }
-        });
+        fieldKey.subscribeTo(giant.EVENT_ENTITY_CHANGE, onFieldChange);
 
         strictEqual(item.setNode("QUX"), item, "should be chainable");
 
         giant.FieldKey.removeMocks();
-        giant.Entity.removeMocks();
+
+        fieldKey.unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onFieldChange);
     });
 }());

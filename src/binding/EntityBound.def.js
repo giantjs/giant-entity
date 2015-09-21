@@ -307,44 +307,44 @@ giant.postpone(giant, 'EntityBound', function () {
             },
 
             /**
-             * Subscribes method to be triggered when field or document changes.
+             * Subscribes method to be triggered when the specified entity or any of its parents change.
              * Adds `affectedKey` payload / property to event.
-             * @param {giant.FieldKey} fieldKey
+             * @param {giant.EntityKey} entityKey
              * @param {string} methodName
              * @returns {giant.EntityBound}
              */
-            bindToFieldChange: function (fieldKey, methodName) {
+            bindToDelegatedEntityChange: function (entityKey, methodName) {
                 giant
-                    .isFieldKeyStrict(fieldKey, "Invalid field key")
+                    .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
                 this._bindToEntity(
-                    fieldKey,
-                    fieldKey.documentKey,
+                    entityKey,
+                    entityKey.documentKey,
                     giant.EVENT_ENTITY_CHANGE,
                     methodName,
-                    'field');
+                    'delegate');
 
                 return this;
             },
 
             /**
-             * Unsubscribes method from field changes.
-             * @param {giant.FieldKey} fieldKey
+             * Unsubscribes method from delegated changes.
+             * @param {giant.EntityKey} entityKey
              * @param {string} methodName
              * @returns {giant.EntityBound}
              */
-            unbindFromFieldChange: function (fieldKey, methodName) {
+            unbindFromDelegatedEntityChange: function (entityKey, methodName) {
                 giant
-                    .isFieldKeyStrict(fieldKey, "Invalid field key")
+                    .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 
                 this._unbindFromEntity(
-                    fieldKey,
-                    fieldKey.documentKey,
+                    entityKey,
+                    entityKey.documentKey,
                     giant.EVENT_ENTITY_CHANGE,
                     methodName,
-                    'field');
+                    'delegate');
 
                 return this;
             },
