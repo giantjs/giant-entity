@@ -49,6 +49,7 @@ giant.postpone(giant, 'Item', function () {
             /**
              * Sets item in collection. When the item is already present, it just replaces the item node.
              * When it's not present yet, the item gets appended to the rest, triggering appropriate events.
+             * TODO: Restore individual value setter when item path already exists.
              * @param {*} node Item node to be set in the collection.
              * @returns {giant.Item}
              */
