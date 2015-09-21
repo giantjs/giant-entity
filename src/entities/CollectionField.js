@@ -86,7 +86,7 @@ giant.postpone(giant, 'CollectionField', function () {
             /**
              * Appends the specified item nodes to the current collection.
              * @param {object} itemsNode
-             * @returns {bookworm.CollectionField}
+             * @returns {giant.CollectionField}
              */
             appendItems: function (itemsNode) {
                 this.getValueEntity().appendNode(itemsNode);

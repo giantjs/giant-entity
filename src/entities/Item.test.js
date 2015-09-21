@@ -77,14 +77,14 @@
 
         var item = 'foo/bar/collection/baz'.toItem();
 
-        bookworm.FieldKey.addMocks({
+        giant.FieldKey.addMocks({
             getFieldType: function () {
                 ok(this.equals('foo/bar/collection'.toFieldKey()), "should fetch parent field's type");
                 return 'collection';
             }
         });
 
-        bookworm.Entity.addMocks({
+        giant.Entity.addMocks({
             setNode: function (node) {
                 ok(this.entityKey.equals('foo/bar/collection/baz'.toItemKey()), "should replace item node");
                 equal(node, "QUX", "should pass item value to setter");
@@ -93,8 +93,8 @@
 
         strictEqual(item.setNode("QUX"), item, "should be chainable");
 
-        bookworm.FieldKey.removeMocks();
-        bookworm.Entity.removeMocks();
+        giant.FieldKey.removeMocks();
+        giant.Entity.removeMocks();
     });
 
     test("Node addition", function () {
@@ -108,14 +108,14 @@
 
         var item = 'foo/bar/collection/qux'.toItem();
 
-        bookworm.FieldKey.addMocks({
+        giant.FieldKey.addMocks({
             getFieldType: function () {
                 ok(this.equals('foo/bar/collection'.toFieldKey()), "should fetch parent field's type");
                 return 'collection';
             }
         });
 
-        bookworm.Entity.addMocks({
+        giant.Entity.addMocks({
             appendNode: function (node) {
                 ok(this.entityKey.equals('foo/bar/collection/qux'.toItemKey()), "should append collection node");
                 deepEqual(node, {
@@ -126,7 +126,7 @@
 
         strictEqual(item.setNode("QUX"), item, "should be chainable");
 
-        bookworm.FieldKey.removeMocks();
-        bookworm.Entity.removeMocks();
+        giant.FieldKey.removeMocks();
+        giant.Entity.removeMocks();
     });
 }());

@@ -163,7 +163,7 @@
             }
         });
 
-        var collectionField = bookworm.CollectionField.create('foo/bar/collection'.toFieldKey());
+        var collectionField = giant.CollectionField.create('foo/bar/collection'.toFieldKey());
 
         strictEqual(collectionField.appendItems({
             c: 'C',
