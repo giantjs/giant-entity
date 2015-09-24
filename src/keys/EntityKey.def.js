@@ -1,8 +1,8 @@
 /*global giant */
-giant.postpone(giant, 'EntityKey', function () {
+$oop.postpone(giant, 'EntityKey', function () {
     "use strict";
 
-    var base = giant.Base,
+    var base = $oop.Base,
         self = base.extend()
             .addTrait(giant.Evented);
 
@@ -18,7 +18,7 @@ giant.postpone(giant, 'EntityKey', function () {
      * Base class for entity keys.
      * Entity keys identify entities without relying on their actual content.
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      * @extends giant.Evented
      * @extends giant.Stringifiable
      */

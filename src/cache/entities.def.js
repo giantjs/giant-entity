@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'entities', function () {
+$oop.postpone(giant, 'entities', function () {
     "use strict";
 
     /**

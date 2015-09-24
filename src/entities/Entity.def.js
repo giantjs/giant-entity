@@ -1,8 +1,8 @@
 /*global giant */
-giant.postpone(giant, 'Entity', function () {
+$oop.postpone(giant, 'Entity', function () {
     "use strict";
 
-    var base = giant.Base,
+    var base = $oop.Base,
         self = base.extend(),
         shallowCopy = giant.DataUtils.shallowCopy;
 
@@ -19,7 +19,7 @@ giant.postpone(giant, 'Entity', function () {
      * The Entity class serves as the base class for all entities. It provides an API to access and modify the cache
      * node represented by the entity.
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      */
     giant.Entity = self
         .addMethods(/** @lends giant.Entity# */{
@@ -198,7 +198,7 @@ giant.postpone(giant, 'Entity', function () {
 (function () {
     "use strict";
 
-    giant.addGlobalConstants(/** @lends giant */{
+    $oop.addGlobalConstants.call(giant, /** @lends giant */{
         /**
          * Signals that an absent entity has been accessed.
          * TODO: Revisit after invalidation is implemented.
@@ -214,7 +214,7 @@ giant.postpone(giant, 'Entity', function () {
     });
 }());
 
-giant.amendPostponed(giant, 'EntityKey', function () {
+$oop.amendPostponed(giant, 'EntityKey', function () {
     "use strict";
 
     giant.EntityKey

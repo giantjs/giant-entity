@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'Field', function () {
+$oop.postpone(giant, 'Field', function () {
     "use strict";
 
     var base = giant.Entity,
@@ -93,7 +93,7 @@ giant.postpone(giant, 'Field', function () {
         });
 });
 
-giant.amendPostponed(giant, 'Entity', function () {
+$oop.amendPostponed(giant, 'Entity', function () {
     "use strict";
 
     giant.Entity
@@ -102,7 +102,7 @@ giant.amendPostponed(giant, 'Entity', function () {
         });
 });
 
-giant.amendPostponed(giant, 'FieldKey', function () {
+$oop.amendPostponed(giant, 'FieldKey', function () {
     "use strict";
 
     giant.FieldKey
@@ -120,7 +120,7 @@ giant.amendPostponed(giant, 'FieldKey', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to `Field` instance, assuming the string is a serialized `FieldKey`.
          * @returns {giant.Field}
@@ -130,7 +130,7 @@ giant.amendPostponed(giant, 'FieldKey', function () {
         }
     });
 
-    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+    $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts `Array` to `Field` instance, assuming the array is a field key in array notation.
          * @returns {giant.Field}

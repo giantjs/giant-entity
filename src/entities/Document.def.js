@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'Document', function () {
+$oop.postpone(giant, 'Document', function () {
     "use strict";
 
     var base = giant.Entity,
@@ -57,7 +57,7 @@ giant.postpone(giant, 'Document', function () {
         });
 });
 
-giant.amendPostponed(giant, 'Entity', function () {
+$oop.amendPostponed(giant, 'Entity', function () {
     "use strict";
 
     giant.Entity
@@ -66,7 +66,7 @@ giant.amendPostponed(giant, 'Entity', function () {
         });
 });
 
-giant.amendPostponed(giant, 'DocumentKey', function () {
+$oop.amendPostponed(giant, 'DocumentKey', function () {
     "use strict";
 
     giant.DocumentKey
@@ -84,7 +84,7 @@ giant.amendPostponed(giant, 'DocumentKey', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to `Document` instance, assuming the string is a serialized `DocumentKey`.
          * @returns {giant.Document}
@@ -94,7 +94,7 @@ giant.amendPostponed(giant, 'DocumentKey', function () {
         }
     });
 
-    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+    $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts `Array` to `Document` instance, assuming the array is a document key in array notation.
          * @returns {giant.Document}

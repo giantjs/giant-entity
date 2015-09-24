@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'StrictHandlerSpawner', function () {
+$oop.postpone(giant, 'StrictHandlerSpawner', function () {
     "use strict";
 
     var base = giant.HandlerSpawner,
@@ -33,7 +33,7 @@ giant.postpone(giant, 'StrictHandlerSpawner', function () {
         });
 });
 
-giant.amendPostponed(giant, 'HandlerSpawner', function () {
+$oop.amendPostponed(giant, 'HandlerSpawner', function () {
     "use strict";
 
     giant.HandlerSpawner

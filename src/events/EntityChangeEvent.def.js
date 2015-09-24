@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'EntityChangeEvent', function () {
+$oop.postpone(giant, 'EntityChangeEvent', function () {
     "use strict";
 
     var base = giant.Event,
@@ -108,7 +108,7 @@ giant.postpone(giant, 'EntityChangeEvent', function () {
         });
 });
 
-giant.amendPostponed(giant, 'Event', function () {
+$oop.amendPostponed(giant, 'Event', function () {
     "use strict";
 
     giant.Event.addSurrogate(giant, 'EntityChangeEvent', function (eventName) {

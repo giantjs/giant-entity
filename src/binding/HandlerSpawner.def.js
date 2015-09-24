@@ -1,8 +1,8 @@
 /*global giant */
-giant.postpone(giant, 'HandlerSpawner', function () {
+$oop.postpone(giant, 'HandlerSpawner', function () {
     "use strict";
 
-    var base = giant.Base,
+    var base = $oop.Base,
         self = base.extend();
 
     /**
@@ -14,7 +14,7 @@ giant.postpone(giant, 'HandlerSpawner', function () {
 
     /**
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      */
     giant.HandlerSpawner = self
         .addMethods(/** @lends giant.HandlerSpawner# */{

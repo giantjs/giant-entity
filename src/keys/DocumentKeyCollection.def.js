@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'DocumentKeyCollection', function () {
+$oop.postpone(giant, 'DocumentKeyCollection', function () {
     "use strict";
 
     /**
@@ -23,7 +23,7 @@ giant.postpone(giant, 'DocumentKeyCollection', function () {
     giant.DocumentKeyCollection = giant.Collection.of(giant.DocumentKey);
 });
 
-giant.amendPostponed(giant, 'Hash', function () {
+$oop.amendPostponed(giant, 'Hash', function () {
     "use strict";
 
     giant.Hash
@@ -41,7 +41,7 @@ giant.amendPostponed(giant, 'Hash', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+    $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts `Array` (of `DocumentKey` instances) to a `DocumentKeyCollection` instance.
          * @returns {giant.DocumentKeyCollection}

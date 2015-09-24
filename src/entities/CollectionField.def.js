@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'CollectionField', function () {
+$oop.postpone(giant, 'CollectionField', function () {
     "use strict";
 
     var base = giant.Field,
@@ -95,7 +95,7 @@ giant.postpone(giant, 'CollectionField', function () {
         });
 });
 
-giant.amendPostponed(giant, 'Field', function () {
+$oop.amendPostponed(giant, 'Field', function () {
     "use strict";
 
     giant.Field

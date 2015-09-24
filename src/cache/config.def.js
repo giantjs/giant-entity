@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'config', function () {
+$oop.postpone(giant, 'config', function () {
     "use strict";
 
     /**

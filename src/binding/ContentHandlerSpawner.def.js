@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'ContentHandlerSpawner', function () {
+$oop.postpone(giant, 'ContentHandlerSpawner', function () {
     "use strict";
 
     var base = giant.HandlerSpawner,
@@ -28,7 +28,7 @@ giant.postpone(giant, 'ContentHandlerSpawner', function () {
         });
 });
 
-giant.amendPostponed(giant, 'HandlerSpawner', function () {
+$oop.amendPostponed(giant, 'HandlerSpawner', function () {
     "use strict";
 
     giant.HandlerSpawner

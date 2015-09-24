@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'ReferenceItemKey', function () {
+$oop.postpone(giant, 'ReferenceItemKey', function () {
     "use strict";
 
     var base = giant.ItemKey,
@@ -45,7 +45,7 @@ giant.postpone(giant, 'ReferenceItemKey', function () {
         });
 });
 
-giant.amendPostponed(giant, 'ItemKey', function () {
+$oop.amendPostponed(giant, 'ItemKey', function () {
     "use strict";
 
     giant.ItemKey
@@ -70,7 +70,7 @@ giant.amendPostponed(giant, 'ItemKey', function () {
         }
     });
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to a `ReferenceItemKey` instance. Assumes the string to be a serialized `ReferenceItemKey`.
          * @returns {giant.ReferenceItemKey}
@@ -102,7 +102,7 @@ giant.amendPostponed(giant, 'ItemKey', function () {
         }
     });
 
-    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+    $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts `Array` (of strings) to a `ReferenceItemKey` instance.
          * Assumes the array to be a reference item key in array notation.

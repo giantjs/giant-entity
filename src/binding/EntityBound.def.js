@@ -1,13 +1,13 @@
 /*global giant, flock */
-giant.postpone(giant, 'EntityBound', function () {
+$oop.postpone(giant, 'EntityBound', function () {
     "use strict";
 
     /**
      * The EntityBound trait binds instances of the host class to entity events.
      * @class
-     * @extends giant.Base
+     * @extends $oop.Base
      */
-    giant.EntityBound = giant.Base.extend()
+    giant.EntityBound = $oop.Base.extend()
         .addPrivateMethods(/** @lends giant.EntityBound# */{
             /**
              * @param {giant.EntityKey} targetKey

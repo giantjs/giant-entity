@@ -4,7 +4,7 @@
 
     module("EntityBound");
 
-    var EntityBound = giant.Base.extend()
+    var EntityBound = $oop.Base.extend()
         .addTrait(giant.EntityBound)
         .addMethods({
             init: function () {

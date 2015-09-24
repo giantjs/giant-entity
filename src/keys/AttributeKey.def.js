@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'AttributeKey', function () {
+$oop.postpone(giant, 'AttributeKey', function () {
     "use strict";
 
     var base = giant.EntityKey,

@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'Item', function () {
+$oop.postpone(giant, 'Item', function () {
     "use strict";
 
     var base = giant.Field,
@@ -78,7 +78,7 @@ giant.postpone(giant, 'Item', function () {
         });
 });
 
-giant.amendPostponed(giant, 'Entity', function () {
+$oop.amendPostponed(giant, 'Entity', function () {
     "use strict";
 
     giant.Entity
@@ -87,7 +87,7 @@ giant.amendPostponed(giant, 'Entity', function () {
         });
 });
 
-giant.amendPostponed(giant, 'ItemKey', function () {
+$oop.amendPostponed(giant, 'ItemKey', function () {
     "use strict";
 
     giant.ItemKey
@@ -105,7 +105,7 @@ giant.amendPostponed(giant, 'ItemKey', function () {
 (function () {
     "use strict";
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to `Item` instance, assuming the string is a serialized `ItemKey`.
          * @returns {giant.Item}
@@ -115,7 +115,7 @@ giant.amendPostponed(giant, 'ItemKey', function () {
         }
     });
 
-    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+    $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts `Array` to `Item` instance, assuming the array is an item key in array notation.
          * @returns {giant.Item}

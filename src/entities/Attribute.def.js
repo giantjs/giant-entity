@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'Attribute', function () {
+$oop.postpone(giant, 'Attribute', function () {
     "use strict";
 
     var base = giant.Entity,
@@ -46,7 +46,7 @@ giant.postpone(giant, 'Attribute', function () {
         });
 });
 
-giant.amendPostponed(giant, 'Entity', function () {
+$oop.amendPostponed(giant, 'Entity', function () {
     "use strict";
 
     giant.Entity
@@ -55,7 +55,7 @@ giant.amendPostponed(giant, 'Entity', function () {
         });
 });
 
-giant.amendPostponed(giant, 'AttributeKey', function () {
+$oop.amendPostponed(giant, 'AttributeKey', function () {
     "use strict";
 
     giant.AttributeKey

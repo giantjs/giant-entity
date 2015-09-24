@@ -1,5 +1,5 @@
 /*global giant */
-giant.postpone(giant, 'FieldKey', function () {
+$oop.postpone(giant, 'FieldKey', function () {
     "use strict";
 
     var base = giant.EntityKey,
@@ -160,7 +160,7 @@ giant.postpone(giant, 'FieldKey', function () {
         }
     });
 
-    giant.extendBuiltIn(String.prototype, /** @lends String# */{
+    $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to a `FieldKey`. Assumes that string is a serialized `FieldKey`.
          * @returns {giant.FieldKey}
@@ -183,7 +183,7 @@ giant.postpone(giant, 'FieldKey', function () {
         }
     });
 
-    giant.extendBuiltIn(Array.prototype, /** @lends Array# */{
+    $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts `Array` (of strings) to a `FieldKey` instance.
          * Assumes that array is a field key in array notation.
