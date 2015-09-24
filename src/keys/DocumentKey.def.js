@@ -105,7 +105,7 @@ giant.postpone(giant, 'DocumentKey', function () {
 (function () {
     "use strict";
 
-    giant.addTypes(/** @lends giant */{
+    $assertion.addTypes(/** @lends giant */{
         /** @param {giant.DocumentKey} expr */
         isDocumentKey: function (expr) {
             return giant.DocumentKey.isBaseOf(expr);

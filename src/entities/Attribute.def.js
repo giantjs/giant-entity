@@ -26,7 +26,7 @@ giant.postpone(giant, 'Attribute', function () {
              * @ignore
              */
             init: function (attributeKey) {
-                giant.isAttributeKey(attributeKey, "Invalid attribute key");
+                $assertion.isAttributeKey(attributeKey, "Invalid attribute key");
                 base.init.call(this, attributeKey);
 
                 /**

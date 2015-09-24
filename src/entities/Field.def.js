@@ -27,7 +27,7 @@ giant.postpone(giant, 'Field', function () {
              * @ignore
              */
             init: function (fieldKey) {
-                giant.isFieldKey(fieldKey, "Invalid field key");
+                $assertion.isFieldKey(fieldKey, "Invalid field key");
 
                 base.init.call(this, fieldKey);
 

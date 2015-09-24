@@ -67,7 +67,7 @@ giant.postpone(giant, 'EntityKey', function () {
 (function () {
     "use strict";
 
-    giant.addTypes(/** @lends giant */{
+    $assertion.addTypes(/** @lends giant */{
         /** @param {giant.EntityKey} expr */
         isEntityKey: function (expr) {
             return giant.EntityKey.isBaseOf(expr);

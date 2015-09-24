@@ -93,7 +93,7 @@ giant.postpone(giant, 'ItemKey', function () {
 (function () {
     "use strict";
 
-    giant.addTypes(/** @lends giant */{
+    $assertion.addTypes(/** @lends giant */{
         /** @param {giant.ItemKey} expr */
         isItemKey: function (expr) {
             return giant.ItemKey.isBaseOf(expr);

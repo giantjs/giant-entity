@@ -27,7 +27,7 @@ giant.postpone(giant, 'Document', function () {
              * @ignore
              */
             init: function (documentKey) {
-                giant.isDocumentKey(documentKey, "Invalid document key");
+                $assertion.isDocumentKey(documentKey, "Invalid document key");
                 base.init.call(this, documentKey);
 
                 /**

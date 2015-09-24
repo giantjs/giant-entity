@@ -74,7 +74,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             bindToEntityContent: function (entityKey, eventName, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isString(eventName, "Invalid event name")
                     .isFunction(this[methodName], "Attempting to bind non-method");
@@ -92,7 +92,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             unbindFromEntityContent: function (entityKey, eventName, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isString(eventName, "Invalid event name")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
@@ -110,7 +110,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             bindToEntity: function (entityKey, eventName, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isString(eventName, "Invalid event name")
                     .isFunction(this[methodName], "Attempting to bind non-method");
@@ -128,7 +128,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             unbindFromEntity: function (entityKey, eventName, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isString(eventName, "Invalid event name")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
@@ -145,7 +145,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             bindToEntityContentAccess: function (entityKey, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
@@ -166,7 +166,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             unbindFromEntityContentAccess: function (entityKey, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 
@@ -187,7 +187,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             bindToEntityAccess: function (entityKey, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
@@ -208,7 +208,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             unbindFromEntityAccess: function (entityKey, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 
@@ -229,7 +229,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             bindToEntityContentChange: function (entityKey, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
@@ -250,7 +250,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             unbindFromEntityContentChange: function (entityKey, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 
@@ -271,7 +271,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             bindToEntityChange: function (entityKey, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
@@ -292,7 +292,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             unbindFromEntityChange: function (entityKey, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 
@@ -314,7 +314,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             bindToDelegatedEntityChange: function (entityKey, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to bind non-method");
 
@@ -335,7 +335,7 @@ giant.postpone(giant, 'EntityBound', function () {
              * @returns {giant.EntityBound}
              */
             unbindFromDelegatedEntityChange: function (entityKey, methodName) {
-                giant
+                $assertion
                     .isEntityKey(entityKey, "Invalid entity key")
                     .isFunction(this[methodName], "Attempting to unbind non-method");
 

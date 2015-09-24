@@ -26,7 +26,7 @@ giant.postpone(giant, 'Item', function () {
              * @ignore
              */
             init: function (itemKey) {
-                giant.isItemKey(itemKey, "Invalid item key");
+                $assertion.isItemKey(itemKey, "Invalid item key");
 
                 base.init.call(this, itemKey);
 

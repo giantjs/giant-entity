@@ -141,7 +141,7 @@ giant.postpone(giant, 'FieldKey', function () {
 (function () {
     "use strict";
 
-    giant.addTypes(/** @lends giant */{
+    $assertion.addTypes(/** @lends giant */{
         /** @param {giant.FieldKey} expr */
         isFieldKey: function (expr) {
             return giant.FieldKey.isBaseOf(expr);

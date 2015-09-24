@@ -120,7 +120,7 @@ giant.amendPostponed(giant, 'Event', function () {
 (function () {
     "use strict";
 
-    giant.addTypes(/** @lends giant */{
+    $assertion.addTypes(/** @lends giant */{
         /**
          * @param {giant.EntityChangeEvent} expr
          */
