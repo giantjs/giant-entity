@@ -62,7 +62,7 @@
         var documentKey = 'foo/bar'.toDocumentKey(),
             documentEntityPath = documentKey.getEntityPath();
 
-        ok(documentEntityPath.isA(giant.Path), "should return Path instance");
+        ok(documentEntityPath.isA($data.Path), "should return Path instance");
         deepEqual(documentEntityPath.asArray, ['document', 'foo', 'bar'], "should set path contents correctly");
     });
 

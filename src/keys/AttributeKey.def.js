@@ -54,7 +54,7 @@ $oop.postpone(giant, 'AttributeKey', function () {
 
             /**
              * Resolves attribute key based on the parent key and attribute name.
-             * @returns {giant.Path}
+             * @returns {$data.Path}
              */
             getEntityPath: function () {
                 return this.parentKey.getEntityPath().appendKey(this.attributeName);

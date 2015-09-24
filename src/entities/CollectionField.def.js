@@ -32,10 +32,10 @@ $oop.postpone(giant, 'CollectionField', function () {
 
             /**
              * Fetches items node wrapped in a `Collection` instance.
-             * @returns {giant.Collection}
+             * @returns {$data.Collection}
              */
             getItemsAsCollection: function () {
-                return giant.Collection.create(this.getValue());
+                return $data.Collection.create(this.getValue());
             },
 
             /**

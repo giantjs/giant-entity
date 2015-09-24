@@ -76,7 +76,7 @@
 
         result = collection.getItemsAsCollection();
 
-        ok(result.isA(giant.Collection), "should return Collection instance");
+        ok(result.isA($data.Collection), "should return Collection instance");
         strictEqual(result.items, itemsNode, "should return Collection instance with the field value in it");
 
         giant.Field.removeMocks();

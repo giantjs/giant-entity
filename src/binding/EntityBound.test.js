@@ -16,7 +16,7 @@
 
     test("Instantiation", function () {
         var entityBound = EntityBound.create();
-        ok(entityBound.entityBindings.isA(giant.Tree), "should set entityBindings property");
+        ok(entityBound.entityBindings.isA($data.Tree), "should set entityBindings property");
     });
 
     test("Binding to custom entity content event", function () {

@@ -62,8 +62,8 @@ $oop.postpone(giant, 'EntityBound', function () {
         .addMethods(/** @lends giant.EntityBound# */{
             /** Call from host class .init(). */
             init: function () {
-                /** @type {giant.Tree} */
-                this.entityBindings = giant.Tree.create();
+                /** @type {$data.Tree} */
+                this.entityBindings = $data.Tree.create();
             },
 
             /**

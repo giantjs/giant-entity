@@ -89,7 +89,7 @@ $oop.postpone(giant, 'FieldKey', function () {
              * In case field node sits on a different path relative to the document node
              * for a certain `documentType` / `fieldName` combination,
              * subclass `FieldKey` and override `.getEntityPath()` to reflect the correct path.
-             * @returns {giant.Path}
+             * @returns {$data.Path}
              */
             getEntityPath: function () {
                 return this.documentKey

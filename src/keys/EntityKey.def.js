@@ -60,7 +60,7 @@ $oop.postpone(giant, 'EntityKey', function () {
      * Resolves key to a path that points to the entity node in the cache.
      * @name giant.EntityKey#getEntityPath
      * @function
-     * @returns {giant.Path}
+     * @returns {$data.Path}
      */
 });
 

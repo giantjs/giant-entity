@@ -4,7 +4,7 @@ $oop.postpone(giant, 'entities', function () {
 
     /**
      * Contains entities.
-     * @type {giant.Tree}
+     * @type {$data.Tree}
      */
-    giant.entities = giant.Tree.create();
+    giant.entities = $data.Tree.create();
 });

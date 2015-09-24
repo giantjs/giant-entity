@@ -69,7 +69,7 @@ $oop.postpone(giant, 'DocumentKey', function () {
              * Determines absolute path to the entity node of the document identified by the current key.
              * In case document node sits on a different path for a certain `documentType`,
              * subclass `DocumentKey` and override `.getEntityPath()` to reflect the correct path.
-             * @returns {giant.Path}
+             * @returns {$data.Path}
              */
             getEntityPath: function () {
                 return ['document', String(this.documentType), String(this.documentId)].toPath();

@@ -49,7 +49,7 @@ $oop.postpone(giant, 'EntityChangeEvent', function () {
 
             /**
              * Clones entity change event.
-             * @param {giant.Path} [currentPath]
+             * @param {$data.Path} [currentPath]
              * @returns {giant.Event}
              */
             clone: function (currentPath) {

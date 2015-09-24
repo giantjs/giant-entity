@@ -39,7 +39,7 @@ $oop.postpone(giant, 'DelegateHandlerSpawner', function () {
                     } else if (entityPath.isRelativeTo(affectedPath)) {
                         // entity on the parent chain changed
 
-                        beforeNode = giant.Tree.create()
+                        beforeNode = $data.Tree.create()
                             .setNode(affectedPath, event.beforeNode)
                             .getNode(entityPath);
                         afterNode = giant.entities.getNode(entityPath);

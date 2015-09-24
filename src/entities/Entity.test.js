@@ -89,7 +89,7 @@
         });
 
         var hash = entity.getNodeAsHash();
-        ok(hash.isA(giant.Hash), "should return Hash instance");
+        ok(hash.isA($data.Hash), "should return Hash instance");
         strictEqual(hash.items, entityNode, "should return node retrieved from cache");
 
         giant.entities.removeMocks();
@@ -135,7 +135,7 @@
         });
 
         var hash = entity.getSilentNodeAsHash();
-        ok(hash.isA(giant.Hash), "should return Hash instance");
+        ok(hash.isA($data.Hash), "should return Hash instance");
         strictEqual(hash.items, entityNode, "should return node retrieved from cache");
 
         giant.entities.removeMocks();

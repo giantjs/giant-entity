@@ -4,7 +4,7 @@ $oop.postpone(giant, 'Entity', function () {
 
     var base = $oop.Base,
         self = base.extend(),
-        shallowCopy = giant.DataUtils.shallowCopy;
+        shallowCopy = $data.DataUtils.shallowCopy;
 
     /**
      * Creates an Entity instance.
@@ -71,10 +71,10 @@ $oop.postpone(giant, 'Entity', function () {
 
             /**
              * Fetches entity node from cache, wrapped in a Hash instance.
-             * @returns {giant.Hash}
+             * @returns {$data.Hash}
              */
             getNodeAsHash: function () {
-                return giant.Hash.create(this.getNode());
+                return $data.Hash.create(this.getNode());
             },
 
             /**
@@ -88,10 +88,10 @@ $oop.postpone(giant, 'Entity', function () {
 
             /**
              * Fetches entity node from cache, wrapped in a Hash instance, without triggering access events.
-             * @returns {giant.Hash}
+             * @returns {$data.Hash}
              */
             getSilentNodeAsHash: function () {
-                return giant.Hash.create(this.getSilentNode());
+                return $data.Hash.create(this.getSilentNode());
             },
 
             /**

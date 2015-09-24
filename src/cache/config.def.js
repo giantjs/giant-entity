@@ -4,9 +4,9 @@ $oop.postpone(giant, 'config', function () {
 
     /**
      * Contains meta-entities describing document types and their fields.
-     * @type {giant.Tree}
+     * @type {$data.Tree}
      */
-    giant.config = giant.Tree.create({
+    giant.config = $data.Tree.create({
         document: {
             document: {
             },

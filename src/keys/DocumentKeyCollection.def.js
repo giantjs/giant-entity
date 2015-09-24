@@ -17,17 +17,17 @@ $oop.postpone(giant, 'DocumentKeyCollection', function () {
      * // retrieves a collection of `Document` instances based on the specified document keys
      * ['user/1234', 'user/4321'].toDocumentKeyCollection().toDocument();
      * @class
-     * @extends {giant.Collection}
+     * @extends {$data.Collection}
      * @extends {giant.DocumentKey}
      */
-    giant.DocumentKeyCollection = giant.Collection.of(giant.DocumentKey);
+    giant.DocumentKeyCollection = $data.Collection.of(giant.DocumentKey);
 });
 
-$oop.amendPostponed(giant, 'Hash', function () {
+$oop.amendPostponed($data, 'Hash', function () {
     "use strict";
 
-    giant.Hash
-        .addMethods(/** @lends giant.Hash */{
+    $data.Hash
+        .addMethods(/** @lends $data.Hash */{
             /**
              * Converts `Hash` instance to `DocumentKeyCollection` instance.
              * @returns {giant.DocumentKeyCollection}

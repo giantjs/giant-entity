@@ -61,7 +61,7 @@ $oop.postpone(giant, 'ItemKey', function () {
              * In case the item entity node sits on a different path
              * relative to the field node for a certain `documentType` / `fieldName` combination,
              * subclass `ItemKey` and override `.getEntityPath()` to reflect the correct path.
-             * @returns {giant.Path}
+             * @returns {$data.Path}
              */
             getEntityPath: function () {
                 return base.getEntityPath.call(this)

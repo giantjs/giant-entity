@@ -12,8 +12,10 @@ var $oop = $oop || require('giant-oop');
 /** @namespace */
 var $utils = $utils || require('giant-utils');
 
+/** @namespace */
+var $data = $data || require('giant-data');
+
 if (typeof require === 'function') {
-    require('giant-data');
     require('giant-event');
     require('giant-templating');
 }
@@ -31,11 +33,11 @@ if (typeof require === 'function') {
  */
 
 /**
- * @name giant.Hash
+ * @name $data.Hash
  * @class
  */
 
 /**
- * @name giant.Path
+ * @name $data.Path
  * @class
  */

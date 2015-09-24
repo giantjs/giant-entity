@@ -4,7 +4,7 @@ $oop.postpone(giant, 'index', function () {
 
     /**
      * Contains indexes and lookups.
-     * @type {giant.Tree}
+     * @type {$data.Tree}
      */
-    giant.index = giant.Tree.create();
+    giant.index = $data.Tree.create();
 });

@@ -4,7 +4,7 @@ $oop.postpone(giant, 'Item', function () {
 
     var base = giant.Field,
         self = base.extend(),
-        shallowCopy = giant.DataUtils.shallowCopy;
+        shallowCopy = $data.DataUtils.shallowCopy;
 
     /**
      * Creates an Item instance.
