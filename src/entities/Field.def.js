@@ -18,7 +18,7 @@ $oop.postpone(giant, 'Field', function () {
      * of the field's value and attributes.
      * @class
      * @extends giant.Entity
-     * @extends giant.Stringifiable
+     * @extends $utils.Stringifiable
      */
     giant.Field = self
         .addMethods(/** @lends giant.Field# */{
@@ -88,7 +88,7 @@ $oop.postpone(giant, 'Field', function () {
              * @returns {string}
              */
             toString: function () {
-                return giant.Stringifier.stringify(this.getValue());
+                return $utils.Stringifier.stringify(this.getValue());
             }
         });
 });

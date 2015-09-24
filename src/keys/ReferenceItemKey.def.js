@@ -76,7 +76,7 @@ $oop.amendPostponed(giant, 'ItemKey', function () {
          * @returns {giant.ReferenceItemKey}
          */
         toReferenceItemKey: function () {
-            var StringUtils = giant.StringUtils,
+            var StringUtils = $utils.StringUtils,
                 parts = StringUtils.safeSplit(this, '/'),
                 documentType = parts[0],
                 documentId = parts[1],

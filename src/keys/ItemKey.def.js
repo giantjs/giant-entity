@@ -85,7 +85,7 @@ $oop.postpone(giant, 'ItemKey', function () {
              */
             toString: function () {
                 return giant.FieldKey.toString.call(this) + '/' +
-                    giant.StringUtils.escapeChars(this.itemId, '/');
+                    $utils.StringUtils.escapeChars(this.itemId, '/');
             }
         });
 });
@@ -112,7 +112,7 @@ $oop.postpone(giant, 'ItemKey', function () {
          * @returns {giant.ItemKey}
          */
         toItemKey: function () {
-            var StringUtils = giant.StringUtils,
+            var StringUtils = $utils.StringUtils,
                 parts = StringUtils.safeSplit(this, '/'),
                 documentType = parts[0],
                 documentId = parts[1],

@@ -133,7 +133,7 @@ $oop.postpone(giant, 'FieldKey', function () {
              */
             toString: function () {
                 return this.documentKey.toString() + '/' +
-                    giant.StringUtils.escapeChars(this.fieldName, '/');
+                    $utils.StringUtils.escapeChars(this.fieldName, '/');
             }
         });
 });
@@ -166,7 +166,7 @@ $oop.postpone(giant, 'FieldKey', function () {
          * @returns {giant.FieldKey}
          */
         toFieldKey: function () {
-            var StringUtils = giant.StringUtils,
+            var StringUtils = $utils.StringUtils,
                 parts = StringUtils.safeSplit(this, '/'),
                 documentType = parts[0],
                 documentId = parts[1],

@@ -95,7 +95,7 @@ $oop.postpone(giant, 'DocumentKey', function () {
              * @returns {string}
              */
             toString: function () {
-                var StringUtils = giant.StringUtils;
+                var StringUtils = $utils.StringUtils;
                 return StringUtils.escapeChars(this.documentType, '/') + '/' +
                     StringUtils.escapeChars(this.documentId, '/');
             }
@@ -124,7 +124,7 @@ $oop.postpone(giant, 'DocumentKey', function () {
          * @returns {giant.DocumentKey}
          */
         toDocumentKey: function () {
-            var StringUtils = giant.StringUtils,
+            var StringUtils = $utils.StringUtils,
                 parts = StringUtils.safeSplit(this, '/'),
                 documentType = parts[0],
                 documentId = parts[1];

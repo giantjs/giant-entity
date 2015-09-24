@@ -20,7 +20,7 @@ $oop.postpone(giant, 'EntityKey', function () {
      * @class
      * @extends $oop.Base
      * @extends giant.Evented
-     * @extends giant.Stringifiable
+     * @extends $utils.Stringifiable
      */
     giant.EntityKey = self
         .setEventSpace(giant.entityEventSpace)
