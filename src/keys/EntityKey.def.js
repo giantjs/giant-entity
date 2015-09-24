@@ -4,7 +4,7 @@ $oop.postpone(giant, 'EntityKey', function () {
 
     var base = $oop.Base,
         self = base.extend()
-            .addTrait(giant.Evented);
+            .addTrait($event.Evented);
 
     /**
      * Creates an EntityKey instance.
@@ -19,7 +19,7 @@ $oop.postpone(giant, 'EntityKey', function () {
      * Entity keys identify entities without relying on their actual content.
      * @class
      * @extends $oop.Base
-     * @extends giant.Evented
+     * @extends $event.Evented
      * @extends $utils.Stringifiable
      */
     giant.EntityKey = self
@@ -28,7 +28,7 @@ $oop.postpone(giant, 'EntityKey', function () {
         .addMethods(/** @lends giant.EntityKey# */{
             /** @ignore */
             init: function () {
-                giant.Evented.init.call(this);
+                $event.Evented.init.call(this);
             },
 
             /**

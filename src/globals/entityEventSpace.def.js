@@ -4,7 +4,7 @@ $oop.postpone(giant, 'entityEventSpace', function () {
 
     /**
      * Event space dedicated to entity events.
-     * @type {giant.EventSpace}
+     * @type {$event.EventSpace}
      */
-    giant.entityEventSpace = giant.EventSpace.create();
+    giant.entityEventSpace = $event.EventSpace.create();
 });

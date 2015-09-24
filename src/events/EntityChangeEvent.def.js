@@ -2,27 +2,27 @@
 $oop.postpone(giant, 'EntityChangeEvent', function () {
     "use strict";
 
-    var base = giant.Event,
+    var base = $event.Event,
         self = base.extend();
 
     /**
      * Instantiates class.
      * @name giant.EntityChangeEvent.create
      * @param {string} eventName Event name
-     * @param {giant.EventSpace} eventSpace Event space associated with event
+     * @param {$event.EventSpace} eventSpace Event space associated with event
      * @function
      * @returns {giant.EntityChangeEvent}
      */
 
     /**
      * @class
-     * @extends giant.Event
+     * @extends $event.Event
      */
     giant.EntityChangeEvent = self
         .addMethods(/** @lends giant.EntityChangeEvent# */{
             /**
              * @param {string} eventName
-             * @param {giant.EventSpace} eventSpace
+             * @param {$event.EventSpace} eventSpace
              * @ignore
              */
             init: function (eventName, eventSpace) {
@@ -50,7 +50,7 @@ $oop.postpone(giant, 'EntityChangeEvent', function () {
             /**
              * Clones entity change event.
              * @param {$data.Path} [currentPath]
-             * @returns {giant.Event}
+             * @returns {$event.Event}
              */
             clone: function (currentPath) {
                 return base.clone.call(this, currentPath)
@@ -108,10 +108,10 @@ $oop.postpone(giant, 'EntityChangeEvent', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Event', function () {
+$oop.amendPostponed($event, 'Event', function () {
     "use strict";
 
-    giant.Event.addSurrogate(giant, 'EntityChangeEvent', function (eventName) {
+    $event.Event.addSurrogate(giant, 'EntityChangeEvent', function (eventName) {
         var prefix = 'entity.change';
         return eventName.substr(0, prefix.length) === prefix;
     });

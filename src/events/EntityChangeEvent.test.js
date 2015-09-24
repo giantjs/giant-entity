@@ -5,7 +5,7 @@
     module("EntityChangeEvent");
 
     test("Instantiation", function () {
-        var eventSpace = giant.EventSpace.create(),
+        var eventSpace = $event.EventSpace.create(),
             event = /** @type {giant.EntityChangeEvent} */ giant.EntityChangeEvent.create(
                 'foo',
                 eventSpace);
@@ -18,11 +18,11 @@
     test("Conversion from Event", function () {
         var event;
 
-        event = giant.Event.create('foo.bar', giant.EventSpace.create());
+        event = $event.Event.create('foo.bar', $event.EventSpace.create());
         ok(!giant.EntityChangeEvent.isBaseOf(event),
             "should not return EntityChangeEvent instance for non-matching event names");
 
-        event = giant.Event.create('entity.change.foo', giant.EventSpace.create());
+        event = $event.Event.create('entity.change.foo', $event.EventSpace.create());
         ok(giant.EntityChangeEvent.isBaseOf(event),
             "should return EntityChangeEvent instance for matching event name");
     });
@@ -35,7 +35,7 @@
     });
 
     test("Cloning", function () {
-        var eventSpace = giant.EventSpace.create(),
+        var eventSpace = $event.EventSpace.create(),
             documentKey = 'foo/bar'.toDocumentKey(),
             originalEvent = eventSpace.spawnEvent('entity.change')
                 .setBeforeNode('foo')
@@ -50,7 +50,7 @@
     });
 
     test("Before node setter", function () {
-        var eventSpace = giant.EventSpace.create(),
+        var eventSpace = $event.EventSpace.create(),
             event = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE);
 
         strictEqual(event.setBeforeNode('foo'), event, "should be chainable");
@@ -58,7 +58,7 @@
     });
 
     test("After node setter", function () {
-        var eventSpace = giant.EventSpace.create(),
+        var eventSpace = $event.EventSpace.create(),
             event = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE);
 
         strictEqual(event.setAfterNode('foo'), event, "should be chainable");
@@ -66,7 +66,7 @@
     });
 
     test("Affected key setter", function () {
-        var eventSpace = giant.EventSpace.create(),
+        var eventSpace = $event.EventSpace.create(),
             documentKey = 'foo/bar'.toDocumentKey(),
             event = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE);
 
@@ -75,7 +75,7 @@
     });
 
     test("Insertion tester", function () {
-        var eventSpace = giant.EventSpace.create(),
+        var eventSpace = $event.EventSpace.create(),
             entityChangeEvent;
 
         entityChangeEvent = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE);
@@ -100,7 +100,7 @@
     });
 
     test("Deletion tester", function () {
-        var eventSpace = giant.EventSpace.create(),
+        var eventSpace = $event.EventSpace.create(),
             entityChangeEvent;
 
         entityChangeEvent = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE);
