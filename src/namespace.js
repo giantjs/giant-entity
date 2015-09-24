@@ -1,25 +1,25 @@
 /*jshint node:true */
 
 /** @namespace */
-var giant = giant || require('giant-namespace');
+var $entity = {};
 
 /** @namespace */
-var $assertion = $assertion || require('giant-assertion');
+var $assertion = $assertion || require('$entity-assertion');
 
 /** @namespace */
-var $oop = $oop || require('giant-oop');
+var $oop = $oop || require('$entity-oop');
 
 /** @namespace */
-var $utils = $utils || require('giant-utils');
+var $utils = $utils || require('$entity-utils');
 
 /** @namespace */
-var $data = $data || require('giant-data');
+var $data = $data || require('$entity-data');
 
 /** @namespace */
-var $event = $event || require('giant-event');
+var $event = $event || require('$entity-event');
 
 if (typeof require === 'function') {
-    require('giant-templating');
+    require('$entity-templating');
 }
 
 /**

@@ -1,29 +1,29 @@
-/*global giant */
-$oop.postpone(giant, 'FieldKey', function () {
+/*global $entity */
+$oop.postpone($entity, 'FieldKey', function () {
     "use strict";
 
-    var base = giant.EntityKey,
+    var base = $entity.EntityKey,
         self = base.extend();
 
     /**
      * Creates FieldKey instance.
      * FieldKey instances may also be created via conversion from string or array.
-     * @name giant.FieldKey.create
+     * @name $entity.FieldKey.create
      * @function
      * @param {string} documentType Identifies type of document the field belongs to.
      * @param {string} documentId Identifies document (within document type) the field belongs to.
      * @param {string} fieldName Identifies field (within document).
-     * @returns {giant.FieldKey}
+     * @returns {$entity.FieldKey}
      */
 
     /**
      * The FieldKey class identifies a field entity nodes in the cache.
      * @class
-     * @extends giant.EntityKey
+     * @extends $entity.EntityKey
      */
-    giant.FieldKey = self
+    $entity.FieldKey = self
         .setEventPath(['document'].toPath().prepend(base.eventPath))
-        .addMethods(/** @lends giant.FieldKey# */{
+        .addMethods(/** @lends $entity.FieldKey# */{
             /**
              * @param {string} documentType
              * @param {string} documentId
@@ -35,9 +35,9 @@ $oop.postpone(giant, 'FieldKey', function () {
 
                 /**
                  * Document key reference.
-                 * @type {giant.DocumentKey}
+                 * @type {$entity.DocumentKey}
                  */
-                this.documentKey = giant.DocumentKey.create(documentType, documentId);
+                this.documentKey = $entity.DocumentKey.create(documentType, documentId);
 
                 /**
                  * Name of current field.
@@ -50,7 +50,7 @@ $oop.postpone(giant, 'FieldKey', function () {
 
             /**
              * Tells whether current field key is equivalent to the specified one.
-             * @param {giant.FieldKey} fieldKey
+             * @param {$entity.FieldKey} fieldKey
              * @returns {boolean}
              */
             equals: function (fieldKey) {
@@ -61,7 +61,7 @@ $oop.postpone(giant, 'FieldKey', function () {
 
             /**
              * Fetches key to config document that describes the current field.
-             * @returns {giant.DocumentKey}
+             * @returns {$entity.DocumentKey}
              */
             getConfigKey: function () {
                 var documentId = [this.documentKey.documentType, this.fieldName].toDocumentKey().toString();
@@ -71,12 +71,12 @@ $oop.postpone(giant, 'FieldKey', function () {
             /**
              * Creates an `ItemKey` instance based on the current field key and the specified item ID.
              * @param {string} itemId
-             * @returns {giant.ItemKey}
+             * @returns {$entity.ItemKey}
              */
             getItemKey: function (itemId) {
                 var documentKey = this.documentKey;
 
-                return giant.ItemKey.create(
+                return $entity.ItemKey.create(
                     documentKey.documentType,
                     documentKey.documentId,
                     this.fieldName,
@@ -100,11 +100,11 @@ $oop.postpone(giant, 'FieldKey', function () {
             /**
              * Retrieves the field type associated with the current field from the config datastore.
              * @returns {string}
-             * @see giant.config
+             * @see $entity.config
              */
             getFieldType: function () {
                 var field = this.getConfigKey().getFieldKey('fieldType');
-                return giant.config.getNode(field.getEntityPath());
+                return $entity.config.getNode(field.getEntityPath());
             },
 
             /**
@@ -113,7 +113,7 @@ $oop.postpone(giant, 'FieldKey', function () {
              */
             getItemType: function () {
                 var field = this.getConfigKey().getFieldKey('itemType');
-                return giant.config.getNode(field.getEntityPath());
+                return $entity.config.getNode(field.getEntityPath());
             },
 
             /**
@@ -122,13 +122,13 @@ $oop.postpone(giant, 'FieldKey', function () {
              */
             getItemIdType: function () {
                 var field = this.getConfigKey().getFieldKey('itemIdType');
-                return giant.config.getNode(field.getEntityPath());
+                return $entity.config.getNode(field.getEntityPath());
             },
 
             /**
              * Serializes current field key.
              * @example
-             * giant.FieldKey.create('user', '1234', 'name').toString() // "user/1234/name"
+             * $entity.FieldKey.create('user', '1234', 'name').toString() // "user/1234/name"
              * @returns {string}
              */
             toString: function () {
@@ -141,29 +141,29 @@ $oop.postpone(giant, 'FieldKey', function () {
 (function () {
     "use strict";
 
-    $assertion.addTypes(/** @lends giant */{
-        /** @param {giant.FieldKey} expr */
+    $assertion.addTypes(/** @lends $entity */{
+        /** @param {$entity.FieldKey} expr */
         isFieldKey: function (expr) {
-            return giant.FieldKey.isBaseOf(expr);
+            return $entity.FieldKey.isBaseOf(expr);
         },
 
-        /** @param {giant.FieldKey} expr */
+        /** @param {$entity.FieldKey} expr */
         isFieldKeyStrict: function (expr) {
-            return giant.FieldKey.isBaseOf(expr) &&
-                expr.getBase() === giant.FieldKey;
+            return $entity.FieldKey.isBaseOf(expr) &&
+                expr.getBase() === $entity.FieldKey;
         },
 
-        /** @param {giant.FieldKey} [expr] */
+        /** @param {$entity.FieldKey} [expr] */
         isFieldKeyOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                giant.FieldKey.isBaseOf(expr);
+                $entity.FieldKey.isBaseOf(expr);
         }
     });
 
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to a `FieldKey`. Assumes that string is a serialized `FieldKey`.
-         * @returns {giant.FieldKey}
+         * @returns {$entity.FieldKey}
          */
         toFieldKey: function () {
             var StringUtils = $utils.StringUtils,
@@ -175,7 +175,7 @@ $oop.postpone(giant, 'FieldKey', function () {
             return typeof documentType === 'string' &&
                 typeof documentId === 'string' &&
                 typeof fieldName === 'string' ?
-                giant.FieldKey.create(
+                $entity.FieldKey.create(
                     StringUtils.unescapeChars(documentType, '/'),
                     StringUtils.unescapeChars(documentId, '/'),
                     StringUtils.unescapeChars(fieldName, '/')) :
@@ -187,7 +187,7 @@ $oop.postpone(giant, 'FieldKey', function () {
         /**
          * Converts `Array` (of strings) to a `FieldKey` instance.
          * Assumes that array is a field key in array notation.
-         * @returns {giant.FieldKey}
+         * @returns {$entity.FieldKey}
          */
         toFieldKey: function () {
             var documentType = this[0],
@@ -197,7 +197,7 @@ $oop.postpone(giant, 'FieldKey', function () {
             return typeof documentType !== 'undefined' &&
                 typeof documentId !== 'undefined' &&
                 typeof fieldName !== 'undefined' ?
-                giant.FieldKey.create(documentType, documentId, fieldName) :
+                $entity.FieldKey.create(documentType, documentId, fieldName) :
                 undefined;
         }
     });

@@ -1,4 +1,4 @@
-/*global giant */
+/*global $entity */
 (function () {
     "use strict";
 
@@ -6,7 +6,7 @@
 
     test("Instantiation", function () {
         var entityKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(entityKey);
+            entity = $entity.Entity.create(entityKey);
 
         strictEqual(entity.entityKey, entityKey, "should set entity key");
     });
@@ -15,12 +15,12 @@
         var entityKey = 'foo/bar'.toDocumentKey(),
             entity = entityKey.toEntity();
 
-        ok(entity.isA(giant.Entity), "should return Entity instance");
+        ok(entity.isA($entity.Entity), "should return Entity instance");
         strictEqual(entity.entityKey, entityKey, "should set entity key");
     });
 
     test("Parent entity getter", function () {
-        var entity = giant.Entity.create(giant.EntityKey.create());
+        var entity = $entity.Entity.create($entity.EntityKey.create());
 
         strictEqual(typeof entity.getParentEntity(), 'undefined', "should return undefined");
     });
@@ -29,7 +29,7 @@
         var entity = 'foo/bar'.toDocument(),
             attribute = entity.getAttribute('baz');
 
-        ok(attribute.isA(giant.Entity), "should return Entity instance");
+        ok(attribute.isA($entity.Entity), "should return Entity instance");
         ok(attribute.entityKey.equals('foo/bar'.toDocumentKey().getAttributeKey('baz')), "should set key on attribute");
     });
 
@@ -37,10 +37,10 @@
         expect(2);
 
         var documentKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(documentKey),
+            entity = $entity.Entity.create(documentKey),
             entityNode = {};
 
-        giant.entities.addMocks({
+        $entity.entities.addMocks({
             getNode: function (path) {
                 ok(path.equals(documentKey.getEntityPath()), "should get node from cache");
                 return entityNode;
@@ -49,16 +49,16 @@
 
         strictEqual(entity.getNode(), entityNode, "should return node retrieved from cache");
 
-        giant.entities.removeMocks();
+        $entity.entities.removeMocks();
     });
 
     test("Absent node getter", function () {
         expect(2);
 
         var documentKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(documentKey);
+            entity = $entity.Entity.create(documentKey);
 
-        giant.entities.addMocks({
+        $entity.entities.addMocks({
             getNode: function (path) {
             }
         });
@@ -67,22 +67,22 @@
             ok(true, "should trigger access event");
         }
 
-        documentKey.subscribeTo(giant.EVENT_ENTITY_ACCESS, onAccess);
+        documentKey.subscribeTo($entity.EVENT_ENTITY_ACCESS, onAccess);
 
         equal(typeof entity.getNode(), 'undefined', "should return undefined");
 
-        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_ACCESS, onAccess);
-        giant.entities.removeMocks();
+        documentKey.unsubscribeFrom($entity.EVENT_ENTITY_ACCESS, onAccess);
+        $entity.entities.removeMocks();
     });
 
     test("Hash node getter", function () {
         expect(2);
 
         var documentKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(documentKey),
+            entity = $entity.Entity.create(documentKey),
             entityNode = {};
 
-        giant.entities.addMocks({
+        $entity.entities.addMocks({
             getNode: function () {
                 return entityNode;
             }
@@ -92,17 +92,17 @@
         ok(hash.isA($data.Hash), "should return Hash instance");
         strictEqual(hash.items, entityNode, "should return node retrieved from cache");
 
-        giant.entities.removeMocks();
+        $entity.entities.removeMocks();
     });
 
     test("Silent node getter", function () {
         expect(2);
 
         var documentKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(documentKey),
+            entity = $entity.Entity.create(documentKey),
             entityNode = {};
 
-        giant.entities.addMocks({
+        $entity.entities.addMocks({
             getNode: function (path) {
                 ok(path.equals(documentKey.getEntityPath()), "should get node from cache");
                 return entityNode;
@@ -113,22 +113,22 @@
             ok(false, "should NOT trigger access event");
         }
 
-        documentKey.subscribeTo(giant.EVENT_ENTITY_ACCESS, onAccess);
+        documentKey.subscribeTo($entity.EVENT_ENTITY_ACCESS, onAccess);
 
         strictEqual(entity.getSilentNode(), entityNode, "should return node retrieved from cache");
 
-        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_ACCESS, onAccess);
-        giant.entities.removeMocks();
+        documentKey.unsubscribeFrom($entity.EVENT_ENTITY_ACCESS, onAccess);
+        $entity.entities.removeMocks();
     });
 
     test("Silent Hash node getter", function () {
         expect(2);
 
         var documentKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(documentKey),
+            entity = $entity.Entity.create(documentKey),
             entityNode = {};
 
-        giant.entities.addMocks({
+        $entity.entities.addMocks({
             getNode: function () {
                 return entityNode;
             }
@@ -138,16 +138,16 @@
         ok(hash.isA($data.Hash), "should return Hash instance");
         strictEqual(hash.items, entityNode, "should return node retrieved from cache");
 
-        giant.entities.removeMocks();
+        $entity.entities.removeMocks();
     });
 
     test("Entity node tester", function () {
         expect(2);
 
         var documentKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(documentKey);
+            entity = $entity.Entity.create(documentKey);
 
-        giant.entities.addMocks({
+        $entity.entities.addMocks({
             getNode: function (path) {
             }
         });
@@ -156,19 +156,19 @@
             ok(true, "should trigger access event");
         }
 
-        documentKey.subscribeTo(giant.EVENT_ENTITY_ACCESS, onAccess);
+        documentKey.subscribeTo($entity.EVENT_ENTITY_ACCESS, onAccess);
 
         strictEqual(entity.touchNode(), entity, "should be chainable");
 
-        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_ACCESS, onAccess);
-        giant.entities.removeMocks();
+        documentKey.unsubscribeFrom($entity.EVENT_ENTITY_ACCESS, onAccess);
+        $entity.entities.removeMocks();
     });
 
     test("Setting node", function () {
         expect(7);
 
         var documentKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(documentKey);
+            entity = $entity.Entity.create(documentKey);
 
         entity.addMocks({
             getSilentNode: function () {
@@ -177,7 +177,7 @@
             }
         });
 
-        giant.entities.addMocks({
+        $entity.entities.addMocks({
             setNode: function (path, value) {
                 ok(path.equals(documentKey.getEntityPath()),
                     "should set node in cache on the entity path path");
@@ -186,24 +186,24 @@
         });
 
         function onChange(event) {
-            ok(event.isA(giant.EntityChangeEvent), "should trigger change event");
+            ok(event.isA($entity.EntityChangeEvent), "should trigger change event");
             equal(typeof event.beforeNode, 'undefined', "should set beforeNode property on event");
             equal(event.afterNode, 'hello', "should set afterNode property on event");
         }
 
-        documentKey.subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.subscribeTo($entity.EVENT_ENTITY_CHANGE, onChange);
 
         strictEqual(entity.setNode('hello'), entity, "should be chainable");
 
-        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
-        giant.entities.removeMocks();
+        documentKey.unsubscribeFrom($entity.EVENT_ENTITY_CHANGE, onChange);
+        $entity.entities.removeMocks();
     });
 
     test("Re-setting node", function () {
         expect(0);
 
         var documentKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(documentKey),
+            entity = $entity.Entity.create(documentKey),
             entityNode = {};
 
         entity.addMocks({
@@ -212,7 +212,7 @@
             }
         });
 
-        giant.entities.addMocks({
+        $entity.entities.addMocks({
             setNode: function () {
                 ok(false, "should NOT set entity node");
             }
@@ -222,12 +222,12 @@
             ok(false, "should NOT trigger change event");
         }
 
-        documentKey.subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.subscribeTo($entity.EVENT_ENTITY_CHANGE, onChange);
 
         entity.setNode(entityNode);
 
-        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
-        giant.entities.removeMocks();
+        documentKey.unsubscribeFrom($entity.EVENT_ENTITY_CHANGE, onChange);
+        $entity.entities.removeMocks();
     });
 
     test("Appending absent node", function () {
@@ -245,7 +245,7 @@
         }
 
         document.entityKey
-            .subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
+            .subscribeTo($entity.EVENT_ENTITY_CHANGE, onChange);
 
         strictEqual(document.appendNode({
             hello: "world",
@@ -253,7 +253,7 @@
         }), document, "should be chainable");
 
         document.entityKey
-            .unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
+            .unsubscribeFrom($entity.EVENT_ENTITY_CHANGE, onChange);
     });
 
     test("Appending node", function () {
@@ -280,19 +280,19 @@
         }
 
         document.entityKey
-            .subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
+            .subscribeTo($entity.EVENT_ENTITY_CHANGE, onChange);
 
         document.appendNode(nodeToAppend);
 
         document.entityKey
-            .unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
+            .unsubscribeFrom($entity.EVENT_ENTITY_CHANGE, onChange);
     });
 
     test("Node removal", function () {
         expect(6);
 
         var documentKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(documentKey),
+            entity = $entity.Entity.create(documentKey),
             entityNode = {};
 
         entity.addMocks({
@@ -302,7 +302,7 @@
             }
         });
 
-        giant.entities.addMocks({
+        $entity.entities.addMocks({
             unsetNode: function (path) {
                 ok(path.equals(documentKey.getEntityPath()),
                     "should set node to undefined");
@@ -310,24 +310,24 @@
         });
 
         function onChange(event) {
-            ok(event.isA(giant.EntityChangeEvent), "should trigger change event");
+            ok(event.isA($entity.EntityChangeEvent), "should trigger change event");
             strictEqual(event.beforeNode, entityNode, "should set beforeNode property on event");
             equal(typeof event.afterNode, 'undefined', "should set afterNode property on event");
         }
 
-        documentKey.subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.subscribeTo($entity.EVENT_ENTITY_CHANGE, onChange);
 
         strictEqual(entity.unsetNode(), entity, "should be chainable");
 
-        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
-        giant.entities.removeMocks();
+        documentKey.unsubscribeFrom($entity.EVENT_ENTITY_CHANGE, onChange);
+        $entity.entities.removeMocks();
     });
 
     test("Node re-removal", function () {
         expect(0);
 
         var documentKey = 'foo/bar'.toDocumentKey(),
-            entity = giant.Entity.create(documentKey),
+            entity = $entity.Entity.create(documentKey),
             entityNode = {};
 
         entity.addMocks({
@@ -336,7 +336,7 @@
             }
         });
 
-        giant.entities.addMocks({
+        $entity.entities.addMocks({
             unsetNode: function () {
                 ok(false, "should NOT set entity node");
             }
@@ -346,12 +346,12 @@
             ok(false, "should NOT trigger change event");
         }
 
-        documentKey.subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
+        documentKey.subscribeTo($entity.EVENT_ENTITY_CHANGE, onChange);
 
         entity.unsetNode(entityNode);
 
-        documentKey.unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
-        giant.entities.removeMocks();
+        documentKey.unsubscribeFrom($entity.EVENT_ENTITY_CHANGE, onChange);
+        $entity.entities.removeMocks();
     });
 
     test("Key removal", function () {
@@ -375,11 +375,11 @@
         }
 
         document.entityKey
-            .subscribeTo(giant.EVENT_ENTITY_CHANGE, onChange);
+            .subscribeTo($entity.EVENT_ENTITY_CHANGE, onChange);
 
         field.unsetKey();
 
         document.entityKey
-            .unsubscribeFrom(giant.EVENT_ENTITY_CHANGE, onChange);
+            .unsubscribeFrom($entity.EVENT_ENTITY_CHANGE, onChange);
     });
 }());

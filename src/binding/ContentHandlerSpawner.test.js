@@ -1,13 +1,13 @@
-/*global giant */
+/*global $entity */
 (function () {
     "use strict";
 
     module("ContentHandlerSpawner");
 
     test("Conversion from HandlerSpawner", function () {
-        var handlerSpawner = giant.HandlerSpawner.create('content');
+        var handlerSpawner = $entity.HandlerSpawner.create('content');
 
-        ok(handlerSpawner.isA(giant.ContentHandlerSpawner),
+        ok(handlerSpawner.isA($entity.ContentHandlerSpawner),
             "should return ContentHandlerSpawner instance");
     });
 }());

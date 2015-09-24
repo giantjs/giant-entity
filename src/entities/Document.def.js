@@ -1,29 +1,29 @@
-/*global giant */
-$oop.postpone(giant, 'Document', function () {
+/*global $entity */
+$oop.postpone($entity, 'Document', function () {
     "use strict";
 
-    var base = giant.Entity,
+    var base = $entity.Entity,
         self = base.extend();
 
     /**
      * Creates a Document instance.
      * A `Document` instance may also be created via conversion from string, array, and `DocumentKey`.
-     * @name giant.Document.create
+     * @name $entity.Document.create
      * @function
-     * @param {giant.DocumentKey} documentKey Identifies document.
-     * @returns {giant.Document}
+     * @param {$entity.DocumentKey} documentKey Identifies document.
+     * @returns {$entity.Document}
      */
 
     /**
      * The Document class implements an API for document nodes,
      * granting access to the document's fields and attributes.
      * @class
-     * @extends giant.Entity
+     * @extends $entity.Entity
      */
-    giant.Document = self
-        .addMethods(/** @lends giant.Document# */{
+    $entity.Document = self
+        .addMethods(/** @lends $entity.Document# */{
             /**
-             * @param {giant.DocumentKey} documentKey
+             * @param {$entity.DocumentKey} documentKey
              * @ignore
              */
             init: function (documentKey) {
@@ -32,15 +32,15 @@ $oop.postpone(giant, 'Document', function () {
 
                 /**
                  * Document key associated with current entity.
-                 * @name giant.Document#entityKey
-                 * @type {giant.DocumentKey}
+                 * @name $entity.Document#entityKey
+                 * @type {$entity.DocumentKey}
                  */
             },
 
             /**
              * Fetches entity associated with the document's fields.
              * Returns self by default.
-             * @returns {giant.Document}
+             * @returns {$entity.Document}
              */
             getFieldsEntity: function () {
                 return this;
@@ -49,7 +49,7 @@ $oop.postpone(giant, 'Document', function () {
             /**
              * Retrieves Field entity matching the specified field name.
              * @param {string} fieldName
-             * @returns {giant.Field}
+             * @returns {$entity.Field}
              */
             getField: function (fieldName) {
                 return this.entityKey.getFieldKey(fieldName).toField();
@@ -57,26 +57,26 @@ $oop.postpone(giant, 'Document', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Entity', function () {
+$oop.amendPostponed($entity, 'Entity', function () {
     "use strict";
 
-    giant.Entity
-        .addSurrogate(giant, 'Document', function (entityKey) {
-            return giant.DocumentKey.isBaseOf(entityKey);
+    $entity.Entity
+        .addSurrogate($entity, 'Document', function (entityKey) {
+            return $entity.DocumentKey.isBaseOf(entityKey);
         });
 });
 
-$oop.amendPostponed(giant, 'DocumentKey', function () {
+$oop.amendPostponed($entity, 'DocumentKey', function () {
     "use strict";
 
-    giant.DocumentKey
-        .addMethods(/** @lends giant.DocumentKey */{
+    $entity.DocumentKey
+        .addMethods(/** @lends $entity.DocumentKey */{
             /**
              * Converts `DocumentKey` to `Document`.
-             * @returns {giant.Document}
+             * @returns {$entity.Document}
              */
             toDocument: function () {
-                return giant.Document.create(this);
+                return $entity.Document.create(this);
             }
         });
 });
@@ -87,20 +87,20 @@ $oop.amendPostponed(giant, 'DocumentKey', function () {
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to `Document` instance, assuming the string is a serialized `DocumentKey`.
-         * @returns {giant.Document}
+         * @returns {$entity.Document}
          */
         toDocument: function () {
-            return giant.Document.create(this.toDocumentKey());
+            return $entity.Document.create(this.toDocumentKey());
         }
     });
 
     $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts `Array` to `Document` instance, assuming the array is a document key in array notation.
-         * @returns {giant.Document}
+         * @returns {$entity.Document}
          */
         toDocument: function () {
-            return giant.Document.create(this.toDocumentKey());
+            return $entity.Document.create(this.toDocumentKey());
         }
     });
 }());

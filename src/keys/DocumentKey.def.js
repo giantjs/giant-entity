@@ -1,28 +1,28 @@
-/*global giant */
-$oop.postpone(giant, 'DocumentKey', function () {
+/*global $entity */
+$oop.postpone($entity, 'DocumentKey', function () {
     "use strict";
 
-    var base = giant.EntityKey,
+    var base = $entity.EntityKey,
         self = base.extend();
 
     /**
      * Creates a DocumentKey instance.
      * DocumentKey instances may also be created via conversion from string or array.
-     * @name giant.DocumentKey.create
+     * @name $entity.DocumentKey.create
      * @function
      * @param {string} documentType Identifies document type.
      * @param {string} documentId Identifies document in the context of its document type.
-     * @returns {giant.DocumentKey}
+     * @returns {$entity.DocumentKey}
      */
 
     /**
      * The DocumentKey class identifies document nodes in the cache.
      * @class
-     * @extends giant.EntityKey
+     * @extends $entity.EntityKey
      */
-    giant.DocumentKey = self
+    $entity.DocumentKey = self
         .setEventPath(['document'].toPath().prepend(base.eventPath))
-        .addMethods(/** @lends giant.DocumentKey# */{
+        .addMethods(/** @lends $entity.DocumentKey# */{
             /**
              * @param {string} documentType
              * @param {string} documentId
@@ -48,7 +48,7 @@ $oop.postpone(giant, 'DocumentKey', function () {
 
             /**
              * Tells whether the specified `DocumentKey` instance is equivalent to the current one.
-             * @param {giant.DocumentKey} documentKey
+             * @param {$entity.DocumentKey} documentKey
              * @returns {boolean}
              */
             equals: function (documentKey) {
@@ -59,7 +59,7 @@ $oop.postpone(giant, 'DocumentKey', function () {
 
             /**
              * Fetches a document key to the
-             * @returns {giant.DocumentKey}
+             * @returns {$entity.DocumentKey}
              */
             getConfigKey: function () {
                 return ['document', this.documentType].toDocumentKey();
@@ -78,10 +78,10 @@ $oop.postpone(giant, 'DocumentKey', function () {
             /**
              * Creates a `FieldKey` instance based on the current document key and the specified field name.
              * @param {string} fieldName
-             * @returns {giant.FieldKey}
+             * @returns {$entity.FieldKey}
              */
             getFieldKey: function (fieldName) {
-                return giant.FieldKey.create(
+                return $entity.FieldKey.create(
                     this.documentType,
                     this.documentId,
                     fieldName
@@ -91,7 +91,7 @@ $oop.postpone(giant, 'DocumentKey', function () {
             /**
              * Serializes current document key.
              * @example
-             * giant.DocumentKey.create('user', '1234').toString() // "user/1234"
+             * $entity.DocumentKey.create('user', '1234').toString() // "user/1234"
              * @returns {string}
              */
             toString: function () {
@@ -105,23 +105,23 @@ $oop.postpone(giant, 'DocumentKey', function () {
 (function () {
     "use strict";
 
-    $assertion.addTypes(/** @lends giant */{
-        /** @param {giant.DocumentKey} expr */
+    $assertion.addTypes(/** @lends $entity */{
+        /** @param {$entity.DocumentKey} expr */
         isDocumentKey: function (expr) {
-            return giant.DocumentKey.isBaseOf(expr);
+            return $entity.DocumentKey.isBaseOf(expr);
         },
 
-        /** @param {giant.DocumentKey} [expr] */
+        /** @param {$entity.DocumentKey} [expr] */
         isDocumentKeyOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                giant.DocumentKey.isBaseOf(expr);
+                $entity.DocumentKey.isBaseOf(expr);
         }
     });
 
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to a `DocumentKey` instance. Assumes string is a serialized document key.
-         * @returns {giant.DocumentKey}
+         * @returns {$entity.DocumentKey}
          */
         toDocumentKey: function () {
             var StringUtils = $utils.StringUtils,
@@ -130,7 +130,7 @@ $oop.postpone(giant, 'DocumentKey', function () {
                 documentId = parts[1];
 
             return typeof documentType === 'string' && typeof documentId === 'string' ?
-                giant.DocumentKey.create(
+                $entity.DocumentKey.create(
                     StringUtils.unescapeChars(documentType, '/'),
                     StringUtils.unescapeChars(documentId, '/')) :
                 undefined;
@@ -141,7 +141,7 @@ $oop.postpone(giant, 'DocumentKey', function () {
         /**
          * Converts `Array` (of strings) to a `DocumentKey` instance.
          * Assumes array is a document key in array notation.
-         * @returns {giant.DocumentKey}
+         * @returns {$entity.DocumentKey}
          * @example
          * ['foo', 'bar'].toDocumentKey() // single document key
          */
@@ -150,7 +150,7 @@ $oop.postpone(giant, 'DocumentKey', function () {
                 documentId = this[1];
 
             return typeof documentType !== 'undefined' && typeof documentId !== 'undefined' ?
-                giant.DocumentKey.create(documentType, documentId) :
+                $entity.DocumentKey.create(documentType, documentId) :
                 undefined;
         }
     });

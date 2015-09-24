@@ -1,13 +1,13 @@
-/*global giant */
+/*global $entity */
 (function () {
     "use strict";
 
     module("FieldKey");
 
     test("Instantiation", function () {
-        var fieldKey = giant.FieldKey.create('hello', 'world', 'foo');
+        var fieldKey = $entity.FieldKey.create('hello', 'world', 'foo');
 
-        ok(fieldKey.documentKey.isA(giant.DocumentKey), "should set document key");
+        ok(fieldKey.documentKey.isA($entity.DocumentKey), "should set document key");
         equal(fieldKey.documentKey.documentType, 'hello', "should set document type");
         equal(fieldKey.documentKey.documentId, 'world', "should set document ID");
         equal(fieldKey.fieldName, 'foo', "should set field name");
@@ -19,7 +19,7 @@
         var fieldKey;
 
         fieldKey = 'foo/bar/baz'.toFieldKey();
-        ok(fieldKey.isA(giant.FieldKey), "should return FieldKey instance");
+        ok(fieldKey.isA($entity.FieldKey), "should return FieldKey instance");
         equal(fieldKey.documentKey.documentType, 'foo', "should set document type");
         equal(fieldKey.documentKey.documentId, 'bar', "should set document ID");
         equal(fieldKey.fieldName, 'baz', "should set field name");
@@ -35,7 +35,7 @@
         var fieldKey;
 
         fieldKey = ['foo', 'bar', 'baz'].toFieldKey();
-        ok(fieldKey.isA(giant.FieldKey), "should return FieldKey instance");
+        ok(fieldKey.isA($entity.FieldKey), "should return FieldKey instance");
         equal(fieldKey.documentKey.documentType, 'foo', "should set document type");
         equal(fieldKey.documentKey.documentId, 'bar', "should set document ID");
         equal(fieldKey.fieldName, 'baz', "should set field name");
@@ -61,7 +61,7 @@
         var fieldKey = 'foo/bar/baz'.toFieldKey(),
             configKey = fieldKey.getConfigKey();
 
-        ok(configKey.isA(giant.DocumentKey), "should return DocumentKey instance");
+        ok(configKey.isA($entity.DocumentKey), "should return DocumentKey instance");
         ok(configKey.equals(['field', 'foo/baz'].toDocumentKey()), "should return correct config key");
     });
 
@@ -69,8 +69,8 @@
         var fieldKey = 'foo/bar/baz'.toFieldKey(),
             itemKey = fieldKey.getItemKey('hello');
 
-        ok(itemKey.isA(giant.ItemKey), "should return an ItemKey instance");
-        ok(itemKey.documentKey.isA(giant.DocumentKey), "should set document key");
+        ok(itemKey.isA($entity.ItemKey), "should return an ItemKey instance");
+        ok(itemKey.documentKey.isA($entity.DocumentKey), "should set document key");
         equal(itemKey.documentKey.documentType, 'foo', "should set document type");
         equal(itemKey.documentKey.documentId, 'bar', "should set document ID");
         equal(itemKey.fieldName, 'baz', "should set field name");
@@ -84,7 +84,7 @@
             documentEntityPath = 'document>entity'.toPath(),
             entityPath = {};
 
-        giant.DocumentKey.addMocks({
+        $entity.DocumentKey.addMocks({
             getEntityPath: function () {
                 equal(this.toString(), 'foo/bar', "should get entity key from document key");
                 return documentEntityPath;
@@ -100,7 +100,7 @@
 
         strictEqual(fieldKey.getEntityPath(), entityPath, "should return correct field path");
 
-        giant.DocumentKey.removeMocks();
+        $entity.DocumentKey.removeMocks();
     });
 
     test("Field type getter", function () {
@@ -109,7 +109,7 @@
         var fieldKey = 'foo/bar/baz'.toFieldKey(),
             fieldType = {};
 
-        giant.config.addMocks({
+        $entity.config.addMocks({
             getNode: function (path) {
                 equal(path.toString(), 'document>field>foo/baz>fieldType');
                 return fieldType;
@@ -118,7 +118,7 @@
 
         strictEqual(fieldKey.getFieldType(), fieldType, "should return node fetched from config");
 
-        giant.config.removeMocks();
+        $entity.config.removeMocks();
     });
 
     test("Item type getter", function () {
@@ -127,7 +127,7 @@
         var fieldKey = 'foo/bar/baz'.toFieldKey(),
             itemType = {};
 
-        giant.config.addMocks({
+        $entity.config.addMocks({
             getNode: function (path) {
                 equal(path.toString(), 'document>field>foo/baz>itemType',
                     "should fetch item type from field config");
@@ -137,7 +137,7 @@
 
         strictEqual(fieldKey.getItemType(), itemType, "should return item type from config");
 
-        giant.config.removeMocks();
+        $entity.config.removeMocks();
     });
 
     test("Item ID type getter", function () {
@@ -146,7 +146,7 @@
         var fieldKey = 'foo/bar/baz'.toFieldKey(),
             itemIdType = {};
 
-        giant.config.addMocks({
+        $entity.config.addMocks({
             getNode: function (path) {
                 equal(path.toString(), 'document>field>foo/baz>itemIdType',
                     "should fetch item ID type from field config");
@@ -156,12 +156,12 @@
 
         strictEqual(fieldKey.getItemIdType(), itemIdType, "should return item ID type from config");
 
-        giant.config.removeMocks();
+        $entity.config.removeMocks();
     });
 
     test("Conversion to String", function () {
-        equal(giant.FieldKey.create('foo', 'bar', 'baz').toString(), 'foo/bar/baz');
-        equal(giant.FieldKey.create('foo', 'bar', 'b/az').toString(), 'foo/bar/b\\/az');
+        equal($entity.FieldKey.create('foo', 'bar', 'baz').toString(), 'foo/bar/baz');
+        equal($entity.FieldKey.create('foo', 'bar', 'b/az').toString(), 'foo/bar/b\\/az');
         equal('foo/bar/baz'.toFieldKey().toString(), 'foo/bar/baz');
     });
 }());

@@ -1,28 +1,28 @@
-/*global giant */
-$oop.postpone(giant, 'Attribute', function () {
+/*global $entity */
+$oop.postpone($entity, 'Attribute', function () {
     "use strict";
 
-    var base = giant.Entity,
+    var base = $entity.Entity,
         self = base.extend();
 
     /**
      * Creates a Attribute instance.
-     * @name giant.Attribute.create
+     * @name $entity.Attribute.create
      * @function
-     * @param {giant.AttributeKey} documentKey Identifies document.
-     * @returns {giant.Attribute}
+     * @param {$entity.AttributeKey} documentKey Identifies document.
+     * @returns {$entity.Attribute}
      */
 
     /**
      * The Attribute class implements an API for attribute nodes.
      * Attribute nodes hold custom information about the entity they are associated with.
      * @class
-     * @extends giant.Entity
+     * @extends $entity.Entity
      */
-    giant.Attribute = self
-        .addMethods(/** @lends giant.Attribute# */{
+    $entity.Attribute = self
+        .addMethods(/** @lends $entity.Attribute# */{
             /**
-             * @param {giant.AttributeKey} attributeKey
+             * @param {$entity.AttributeKey} attributeKey
              * @ignore
              */
             init: function (attributeKey) {
@@ -31,14 +31,14 @@ $oop.postpone(giant, 'Attribute', function () {
 
                 /**
                  * Attribute key associated with current entity.
-                 * @name giant.Attribute#entityKey
-                 * @type {giant.AttributeKey}
+                 * @name $entity.Attribute#entityKey
+                 * @type {$entity.AttributeKey}
                  */
             },
 
             /**
              * Fetches entity the current attribute belongs to.
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             getParentEntity: function () {
                 return this.entityKey.parentKey.toEntity();
@@ -46,26 +46,26 @@ $oop.postpone(giant, 'Attribute', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Entity', function () {
+$oop.amendPostponed($entity, 'Entity', function () {
     "use strict";
 
-    giant.Entity
-        .addSurrogate(giant, 'Attribute', function (entityKey) {
-            return giant.AttributeKey.isBaseOf(entityKey);
+    $entity.Entity
+        .addSurrogate($entity, 'Attribute', function (entityKey) {
+            return $entity.AttributeKey.isBaseOf(entityKey);
         });
 });
 
-$oop.amendPostponed(giant, 'AttributeKey', function () {
+$oop.amendPostponed($entity, 'AttributeKey', function () {
     "use strict";
 
-    giant.AttributeKey
-        .addMethods(/** @lends giant.AttributeKey */{
+    $entity.AttributeKey
+        .addMethods(/** @lends $entity.AttributeKey */{
             /**
              * Converts `AttributeKey` to `Attribute`.
-             * @returns {giant.Attribute}
+             * @returns {$entity.Attribute}
              */
             toAttribute: function () {
-                return giant.Attribute.create(this);
+                return $entity.Attribute.create(this);
             }
         });
 });

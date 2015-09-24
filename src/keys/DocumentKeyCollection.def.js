@@ -1,13 +1,13 @@
-/*global giant */
-$oop.postpone(giant, 'DocumentKeyCollection', function () {
+/*global $entity */
+$oop.postpone($entity, 'DocumentKeyCollection', function () {
     "use strict";
 
     /**
      * Creates a DocumentKeyCollection instance.
-     * @name giant.DocumentKeyCollection.create
+     * @name $entity.DocumentKeyCollection.create
      * @function
      * @param {object} [items]
-     * @returns {giant.DocumentKeyCollection}
+     * @returns {$entity.DocumentKeyCollection}
      */
 
     /**
@@ -18,9 +18,9 @@ $oop.postpone(giant, 'DocumentKeyCollection', function () {
      * ['user/1234', 'user/4321'].toDocumentKeyCollection().toDocument();
      * @class
      * @extends {$data.Collection}
-     * @extends {giant.DocumentKey}
+     * @extends {$entity.DocumentKey}
      */
-    giant.DocumentKeyCollection = $data.Collection.of(giant.DocumentKey);
+    $entity.DocumentKeyCollection = $data.Collection.of($entity.DocumentKey);
 });
 
 $oop.amendPostponed($data, 'Hash', function () {
@@ -30,10 +30,10 @@ $oop.amendPostponed($data, 'Hash', function () {
         .addMethods(/** @lends $data.Hash */{
             /**
              * Converts `Hash` instance to `DocumentKeyCollection` instance.
-             * @returns {giant.DocumentKeyCollection}
+             * @returns {$entity.DocumentKeyCollection}
              */
             toDocumentKeyCollection: function () {
-                return giant.DocumentKeyCollection.create(this.items);
+                return $entity.DocumentKeyCollection.create(this.items);
             }
         });
 });
@@ -44,7 +44,7 @@ $oop.amendPostponed($data, 'Hash', function () {
     $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts `Array` (of `DocumentKey` instances) to a `DocumentKeyCollection` instance.
-         * @returns {giant.DocumentKeyCollection}
+         * @returns {$entity.DocumentKeyCollection}
          * @example
          * ['foo/bar', 'foo/baz'].toDocumentKeyCollection() // collection of document keys
          */

@@ -1,13 +1,13 @@
-/*global giant */
+/*global $entity */
 (function () {
     "use strict";
 
     module("StrictHandlerSpawner");
 
     test("Conversion from HandlerSpawner", function () {
-        var handlerSpawner = giant.HandlerSpawner.create('strict');
+        var handlerSpawner = $entity.HandlerSpawner.create('strict');
 
-        ok(handlerSpawner.isA(giant.StrictHandlerSpawner),
+        ok(handlerSpawner.isA($entity.StrictHandlerSpawner),
             "should return StrictHandlerSpawner instance");
     });
 }());

@@ -1,10 +1,10 @@
-/*global giant */
-$oop.postpone(giant, 'index', function () {
+/*global $entity */
+$oop.postpone($entity, 'index', function () {
     "use strict";
 
     /**
      * Contains indexes and lookups.
      * @type {$data.Tree}
      */
-    giant.index = $data.Tree.create();
+    $entity.index = $data.Tree.create();
 });

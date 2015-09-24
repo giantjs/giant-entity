@@ -1,26 +1,26 @@
-/*global giant */
-$oop.postpone(giant, 'StrictHandlerSpawner', function () {
+/*global $entity */
+$oop.postpone($entity, 'StrictHandlerSpawner', function () {
     "use strict";
 
-    var base = giant.HandlerSpawner,
+    var base = $entity.HandlerSpawner,
         self = base.extend();
 
     /**
-     * @name giant.StrictHandlerSpawner.create
+     * @name $entity.StrictHandlerSpawner.create
      * @function
-     * @returns {giant.StrictHandlerSpawner}
+     * @returns {$entity.StrictHandlerSpawner}
      */
 
     /**
      * @class
-     * @extends giant.HandlerSpawner
+     * @extends $entity.HandlerSpawner
      */
-    giant.StrictHandlerSpawner = self
-        .addMethods(/** @lends giant.StrictHandlerSpawner# */{
+    $entity.StrictHandlerSpawner = self
+        .addMethods(/** @lends $entity.StrictHandlerSpawner# */{
             /**
-             * @param {giant.EntityBound} instance
+             * @param {$entity.EntityBound} instance
              * @param {string} methodName
-             * @param {giant.FieldKey} entityKey
+             * @param {$entity.FieldKey} entityKey
              * @returns {Function}
              */
             spawnHandler: function (instance, methodName, entityKey) {
@@ -33,11 +33,11 @@ $oop.postpone(giant, 'StrictHandlerSpawner', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'HandlerSpawner', function () {
+$oop.amendPostponed($entity, 'HandlerSpawner', function () {
     "use strict";
 
-    giant.HandlerSpawner
-        .addSurrogate(giant, 'StrictHandlerSpawner', function (bindingType) {
+    $entity.HandlerSpawner
+        .addSurrogate($entity, 'StrictHandlerSpawner', function (bindingType) {
             return bindingType === 'strict';
         });
 });

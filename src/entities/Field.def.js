@@ -1,29 +1,29 @@
-/*global giant */
-$oop.postpone(giant, 'Field', function () {
+/*global $entity */
+$oop.postpone($entity, 'Field', function () {
     "use strict";
 
-    var base = giant.Entity,
+    var base = $entity.Entity,
         self = base.extend();
 
     /**
      * Creates a Field instance.
-     * @name giant.Field.create
+     * @name $entity.Field.create
      * @function
-     * @param {giant.FieldKey} fieldKey
-     * @returns {giant.Field}
+     * @param {$entity.FieldKey} fieldKey
+     * @returns {$entity.Field}
      */
 
     /**
      * The Field entity class implements an API for document field nodes in the cache. Allows access and modification
      * of the field's value and attributes.
      * @class
-     * @extends giant.Entity
+     * @extends $entity.Entity
      * @extends $utils.Stringifiable
      */
-    giant.Field = self
-        .addMethods(/** @lends giant.Field# */{
+    $entity.Field = self
+        .addMethods(/** @lends $entity.Field# */{
             /**
-             * @param {giant.FieldKey} fieldKey
+             * @param {$entity.FieldKey} fieldKey
              * @ignore
              */
             init: function (fieldKey) {
@@ -33,14 +33,14 @@ $oop.postpone(giant, 'Field', function () {
 
                 /**
                  * Field key associated with current entity.
-                 * @name giant.Field#entityKey
-                 * @type {giant.FieldKey}
+                 * @name $entity.Field#entityKey
+                 * @type {$entity.FieldKey}
                  */
             },
 
             /**
              * Fetches fields entity from the document the current field belongs to.
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             getParentEntity: function () {
                 return this.entityKey.documentKey.toDocument()
@@ -50,7 +50,7 @@ $oop.postpone(giant, 'Field', function () {
             /**
              * Fetches entity associated with the field's value.
              * Returns self by default.
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             getValueEntity: function () {
                 return this;
@@ -76,7 +76,7 @@ $oop.postpone(giant, 'Field', function () {
             /**
              * Sets field value node to the specified value.
              * @param {*} value
-             * @returns {giant.Field}
+             * @returns {$entity.Field}
              */
             setValue: function (value) {
                 this.getValueEntity().setNode(value);
@@ -93,26 +93,26 @@ $oop.postpone(giant, 'Field', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Entity', function () {
+$oop.amendPostponed($entity, 'Entity', function () {
     "use strict";
 
-    giant.Entity
-        .addSurrogate(giant, 'Field', function (entityKey) {
-            return entityKey.instanceOf(giant.FieldKey);
+    $entity.Entity
+        .addSurrogate($entity, 'Field', function (entityKey) {
+            return entityKey.instanceOf($entity.FieldKey);
         });
 });
 
-$oop.amendPostponed(giant, 'FieldKey', function () {
+$oop.amendPostponed($entity, 'FieldKey', function () {
     "use strict";
 
-    giant.FieldKey
-        .addMethods(/** @lends giant.FieldKey */{
+    $entity.FieldKey
+        .addMethods(/** @lends $entity.FieldKey */{
             /**
              * Converts `FieldKey` to `Field`.
-             * @returns {giant.Field}
+             * @returns {$entity.Field}
              */
             toField: function () {
-                return giant.Field.create(this);
+                return $entity.Field.create(this);
             }
         });
 });
@@ -123,20 +123,20 @@ $oop.amendPostponed(giant, 'FieldKey', function () {
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to `Field` instance, assuming the string is a serialized `FieldKey`.
-         * @returns {giant.Field}
+         * @returns {$entity.Field}
          */
         toField: function () {
-            return giant.Field.create(this.toFieldKey());
+            return $entity.Field.create(this.toFieldKey());
         }
     });
 
     $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts `Array` to `Field` instance, assuming the array is a field key in array notation.
-         * @returns {giant.Field}
+         * @returns {$entity.Field}
          */
         toField: function () {
-            return giant.Field.create(this.toFieldKey());
+            return $entity.Field.create(this.toFieldKey());
         }
     });
 }());

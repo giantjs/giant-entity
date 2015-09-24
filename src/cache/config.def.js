@@ -1,12 +1,12 @@
-/*global giant */
-$oop.postpone(giant, 'config', function () {
+/*global $entity */
+$oop.postpone($entity, 'config', function () {
     "use strict";
 
     /**
      * Contains meta-entities describing document types and their fields.
      * @type {$data.Tree}
      */
-    giant.config = $data.Tree.create({
+    $entity.config = $data.Tree.create({
         document: {
             document: {
             },

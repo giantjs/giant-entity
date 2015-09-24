@@ -1,24 +1,24 @@
-/*global giant */
-$oop.postpone(giant, 'ContentHandlerSpawner', function () {
+/*global $entity */
+$oop.postpone($entity, 'ContentHandlerSpawner', function () {
     "use strict";
 
-    var base = giant.HandlerSpawner,
+    var base = $entity.HandlerSpawner,
         self = base.extend();
 
     /**
-     * @name giant.ContentHandlerSpawner.create
+     * @name $entity.ContentHandlerSpawner.create
      * @function
-     * @returns {giant.ContentHandlerSpawner}
+     * @returns {$entity.ContentHandlerSpawner}
      */
 
     /**
      * @class
-     * @extends giant.HandlerSpawner
+     * @extends $entity.HandlerSpawner
      */
-    giant.ContentHandlerSpawner = self
-        .addMethods(/** @lends giant.ContentHandlerSpawner# */{
+    $entity.ContentHandlerSpawner = self
+        .addMethods(/** @lends $entity.ContentHandlerSpawner# */{
             /**
-             * @param {giant.EntityBound} instance
+             * @param {$entity.EntityBound} instance
              * @param {string} methodName
              * @returns {Function}
              */
@@ -28,11 +28,11 @@ $oop.postpone(giant, 'ContentHandlerSpawner', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'HandlerSpawner', function () {
+$oop.amendPostponed($entity, 'HandlerSpawner', function () {
     "use strict";
 
-    giant.HandlerSpawner
-        .addSurrogate(giant, 'ContentHandlerSpawner', function (bindingType) {
+    $entity.HandlerSpawner
+        .addSurrogate($entity, 'ContentHandlerSpawner', function (bindingType) {
             return bindingType === 'content';
         });
 });

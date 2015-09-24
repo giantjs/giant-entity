@@ -1,27 +1,27 @@
-/*global giant */
-$oop.postpone(giant, 'CollectionField', function () {
+/*global $entity */
+$oop.postpone($entity, 'CollectionField', function () {
     "use strict";
 
-    var base = giant.Field,
+    var base = $entity.Field,
         self = base.extend();
 
     /**
      * Creates a CollectionField instance.
-     * CollectionField instances may be created via `giant.Field.create` provided that the `config` cache defines
+     * CollectionField instances may be created via `$entity.Field.create` provided that the `config` cache defines
      * the field type as 'collection'.
-     * @name giant.CollectionField.create
+     * @name $entity.CollectionField.create
      * @function
-     * @param {giant.FieldKey} fieldKey Identifies collection field.
-     * @returns {giant.CollectionField}
+     * @param {$entity.FieldKey} fieldKey Identifies collection field.
+     * @returns {$entity.CollectionField}
      */
 
     /**
      * The CollectionField class implements an API for composite document fields, granting access to items.
      * @class
-     * @extends giant.Field
+     * @extends $entity.Field
      */
-    giant.CollectionField = self
-        .addMethods(/** @lends giant.CollectionField# */{
+    $entity.CollectionField = self
+        .addMethods(/** @lends $entity.CollectionField# */{
             /**
              * Fetches node from cache containing the collection items.
              * @returns {object}
@@ -41,7 +41,7 @@ $oop.postpone(giant, 'CollectionField', function () {
             /**
              * Retrieves `Item` entity matching the specified item ID.
              * @param {string} itemId
-             * @returns {giant.Item}
+             * @returns {$entity.Item}
              */
             getItem: function (itemId) {
                 return this.entityKey.getItemKey(itemId).toItem();
@@ -50,7 +50,7 @@ $oop.postpone(giant, 'CollectionField', function () {
             /**
              * Retrieves an item key for the item matching the specified value.
              * @param {*} value
-             * @returns {giant.ItemKey}
+             * @returns {$entity.ItemKey}
              */
             getItemKeyByValue: function (value) {
                 var item = this.getItemByValue(value);
@@ -61,7 +61,7 @@ $oop.postpone(giant, 'CollectionField', function () {
              * Retrieves an Item instance for the item matching the specified value.
              * Iterates over all items. Avoid using it for large collections.
              * @param {*} value
-             * @returns {giant.Item}
+             * @returns {$entity.Item}
              */
             getItemByValue: function (value) {
                 var result,
@@ -86,7 +86,7 @@ $oop.postpone(giant, 'CollectionField', function () {
             /**
              * Appends the specified item nodes to the current collection.
              * @param {object} itemsNode
-             * @returns {giant.CollectionField}
+             * @returns {$entity.CollectionField}
              */
             appendItems: function (itemsNode) {
                 this.getValueEntity().appendNode(itemsNode);
@@ -95,11 +95,11 @@ $oop.postpone(giant, 'CollectionField', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Field', function () {
+$oop.amendPostponed($entity, 'Field', function () {
     "use strict";
 
-    giant.Field
-        .addSurrogate(giant, 'CollectionField', function (/**giant.FieldKey*/fieldKey) {
+    $entity.Field
+        .addSurrogate($entity, 'CollectionField', function (/**$entity.FieldKey*/fieldKey) {
             return fieldKey.getFieldType() === 'collection';
         });
 });

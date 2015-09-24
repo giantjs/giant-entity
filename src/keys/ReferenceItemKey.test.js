@@ -1,11 +1,11 @@
-/*global giant */
+/*global $entity */
 (function () {
     "use strict";
 
     module("ReferenceItemKey");
 
     test("Instantiation", function () {
-        var itemKey = giant.ReferenceItemKey.create('hello', 'world', 'foo', 'bar/baz');
+        var itemKey = $entity.ReferenceItemKey.create('hello', 'world', 'foo', 'bar/baz');
 
         equal(itemKey.itemId, 'bar/baz', "should set item ID");
         ok(itemKey.referenceKey.equals('bar/baz'.toDocumentKey()), "should set reference key");
@@ -34,9 +34,9 @@
     });
 
     test("ItemKey surrogate", function () {
-        var itemKey = giant.ItemKey.create('hello', 'world', 'foo', 'bar/baz');
+        var itemKey = $entity.ItemKey.create('hello', 'world', 'foo', 'bar/baz');
 
-        ok(itemKey.isA(giant.ReferenceItemKey), "should return ReferenceKey instance");
+        ok(itemKey.isA($entity.ReferenceItemKey), "should return ReferenceKey instance");
         equal(itemKey.itemId, 'bar/baz', "should set item ID");
         ok(itemKey.referenceKey.equals('bar/baz'.toDocumentKey()), "should set reference key");
     });

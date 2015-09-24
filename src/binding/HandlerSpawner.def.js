@@ -1,23 +1,23 @@
-/*global giant */
-$oop.postpone(giant, 'HandlerSpawner', function () {
+/*global $entity */
+$oop.postpone($entity, 'HandlerSpawner', function () {
     "use strict";
 
     var base = $oop.Base,
         self = base.extend();
 
     /**
-     * @name giant.HandlerSpawner.create
+     * @name $entity.HandlerSpawner.create
      * @function
      * @param {string} [bindingType]
-     * @returns {giant.HandlerSpawner}
+     * @returns {$entity.HandlerSpawner}
      */
 
     /**
      * @class
      * @extends $oop.Base
      */
-    giant.HandlerSpawner = self
-        .addMethods(/** @lends giant.HandlerSpawner# */{
+    $entity.HandlerSpawner = self
+        .addMethods(/** @lends $entity.HandlerSpawner# */{
             /**
              * @param {string} [bindingType]
              * @ignore
@@ -29,9 +29,9 @@ $oop.postpone(giant, 'HandlerSpawner', function () {
         });
 
     /**
-     * @name giant.HandlerSpawner#spawnHandler
+     * @name $entity.HandlerSpawner#spawnHandler
      * @function
-     * @param {giant.EntityBound} instance
+     * @param {$entity.EntityBound} instance
      * @param {string} methodName
      * @returns {Function}
      */

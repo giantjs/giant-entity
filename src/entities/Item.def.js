@@ -1,28 +1,28 @@
-/*global giant */
-$oop.postpone(giant, 'Item', function () {
+/*global $entity */
+$oop.postpone($entity, 'Item', function () {
     "use strict";
 
-    var base = giant.Field,
+    var base = $entity.Field,
         self = base.extend(),
         shallowCopy = $data.DataUtils.shallowCopy;
 
     /**
      * Creates an Item instance.
-     * @name giant.Item.create
+     * @name $entity.Item.create
      * @function
-     * @param {giant.ItemKey} itemKey
-     * @returns {giant.Item}
+     * @param {$entity.ItemKey} itemKey
+     * @returns {$entity.Item}
      */
 
     /**
      * The Item class implements an API for collection item nodes in the cache.
      * @class
-     * @extends giant.Field
+     * @extends $entity.Field
      */
-    giant.Item = self
-        .addMethods(/** @lends giant.Item# */{
+    $entity.Item = self
+        .addMethods(/** @lends $entity.Item# */{
             /**
-             * @param {giant.ItemKey} itemKey
+             * @param {$entity.ItemKey} itemKey
              * @ignore
              */
             init: function (itemKey) {
@@ -32,14 +32,14 @@ $oop.postpone(giant, 'Item', function () {
 
                 /**
                  * Item key associated with current entity.
-                 * @name giant.Item#entityKey
-                 * @type {giant.ItemKey}
+                 * @name $entity.Item#entityKey
+                 * @type {$entity.ItemKey}
                  */
             },
 
             /**
              * Fetches attribute entity that holds the items the current item belongs to.
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             getParentEntity: function () {
                 return this.entityKey.getFieldKey().toField()
@@ -51,7 +51,7 @@ $oop.postpone(giant, 'Item', function () {
              * When it's not present yet, the item gets appended to the rest, triggering appropriate events.
              * TODO: Restore individual value setter when item path already exists.
              * @param {*} node Item node to be set in the collection.
-             * @returns {giant.Item}
+             * @returns {$entity.Item}
              */
             setNode: function (node) {
                 var that = this,
@@ -63,10 +63,10 @@ $oop.postpone(giant, 'Item', function () {
 
                 nodeToAppend[itemId] = node;
 
-                giant.entities.appendNode(parentKey.getEntityPath(), nodeToAppend, function () {
+                $entity.entities.appendNode(parentKey.getEntityPath(), nodeToAppend, function () {
                     var parentNodeAfter = parentEntity.getNode();
 
-                    parentKey.spawnEvent(giant.EVENT_ENTITY_CHANGE)
+                    parentKey.spawnEvent($entity.EVENT_ENTITY_CHANGE)
                         .setBeforeNode(parentNodeBefore)
                         .setAfterNode(parentNodeAfter)
                         .setAffectedKey(that.entityKey)
@@ -78,26 +78,26 @@ $oop.postpone(giant, 'Item', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Entity', function () {
+$oop.amendPostponed($entity, 'Entity', function () {
     "use strict";
 
-    giant.Entity
-        .addSurrogate(giant, 'Item', function (entityKey) {
-            return entityKey.isA(giant.ItemKey);
+    $entity.Entity
+        .addSurrogate($entity, 'Item', function (entityKey) {
+            return entityKey.isA($entity.ItemKey);
         });
 });
 
-$oop.amendPostponed(giant, 'ItemKey', function () {
+$oop.amendPostponed($entity, 'ItemKey', function () {
     "use strict";
 
-    giant.ItemKey
-        .addMethods(/** @lends giant.ItemKey */{
+    $entity.ItemKey
+        .addMethods(/** @lends $entity.ItemKey */{
             /**
              * Creates Item instance based on the current item key.
-             * @returns {giant.Item}
+             * @returns {$entity.Item}
              */
             toItem: function () {
-                return giant.Item.create(this);
+                return $entity.Item.create(this);
             }
         });
 });
@@ -108,20 +108,20 @@ $oop.amendPostponed(giant, 'ItemKey', function () {
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to `Item` instance, assuming the string is a serialized `ItemKey`.
-         * @returns {giant.Item}
+         * @returns {$entity.Item}
          */
         toItem: function () {
-            return giant.Item.create(this.toItemKey());
+            return $entity.Item.create(this.toItemKey());
         }
     });
 
     $oop.extendBuiltIn(Array.prototype, /** @lends Array# */{
         /**
          * Converts `Array` to `Item` instance, assuming the array is an item key in array notation.
-         * @returns {giant.Item}
+         * @returns {$entity.Item}
          */
         toItem: function () {
-            return giant.Item.create(this.toItemKey());
+            return $entity.Item.create(this.toItemKey());
         }
     });
 }());

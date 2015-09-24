@@ -1,4 +1,4 @@
-/*global giant */
+/*global $entity */
 (function () {
     "use strict";
 
@@ -6,7 +6,7 @@
 
     test("Instantiation", function () {
         var eventSpace = $event.EventSpace.create(),
-            event = /** @type {giant.EntityChangeEvent} */ giant.EntityChangeEvent.create(
+            event = /** @type {$entity.EntityChangeEvent} */ $entity.EntityChangeEvent.create(
                 'foo',
                 eventSpace);
 
@@ -19,19 +19,19 @@
         var event;
 
         event = $event.Event.create('foo.bar', $event.EventSpace.create());
-        ok(!giant.EntityChangeEvent.isBaseOf(event),
+        ok(!$entity.EntityChangeEvent.isBaseOf(event),
             "should not return EntityChangeEvent instance for non-matching event names");
 
         event = $event.Event.create('entity.change.foo', $event.EventSpace.create());
-        ok(giant.EntityChangeEvent.isBaseOf(event),
+        ok($entity.EntityChangeEvent.isBaseOf(event),
             "should return EntityChangeEvent instance for matching event name");
     });
 
     test("Spawning event", function () {
-        var eventSpace = giant.entityEventSpace.create(),
+        var eventSpace = $entity.entityEventSpace.create(),
             event = eventSpace.spawnEvent('entity.change.foo');
 
-        ok(giant.EntityChangeEvent.isBaseOf(event), "should return EntityChangeEvent instance");
+        ok($entity.EntityChangeEvent.isBaseOf(event), "should return EntityChangeEvent instance");
     });
 
     test("Cloning", function () {
@@ -43,7 +43,7 @@
                 .setAffectedKey(documentKey),
             cloneEvent = originalEvent.clone('foo>bar>baz'.toPath());
 
-        ok(cloneEvent.isA(giant.EntityChangeEvent), "should return EntityChangeEvent instance");
+        ok(cloneEvent.isA($entity.EntityChangeEvent), "should return EntityChangeEvent instance");
         equal(originalEvent.beforeNode, 'foo', "should set beforeNode on clone");
         equal(originalEvent.afterNode, 'bar', "should set afterNode on clone");
         strictEqual(originalEvent.affectedKey, documentKey, "should set affectedKey on clone");
@@ -51,7 +51,7 @@
 
     test("Before node setter", function () {
         var eventSpace = $event.EventSpace.create(),
-            event = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE);
+            event = eventSpace.spawnEvent($entity.EVENT_ENTITY_CHANGE);
 
         strictEqual(event.setBeforeNode('foo'), event, "should be chainable");
         equal(event.beforeNode, 'foo', "should set beforeNode property");
@@ -59,7 +59,7 @@
 
     test("After node setter", function () {
         var eventSpace = $event.EventSpace.create(),
-            event = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE);
+            event = eventSpace.spawnEvent($entity.EVENT_ENTITY_CHANGE);
 
         strictEqual(event.setAfterNode('foo'), event, "should be chainable");
         equal(event.afterNode, 'foo', "should set afterNode property");
@@ -68,7 +68,7 @@
     test("Affected key setter", function () {
         var eventSpace = $event.EventSpace.create(),
             documentKey = 'foo/bar'.toDocumentKey(),
-            event = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE);
+            event = eventSpace.spawnEvent($entity.EVENT_ENTITY_CHANGE);
 
         strictEqual(event.setAffectedKey(documentKey), event, "should be chainable");
         strictEqual(event.affectedKey, documentKey, "should set affectedKey property");
@@ -78,21 +78,21 @@
         var eventSpace = $event.EventSpace.create(),
             entityChangeEvent;
 
-        entityChangeEvent = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE);
+        entityChangeEvent = eventSpace.spawnEvent($entity.EVENT_ENTITY_CHANGE);
         ok(!entityChangeEvent.isInsert(),
             "should return false when neither beforeNode nor afterNode is set");
 
-        entityChangeEvent = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE)
+        entityChangeEvent = eventSpace.spawnEvent($entity.EVENT_ENTITY_CHANGE)
             .setBeforeNode('foo');
         ok(!entityChangeEvent.isInsert(),
             "should return false when beforeNode is set");
 
-        entityChangeEvent = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE)
+        entityChangeEvent = eventSpace.spawnEvent($entity.EVENT_ENTITY_CHANGE)
             .setAfterNode('bar');
         ok(entityChangeEvent.isInsert(),
             "should return true when only afterNode is set");
 
-        entityChangeEvent = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE)
+        entityChangeEvent = eventSpace.spawnEvent($entity.EVENT_ENTITY_CHANGE)
             .setBeforeNode('foo')
             .setAfterNode('bar');
         ok(!entityChangeEvent.isInsert(),
@@ -103,11 +103,11 @@
         var eventSpace = $event.EventSpace.create(),
             entityChangeEvent;
 
-        entityChangeEvent = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE);
+        entityChangeEvent = eventSpace.spawnEvent($entity.EVENT_ENTITY_CHANGE);
         ok(!entityChangeEvent.isDelete(),
             "should return false when neither beforeNode nor afterNode is set");
 
-        entityChangeEvent = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE)
+        entityChangeEvent = eventSpace.spawnEvent($entity.EVENT_ENTITY_CHANGE)
             .setBeforeNode('foo');
         ok(entityChangeEvent.isDelete(),
             "should return true when only beforeNode is set");
@@ -117,7 +117,7 @@
         ok(!entityChangeEvent.isDelete(),
             "should return false when only afterNode is set");
 
-        entityChangeEvent = eventSpace.spawnEvent(giant.EVENT_ENTITY_CHANGE)
+        entityChangeEvent = eventSpace.spawnEvent($entity.EVENT_ENTITY_CHANGE)
             .setBeforeNode('foo')
             .setAfterNode('bar');
         ok(!entityChangeEvent.isDelete(),

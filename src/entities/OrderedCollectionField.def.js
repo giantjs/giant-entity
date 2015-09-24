@@ -1,28 +1,28 @@
-/*global giant */
-$oop.postpone(giant, 'OrderedCollectionField', function () {
+/*global $entity */
+$oop.postpone($entity, 'OrderedCollectionField', function () {
     "use strict";
 
-    var base = giant.CollectionField,
+    var base = $entity.CollectionField,
         self = base.extend();
 
     /**
      * Creates an OrderedCollectionField instance.
-     * OrderedCollectionField instances may be created via `giant.Field.create` provided that the `config`
+     * OrderedCollectionField instances may be created via `$entity.Field.create` provided that the `config`
      * cache defines the field type as 'ordered-collection'.
-     * @name giant.OrderedCollectionField.create
+     * @name $entity.OrderedCollectionField.create
      * @function
      * @param {string} fieldKey Identifies ordered collection field.
-     * @returns {giant.OrderedCollectionField}
+     * @returns {$entity.OrderedCollectionField}
      */
 
     /**
      * The OrderedCollectionField class defines an API for collections the items of which are in a pre-defined order.
      * Provides methods for accessing information about item order, as well as retrieving items based on order.
      * @class
-     * @extends giant.CollectionField
+     * @extends $entity.CollectionField
      */
-    giant.OrderedCollectionField = self
-        .addMethods(/** @lends giant.OrderedCollectionField# */{
+    $entity.OrderedCollectionField = self
+        .addMethods(/** @lends $entity.OrderedCollectionField# */{
             /**
              * Fetches item order for specified item ID.
              * TODO: Add more tests.
@@ -40,7 +40,7 @@ $oop.postpone(giant, 'OrderedCollectionField', function () {
             /**
              * Retrieves `ItemKey` from collection matching the specified order.
              * @param {number} order
-             * @returns {giant.ItemKey}
+             * @returns {$entity.ItemKey}
              */
             getItemKeyByOrder: function (order) {
                 var item = this.getItemByOrder(order);
@@ -52,7 +52,7 @@ $oop.postpone(giant, 'OrderedCollectionField', function () {
              * Iterates ove all items. Avoid using it for large collections.
              * TODO: Implement indexed version.
              * @param {number} order
-             * @returns {giant.Item}
+             * @returns {$entity.Item}
              */
             getItemByOrder: function (order) {
                 var result,
@@ -100,11 +100,11 @@ $oop.postpone(giant, 'OrderedCollectionField', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'Field', function () {
+$oop.amendPostponed($entity, 'Field', function () {
     "use strict";
 
-    giant.Field
-        .addSurrogate(giant, 'OrderedCollectionField', function (/**giant.FieldKey*/fieldKey) {
+    $entity.Field
+        .addSurrogate($entity, 'OrderedCollectionField', function (/**$entity.FieldKey*/fieldKey) {
             return fieldKey.getFieldType() === 'ordered-collection';
         });
 });

@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'Entity', function () {
+/*global $entity */
+$oop.postpone($entity, 'Entity', function () {
     "use strict";
 
     var base = $oop.Base,
@@ -9,10 +9,10 @@ $oop.postpone(giant, 'Entity', function () {
     /**
      * Creates an Entity instance.
      * Entity instantiation is expected to be done via subclasses, unless there are suitable surrogates defined.
-     * @name giant.Entity.create
+     * @name $entity.Entity.create
      * @function
-     * @param {giant.EntityKey} entityKey Identifies entity.
-     * @returns {giant.Entity}
+     * @param {$entity.EntityKey} entityKey Identifies entity.
+     * @returns {$entity.Entity}
      */
 
     /**
@@ -21,16 +21,16 @@ $oop.postpone(giant, 'Entity', function () {
      * @class
      * @extends $oop.Base
      */
-    giant.Entity = self
-        .addMethods(/** @lends giant.Entity# */{
+    $entity.Entity = self
+        .addMethods(/** @lends $entity.Entity# */{
             /**
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @ignore
              */
             init: function (entityKey) {
                 /**
                  * Key that identifies the entity.
-                 * @type {giant.EntityKey}
+                 * @type {$entity.EntityKey}
                  */
                 this.entityKey = entityKey;
             },
@@ -38,7 +38,7 @@ $oop.postpone(giant, 'Entity', function () {
             /**
              * Fetches an Entity that is the current entity's parent.
              * Returns undefined by default. Subclasses need to override.
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             getParentEntity: function () {
                 return undefined;
@@ -47,7 +47,7 @@ $oop.postpone(giant, 'Entity', function () {
             /**
              * Fetches an Attribute entity for the specified attribute name.
              * @param {string} attributeName
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             getAttribute: function (attributeName) {
                 return this.entityKey.getAttributeKey(attributeName).toEntity();
@@ -59,11 +59,11 @@ $oop.postpone(giant, 'Entity', function () {
              */
             getNode: function () {
                 var entityPath = this.entityKey.getEntityPath(),
-                    entityNode = giant.entities.getNode(entityPath);
+                    entityNode = $entity.entities.getNode(entityPath);
 
                 if (typeof entityNode === 'undefined') {
                     // triggering event about absent node
-                    this.entityKey.triggerSync(giant.EVENT_ENTITY_ACCESS);
+                    this.entityKey.triggerSync($entity.EVENT_ENTITY_ACCESS);
                 }
 
                 return entityNode;
@@ -83,7 +83,7 @@ $oop.postpone(giant, 'Entity', function () {
              */
             getSilentNode: function () {
                 var entityPath = this.entityKey.getEntityPath();
-                return giant.entities.getNode(entityPath);
+                return $entity.entities.getNode(entityPath);
             },
 
             /**
@@ -96,7 +96,7 @@ $oop.postpone(giant, 'Entity', function () {
 
             /**
              * Touches entity node, triggering access event when absent, but not returning the node itself.
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             touchNode: function () {
                 this.getNode();
@@ -106,16 +106,16 @@ $oop.postpone(giant, 'Entity', function () {
             /**
              * Replaces entity node with the specified value.
              * @param {*} node
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             setNode: function (node) {
                 var entityKey = this.entityKey,
                     beforeNode = this.getSilentNode();
 
                 if (node !== beforeNode) {
-                    giant.entities.setNode(entityKey.getEntityPath(), node);
+                    $entity.entities.setNode(entityKey.getEntityPath(), node);
 
-                    entityKey.spawnEvent(giant.EVENT_ENTITY_CHANGE)
+                    entityKey.spawnEvent($entity.EVENT_ENTITY_CHANGE)
                         .setBeforeNode(beforeNode)
                         .setAfterNode(node)
                         .triggerSync();
@@ -130,7 +130,7 @@ $oop.postpone(giant, 'Entity', function () {
              * Triggering the event shallow copies the entire starting contents of the collection.
              * Do not use on large collections.
              * @param {object} node
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             appendNode: function (node) {
                 var that = this,
@@ -139,8 +139,8 @@ $oop.postpone(giant, 'Entity', function () {
                     entityNode = this.getSilentNode(),
                     beforeNode = shallowCopy(entityNode);
 
-                giant.entities.appendNode(entityPath, node, function () {
-                    entityKey.spawnEvent(giant.EVENT_ENTITY_CHANGE)
+                $entity.entities.appendNode(entityPath, node, function () {
+                    entityKey.spawnEvent($entity.EVENT_ENTITY_CHANGE)
                         .setBeforeNode(beforeNode)
                         .setAfterNode(that.getSilentNode())
                         .triggerSync();
@@ -151,7 +151,7 @@ $oop.postpone(giant, 'Entity', function () {
 
             /**
              * Removes entity node from cache.
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             unsetNode: function () {
                 var entityKey = this.entityKey,
@@ -159,9 +159,9 @@ $oop.postpone(giant, 'Entity', function () {
                     beforeNode = this.getSilentNode();
 
                 if (typeof beforeNode !== 'undefined') {
-                    giant.entities.unsetNode(entityPath);
+                    $entity.entities.unsetNode(entityPath);
 
-                    entityKey.spawnEvent(giant.EVENT_ENTITY_CHANGE)
+                    entityKey.spawnEvent($entity.EVENT_ENTITY_CHANGE)
                         .setBeforeNode(beforeNode)
                         .triggerSync();
                 }
@@ -174,7 +174,7 @@ $oop.postpone(giant, 'Entity', function () {
              * Performs shallow copy of the node, not recommended to use with large nodes,
              * eg. large collections.
              * @param {boolean} [splice] Whether to splice the parent node if it's an Array.
-             * @returns {giant.Entity}
+             * @returns {$entity.Entity}
              */
             unsetKey: function (splice) {
                 var that = this,
@@ -182,9 +182,9 @@ $oop.postpone(giant, 'Entity', function () {
                     parentNodeBefore = shallowCopy(parentEntity.getNode()),
                     entityPath = this.entityKey.getEntityPath();
 
-                giant.entities.unsetKey(entityPath, splice, function (parentPath, parentNodeAfter) {
+                $entity.entities.unsetKey(entityPath, splice, function (parentPath, parentNodeAfter) {
                     parentEntity.entityKey
-                        .spawnEvent(giant.EVENT_ENTITY_CHANGE)
+                        .spawnEvent($entity.EVENT_ENTITY_CHANGE)
                         .setBeforeNode(parentNodeBefore)
                         .setAfterNode(parentNodeAfter)
                         .triggerSync();
@@ -198,7 +198,7 @@ $oop.postpone(giant, 'Entity', function () {
 (function () {
     "use strict";
 
-    $oop.addGlobalConstants.call(giant, /** @lends giant */{
+    $oop.addGlobalConstants.call($entity, /** @lends $entity */{
         /**
          * Signals that an absent entity has been accessed.
          * TODO: Revisit after invalidation is implemented.
@@ -214,14 +214,14 @@ $oop.postpone(giant, 'Entity', function () {
     });
 }());
 
-$oop.amendPostponed(giant, 'EntityKey', function () {
+$oop.amendPostponed($entity, 'EntityKey', function () {
     "use strict";
 
-    giant.EntityKey
-        .addMethods(/** @lends giant.EntityKey */{
-            /** @returns {giant.Entity} */
+    $entity.EntityKey
+        .addMethods(/** @lends $entity.EntityKey */{
+            /** @returns {$entity.Entity} */
             toEntity: function () {
-                return giant.Entity.create(this);
+                return $entity.Entity.create(this);
             }
         });
 });

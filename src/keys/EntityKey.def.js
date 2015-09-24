@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'EntityKey', function () {
+/*global $entity */
+$oop.postpone($entity, 'EntityKey', function () {
     "use strict";
 
     var base = $oop.Base,
@@ -9,9 +9,9 @@ $oop.postpone(giant, 'EntityKey', function () {
     /**
      * Creates an EntityKey instance.
      * Do not create EntityKey instances directly, only through its subclasses.
-     * @name giant.EntityKey.create
+     * @name $entity.EntityKey.create
      * @function
-     * @returns {giant.EntityKey}
+     * @returns {$entity.EntityKey}
      */
 
     /**
@@ -22,10 +22,10 @@ $oop.postpone(giant, 'EntityKey', function () {
      * @extends $event.Evented
      * @extends $utils.Stringifiable
      */
-    giant.EntityKey = self
-        .setEventSpace(giant.entityEventSpace)
+    $entity.EntityKey = self
+        .setEventSpace($entity.entityEventSpace)
         .setEventPath('entity'.toPath())
-        .addMethods(/** @lends giant.EntityKey# */{
+        .addMethods(/** @lends $entity.EntityKey# */{
             /** @ignore */
             init: function () {
                 $event.Evented.init.call(this);
@@ -34,31 +34,31 @@ $oop.postpone(giant, 'EntityKey', function () {
             /**
              * Fetches an attribute key based on the current key as parent and the specified attribute name.
              * @param {string} attributeName
-             * @returns {giant.AttributeKey}
+             * @returns {$entity.AttributeKey}
              */
             getAttributeKey: function (attributeName) {
-                return giant.AttributeKey.create(this, attributeName);
+                return $entity.AttributeKey.create(this, attributeName);
             }
         });
 
     /**
      * Tells whether specified entity key is identical to the current one.
-     * @name giant.EntityKey#equals
+     * @name $entity.EntityKey#equals
      * @function
-     * @param {giant.EntityKey} key
+     * @param {$entity.EntityKey} key
      * @returns {boolean}
      */
 
     /**
      * Fetches a key to the document that contains the config information about the current entity.
-     * @name giant.EntityKey#getConfigKey
+     * @name $entity.EntityKey#getConfigKey
      * @function
-     * @returns {giant.DocumentKey}
+     * @returns {$entity.DocumentKey}
      */
 
     /**
      * Resolves key to a path that points to the entity node in the cache.
-     * @name giant.EntityKey#getEntityPath
+     * @name $entity.EntityKey#getEntityPath
      * @function
      * @returns {$data.Path}
      */
@@ -67,16 +67,16 @@ $oop.postpone(giant, 'EntityKey', function () {
 (function () {
     "use strict";
 
-    $assertion.addTypes(/** @lends giant */{
-        /** @param {giant.EntityKey} expr */
+    $assertion.addTypes(/** @lends $entity */{
+        /** @param {$entity.EntityKey} expr */
         isEntityKey: function (expr) {
-            return giant.EntityKey.isBaseOf(expr);
+            return $entity.EntityKey.isBaseOf(expr);
         },
 
-        /** @param {giant.EntityKey} [expr] */
+        /** @param {$entity.EntityKey} [expr] */
         isEntityKeyOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   giant.EntityKey.isBaseOf(expr);
+                   $entity.EntityKey.isBaseOf(expr);
         }
     });
 }());

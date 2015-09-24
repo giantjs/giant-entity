@@ -1,4 +1,4 @@
-/*global giant */
+/*global $entity */
 (function () {
     "use strict";
 
@@ -6,25 +6,25 @@
 
     test("Instantiation", function () {
         throws(function () {
-            giant.Field.create();
+            $entity.Field.create();
         }, "should raise exception on missing field key argument");
 
         throws(function () {
-            giant.Field.create('foo/bar/baz');
+            $entity.Field.create('foo/bar/baz');
         }, "should raise exception on invalid field key argument");
     });
 
     test("Conversion from String", function () {
         var field = 'foo/bar/baz'.toField();
 
-        ok(field.isA(giant.Field), "should return Field instance");
+        ok(field.isA($entity.Field), "should return Field instance");
         equal(field.entityKey.toString(), 'foo/bar/baz', "should set field key");
     });
 
     test("Conversion from Array", function () {
         var field = ['foo', 'bar', 'baz'].toField();
 
-        ok(field.isA(giant.Field), "should return Field instance");
+        ok(field.isA($entity.Field), "should return Field instance");
         equal(field.entityKey.toString(), 'foo/bar/baz', "should set field key");
     });
 
@@ -32,14 +32,14 @@
         var fieldKey = ['foo', 'bar', 'baz'].toFieldKey(),
             field = fieldKey.toField();
 
-        ok(field.isA(giant.Field), "should return Field instance");
+        ok(field.isA($entity.Field), "should return Field instance");
         strictEqual(field.entityKey, fieldKey, "should set field key");
     });
 
     test("Entity surrogate", function () {
-        var entity = giant.Entity.create('foo/bar/baz'.toFieldKey());
+        var entity = $entity.Entity.create('foo/bar/baz'.toFieldKey());
 
-        ok(entity.isA(giant.Field), "should return Field instance");
+        ok(entity.isA($entity.Field), "should return Field instance");
         equal(entity.entityKey.toString(), 'foo/bar/baz', "should set correct key");
     });
 
@@ -47,7 +47,7 @@
         var fieldKey = ['foo', 'bar', 'baz'].toFieldKey(),
             field = fieldKey.toEntity();
 
-        ok(field.isA(giant.Field), "should return Field instance");
+        ok(field.isA($entity.Field), "should return Field instance");
         strictEqual(field.entityKey, fieldKey, "should set field key");
     });
 
@@ -56,7 +56,7 @@
             parentEntity = field.getParentEntity(),
             fieldsEntity = field.entityKey.documentKey.toDocument().getFieldsEntity();
 
-        ok(parentEntity.isA(giant.Entity), "should return an Entity instance");
+        ok(parentEntity.isA($entity.Entity), "should return an Entity instance");
         ok(parentEntity.entityKey.equals(fieldsEntity.entityKey),
             "should return corresponding fields entity");
     });

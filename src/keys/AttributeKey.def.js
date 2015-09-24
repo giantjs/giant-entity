@@ -1,27 +1,27 @@
-/*global giant */
-$oop.postpone(giant, 'AttributeKey', function () {
+/*global $entity */
+$oop.postpone($entity, 'AttributeKey', function () {
     "use strict";
 
-    var base = giant.EntityKey,
+    var base = $entity.EntityKey,
         self = base.extend();
 
     /**
-     * @name giant.AttributeKey.create
+     * @name $entity.AttributeKey.create
      * @function
-     * @param {giant.EntityKey} parentKey Identifies the entity the attribute belongs to.
+     * @param {$entity.EntityKey} parentKey Identifies the entity the attribute belongs to.
      * @param {string} attributeName Identifies the attribute relative to the parent entity.
-     * @returns {giant.AttributeKey}
+     * @returns {$entity.AttributeKey}
      */
 
     /**
      * @class
-     * @extends giant.EntityKey
+     * @extends $entity.EntityKey
      */
-    giant.AttributeKey = self
+    $entity.AttributeKey = self
         .setEventPath(['document'].toPath().prepend(base.eventPath))
-        .addMethods(/** @lends giant.AttributeKey# */{
+        .addMethods(/** @lends $entity.AttributeKey# */{
             /**
-             * @param {giant.EntityKey} parentKey
+             * @param {$entity.EntityKey} parentKey
              * @param {string} attributeName
              * @ignore
              */
@@ -29,7 +29,7 @@ $oop.postpone(giant, 'AttributeKey', function () {
                 base.init.call(this);
 
                 /**
-                 * @type {giant.EntityKey}
+                 * @type {$entity.EntityKey}
                  */
                 this.parentKey = parentKey;
 
@@ -43,7 +43,7 @@ $oop.postpone(giant, 'AttributeKey', function () {
 
             /**
              * Tells whether the specified `AttributeKey` instance is equivalent to the current one.
-             * @param {giant.AttributeKey} attributeKey
+             * @param {$entity.AttributeKey} attributeKey
              * @returns {boolean}
              */
             equals: function (attributeKey) {
@@ -65,16 +65,16 @@ $oop.postpone(giant, 'AttributeKey', function () {
 (function () {
     "use strict";
 
-    $assertion.addTypes(/** @lends giant */{
-        /** @param {giant.AttributeKey} expr */
+    $assertion.addTypes(/** @lends $entity */{
+        /** @param {$entity.AttributeKey} expr */
         isAttributeKey: function (expr) {
-            return giant.AttributeKey.isBaseOf(expr);
+            return $entity.AttributeKey.isBaseOf(expr);
         },
 
-        /** @param {giant.AttributeKey} [expr] */
+        /** @param {$entity.AttributeKey} [expr] */
         isAttributeKeyOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                giant.AttributeKey.isBaseOf(expr);
+                $entity.AttributeKey.isBaseOf(expr);
         }
     });
 }());

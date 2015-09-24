@@ -1,4 +1,4 @@
-/*global giant */
+/*global $entity */
 (function () {
     "use strict";
 
@@ -8,29 +8,29 @@
         var collection,
             testedField;
 
-        giant.FieldKey.addMocks({
+        $entity.FieldKey.addMocks({
             getFieldType: function () {
                 testedField = this.toString();
                 return 'ordered-collection';
             }
         });
 
-        collection = giant.Field.create('foo/bar/baz'.toFieldKey());
+        collection = $entity.Field.create('foo/bar/baz'.toFieldKey());
 
-        giant.FieldKey.removeMocks();
+        $entity.FieldKey.removeMocks();
 
         equal(testedField, 'foo/bar/baz', "should test field type");
-        ok(collection.isA(giant.OrderedCollectionField),
+        ok(collection.isA($entity.OrderedCollectionField),
             "should return OrderedCollectionField instance when field type is 'ordered-collection'");
     });
 
     test("Item order getter", function () {
         expect(4);
 
-        var orderedCollection = giant.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
+        var orderedCollection = $entity.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
             orderNode = {};
 
-        giant.Item.addMocks({
+        $entity.Item.addMocks({
             getAttribute: function (attribute) {
                 equal(this.entityKey.toString(), 'foo/bar/baz/hello', "should fetch attribute for specified item");
                 ok(attribute, 'order', "should attempt to fetch order attribute");
@@ -45,13 +45,13 @@
 
         strictEqual(orderedCollection.getItemOrder('hello'), orderNode, "should return order node");
 
-        giant.Item.removeMocks();
+        $entity.Item.removeMocks();
     });
 
     test("Item key getter by order", function () {
         expect(5);
 
-        var orderedCollection = giant.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
+        var orderedCollection = $entity.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
             itemsNode = {
                 a: 3,
                 b: 1,
@@ -75,7 +75,7 @@
 
         itemKey = orderedCollection.getItemKeyByOrder(2);
 
-        ok(itemKey.isA(giant.ItemKey), "should return ItemKey instance");
+        ok(itemKey.isA($entity.ItemKey), "should return ItemKey instance");
         strictEqual(itemKey.toString(), 'foo/bar/baz/d',
             "should return ItemKey matching the specified order");
     });
@@ -83,7 +83,7 @@
     test("Item getter by order", function () {
         expect(5);
 
-        var orderedCollection = giant.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
+        var orderedCollection = $entity.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
             itemsNode = {
                 a: 3,
                 b: 1,
@@ -107,13 +107,13 @@
 
         item = orderedCollection.getItemByOrder(2);
 
-        ok(item.isA(giant.Item), "should return Item instance");
+        ok(item.isA($entity.Item), "should return Item instance");
         strictEqual(item.entityKey.toString(), 'foo/bar/baz/d',
             "should return item with ItemKey matching the specified order");
     });
 
     test("Max order getter", function () {
-        var orderedCollection = giant.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
+        var orderedCollection = $entity.OrderedCollectionField.create('foo/bar/baz'.toFieldKey()),
             itemsNode = {
                 A: 2,
                 B: 12,

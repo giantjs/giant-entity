@@ -1,5 +1,5 @@
-/*global giant */
-$oop.postpone(giant, 'EntityChangeEvent', function () {
+/*global $entity */
+$oop.postpone($entity, 'EntityChangeEvent', function () {
     "use strict";
 
     var base = $event.Event,
@@ -7,19 +7,19 @@ $oop.postpone(giant, 'EntityChangeEvent', function () {
 
     /**
      * Instantiates class.
-     * @name giant.EntityChangeEvent.create
+     * @name $entity.EntityChangeEvent.create
      * @param {string} eventName Event name
      * @param {$event.EventSpace} eventSpace Event space associated with event
      * @function
-     * @returns {giant.EntityChangeEvent}
+     * @returns {$entity.EntityChangeEvent}
      */
 
     /**
      * @class
      * @extends $event.Event
      */
-    giant.EntityChangeEvent = self
-        .addMethods(/** @lends giant.EntityChangeEvent# */{
+    $entity.EntityChangeEvent = self
+        .addMethods(/** @lends $entity.EntityChangeEvent# */{
             /**
              * @param {string} eventName
              * @param {$event.EventSpace} eventSpace
@@ -42,7 +42,7 @@ $oop.postpone(giant, 'EntityChangeEvent', function () {
 
                 /**
                  * Identifies the node that changed if it is different from the observed key.
-                 * @type {giant.EntityKey}
+                 * @type {$entity.EntityKey}
                  */
                 this.affectedKey = undefined;
             },
@@ -61,7 +61,7 @@ $oop.postpone(giant, 'EntityChangeEvent', function () {
             /**
              * Sets event load before the change.
              * @param {*} value
-             * @returns {giant.EntityChangeEvent}
+             * @returns {$entity.EntityChangeEvent}
              */
             setBeforeNode: function (value) {
                 this.beforeNode = value;
@@ -71,7 +71,7 @@ $oop.postpone(giant, 'EntityChangeEvent', function () {
             /**
              * Sets event load after the change.
              * @param {*} value
-             * @returns {giant.EntityChangeEvent}
+             * @returns {$entity.EntityChangeEvent}
              */
             setAfterNode: function (value) {
                 this.afterNode = value;
@@ -80,8 +80,8 @@ $oop.postpone(giant, 'EntityChangeEvent', function () {
 
             /**
              * Sets key identifying changed node.
-             * @param {giant.EntityKey} affectedKey
-             * @returns {giant.EntityChangeEvent}
+             * @param {$entity.EntityKey} affectedKey
+             * @returns {$entity.EntityChangeEvent}
              */
             setAffectedKey: function (affectedKey) {
                 this.affectedKey = affectedKey;
@@ -111,7 +111,7 @@ $oop.postpone(giant, 'EntityChangeEvent', function () {
 $oop.amendPostponed($event, 'Event', function () {
     "use strict";
 
-    $event.Event.addSurrogate(giant, 'EntityChangeEvent', function (eventName) {
+    $event.Event.addSurrogate($entity, 'EntityChangeEvent', function (eventName) {
         var prefix = 'entity.change';
         return eventName.substr(0, prefix.length) === prefix;
     });
@@ -120,20 +120,20 @@ $oop.amendPostponed($event, 'Event', function () {
 (function () {
     "use strict";
 
-    $assertion.addTypes(/** @lends giant */{
+    $assertion.addTypes(/** @lends $entity */{
         /**
-         * @param {giant.EntityChangeEvent} expr
+         * @param {$entity.EntityChangeEvent} expr
          */
         isEntityChangeEvent: function (expr) {
-            return giant.EntityChangeEvent.isBaseOf(expr);
+            return $entity.EntityChangeEvent.isBaseOf(expr);
         },
 
         /**
-         * @param {giant.EntityChangeEvent} expr
+         * @param {$entity.EntityChangeEvent} expr
          */
         isEntityChangeEventOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                   giant.EntityChangeEvent.isBaseOf(expr);
+                   $entity.EntityChangeEvent.isBaseOf(expr);
         }
     });
 }());

@@ -1,26 +1,26 @@
-/*global giant */
-$oop.postpone(giant, 'DelegateHandlerSpawner', function () {
+/*global $entity */
+$oop.postpone($entity, 'DelegateHandlerSpawner', function () {
     "use strict";
 
-    var base = giant.HandlerSpawner,
+    var base = $entity.HandlerSpawner,
         self = base.extend();
 
     /**
-     * @name giant.DelegateHandlerSpawner.create
+     * @name $entity.DelegateHandlerSpawner.create
      * @function
-     * @returns {giant.DelegateHandlerSpawner}
+     * @returns {$entity.DelegateHandlerSpawner}
      */
 
     /**
      * @class
-     * @extends giant.HandlerSpawner
+     * @extends $entity.HandlerSpawner
      */
-    giant.DelegateHandlerSpawner = self
-        .addMethods(/** @lends giant.DelegateHandlerSpawner# */{
+    $entity.DelegateHandlerSpawner = self
+        .addMethods(/** @lends $entity.DelegateHandlerSpawner# */{
             /**
-             * @param {giant.EntityBound} instance
+             * @param {$entity.EntityBound} instance
              * @param {string} methodName
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @returns {Function}
              */
             spawnHandler: function (instance, methodName, entityKey) {
@@ -42,7 +42,7 @@ $oop.postpone(giant, 'DelegateHandlerSpawner', function () {
                         beforeNode = $data.Tree.create()
                             .setNode(affectedPath, event.beforeNode)
                             .getNode(entityPath);
-                        afterNode = giant.entities.getNode(entityPath);
+                        afterNode = $entity.entities.getNode(entityPath);
 
                         if (beforeNode !== afterNode) {
                             // entity has changed
@@ -61,11 +61,11 @@ $oop.postpone(giant, 'DelegateHandlerSpawner', function () {
         });
 });
 
-$oop.amendPostponed(giant, 'HandlerSpawner', function () {
+$oop.amendPostponed($entity, 'HandlerSpawner', function () {
     "use strict";
 
-    giant.HandlerSpawner
-        .addSurrogate(giant, 'DelegateHandlerSpawner', function (bindingType) {
+    $entity.HandlerSpawner
+        .addSurrogate($entity, 'DelegateHandlerSpawner', function (bindingType) {
             return bindingType === 'delegate';
         });
 });

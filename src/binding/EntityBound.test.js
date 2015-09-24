@@ -1,14 +1,14 @@
-/*global giant */
+/*global $entity */
 (function () {
     "use strict";
 
     module("EntityBound");
 
     var EntityBound = $oop.Base.extend()
-        .addTrait(giant.EntityBound)
+        .addTrait($entity.EntityBound)
         .addMethods({
             init: function () {
-                giant.EntityBound.init.call(this);
+                $entity.EntityBound.init.call(this);
             },
 
             onEntityEvent: function () {}

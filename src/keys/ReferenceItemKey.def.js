@@ -1,31 +1,31 @@
-/*global giant */
-$oop.postpone(giant, 'ReferenceItemKey', function () {
+/*global $entity */
+$oop.postpone($entity, 'ReferenceItemKey', function () {
     "use strict";
 
-    var base = giant.ItemKey,
+    var base = $entity.ItemKey,
         self = base.extend();
 
     /**
      * Creates ReferenceItemKey instance.
      * ReferenceItemKey instances may also be created via conversion from string or array,
      * as well as instantiating `ItemKey` with suitable arguments.
-     * @name giant.ReferenceItemKey.create
+     * @name $entity.ReferenceItemKey.create
      * @function
      * @param {string} documentType Identifies type of document the current item belongs to.
      * @param {string} documentId Identifies the document (within document type) the current item belongs to.
      * @param {string} fieldName Identifies field (within document) the current item belongs to.
      * @param {string} ref Serialized `DocumentKey` identifying the referred document.
-     * @returns {giant.ReferenceItemKey}
+     * @returns {$entity.ReferenceItemKey}
      */
 
     /**
      * The ReferenceItemKey identifies an item node in the cache, the item ID of which is a document reference
      * (serialized `DocumentKey`).
      * @class
-     * @extends giant.ItemKey
+     * @extends $entity.ItemKey
      */
-    giant.ReferenceItemKey = self
-        .addMethods(/** @lends giant.ReferenceItemKey# */{
+    $entity.ReferenceItemKey = self
+        .addMethods(/** @lends $entity.ReferenceItemKey# */{
             /**
              * @param {string} documentType
              * @param {string} documentId
@@ -38,18 +38,18 @@ $oop.postpone(giant, 'ReferenceItemKey', function () {
 
                 /**
                  * Key referenced by item ID.
-                 * @type {giant.DocumentKey}
+                 * @type {$entity.DocumentKey}
                  */
                 this.referenceKey = ref.toDocumentKey();
             }
         });
 });
 
-$oop.amendPostponed(giant, 'ItemKey', function () {
+$oop.amendPostponed($entity, 'ItemKey', function () {
     "use strict";
 
-    giant.ItemKey
-        .addSurrogate(giant, 'ReferenceItemKey', function (documentType, documentId, fieldName, itemId) {
+    $entity.ItemKey
+        .addSurrogate($entity, 'ReferenceItemKey', function (documentType, documentId, fieldName, itemId) {
             return itemId && itemId.toDocumentKey();
         });
 });
@@ -57,23 +57,23 @@ $oop.amendPostponed(giant, 'ItemKey', function () {
 (function () {
     "use strict";
 
-    $assertion.addTypes(/** @lends giant */{
-        /** @param {giant.ReferenceItemKey} expr */
+    $assertion.addTypes(/** @lends $entity */{
+        /** @param {$entity.ReferenceItemKey} expr */
         isReferenceItemKey: function (expr) {
-            return giant.ReferenceItemKey.isBaseOf(expr);
+            return $entity.ReferenceItemKey.isBaseOf(expr);
         },
 
-        /** @param {giant.ReferenceItemKey} [expr] */
+        /** @param {$entity.ReferenceItemKey} [expr] */
         isReferenceItemKeyOptional: function (expr) {
             return typeof expr === 'undefined' ||
-                giant.ReferenceItemKey.isBaseOf(expr);
+                $entity.ReferenceItemKey.isBaseOf(expr);
         }
     });
 
     $oop.extendBuiltIn(String.prototype, /** @lends String# */{
         /**
          * Converts `String` to a `ReferenceItemKey` instance. Assumes the string to be a serialized `ReferenceItemKey`.
-         * @returns {giant.ReferenceItemKey}
+         * @returns {$entity.ReferenceItemKey}
          */
         toReferenceItemKey: function () {
             var StringUtils = $utils.StringUtils,
@@ -93,7 +93,7 @@ $oop.amendPostponed(giant, 'ItemKey', function () {
             }
 
             return unescapedItemId && unescapedItemId.toDocumentKey() ?
-                giant.ReferenceItemKey.create(
+                $entity.ReferenceItemKey.create(
                     StringUtils.unescapeChars(documentType, '/'),
                     StringUtils.unescapeChars(documentId, '/'),
                     StringUtils.unescapeChars(fieldName, '/'),
@@ -106,7 +106,7 @@ $oop.amendPostponed(giant, 'ItemKey', function () {
         /**
          * Converts `Array` (of strings) to a `ReferenceItemKey` instance.
          * Assumes the array to be a reference item key in array notation.
-         * @returns {giant.ReferenceItemKey}
+         * @returns {$entity.ReferenceItemKey}
          */
         toReferenceItemKey: function () {
             var documentType = this[0],
@@ -119,7 +119,7 @@ $oop.amendPostponed(giant, 'ItemKey', function () {
                 typeof fieldName !== 'undefined' &&
                 typeof itemId !== 'undefined' &&
                 itemId.toDocumentKey() ?
-                giant.ReferenceItemKey.create(documentType, documentId, fieldName, itemId) :
+                $entity.ReferenceItemKey.create(documentType, documentId, fieldName, itemId) :
                 undefined;
         }
     });

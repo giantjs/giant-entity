@@ -1,5 +1,5 @@
-/*global giant, flock */
-$oop.postpone(giant, 'EntityBound', function () {
+/*global $entity, flock */
+$oop.postpone($entity, 'EntityBound', function () {
     "use strict";
 
     /**
@@ -7,11 +7,11 @@ $oop.postpone(giant, 'EntityBound', function () {
      * @class
      * @extends $oop.Base
      */
-    giant.EntityBound = $oop.Base.extend()
-        .addPrivateMethods(/** @lends giant.EntityBound# */{
+    $entity.EntityBound = $oop.Base.extend()
+        .addPrivateMethods(/** @lends $entity.EntityBound# */{
             /**
-             * @param {giant.EntityKey} targetKey
-             * @param {giant.EntityKey} captureKey
+             * @param {$entity.EntityKey} targetKey
+             * @param {$entity.EntityKey} captureKey
              * @param {string} eventName
              * @param {string} methodName
              * @param {string} bindingType
@@ -24,7 +24,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                     handler;
 
                 if (!bindingInfo) {
-                    handler = giant.HandlerSpawner.create(bindingType)
+                    handler = $entity.HandlerSpawner.create(bindingType)
                         .spawnHandler(this, methodName, targetKey);
                     captureKey.subscribeTo(eventName, handler);
                     entityBindings.setNode(bindingPath, {
@@ -39,8 +39,8 @@ $oop.postpone(giant, 'EntityBound', function () {
             },
 
             /**
-             * @param {giant.EntityKey} targetKey
-             * @param {giant.EntityKey} captureKey
+             * @param {$entity.EntityKey} targetKey
+             * @param {$entity.EntityKey} captureKey
              * @param {string} eventName
              * @param {string} methodName
              * @param {string} bindingType
@@ -59,7 +59,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 }
             }
         })
-        .addMethods(/** @lends giant.EntityBound# */{
+        .addMethods(/** @lends $entity.EntityBound# */{
             /** Call from host class .init(). */
             init: function () {
                 /** @type {$data.Tree} */
@@ -68,10 +68,10 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered on the specified custom event passing through the entity.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} eventName
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             bindToEntityContent: function (entityKey, eventName, methodName) {
                 $assertion
@@ -86,10 +86,10 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from the specified custom event passing through the entity.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} eventName
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             unbindFromEntityContent: function (entityKey, eventName, methodName) {
                 $assertion
@@ -104,10 +104,10 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered on the specified custom event is triggered on the specified entity.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} eventName
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             bindToEntity: function (entityKey, eventName, methodName) {
                 $assertion
@@ -122,10 +122,10 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from the specified custom event triggered on the specified entity.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} eventName
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             unbindFromEntity: function (entityKey, eventName, methodName) {
                 $assertion
@@ -140,9 +140,9 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered on any access event passing through the entity.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             bindToEntityContentAccess: function (entityKey, methodName) {
                 $assertion
@@ -152,7 +152,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    giant.EVENT_ENTITY_ACCESS,
+                    $entity.EVENT_ENTITY_ACCESS,
                     methodName,
                     'content');
 
@@ -161,9 +161,9 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from access events passing through the entity.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             unbindFromEntityContentAccess: function (entityKey, methodName) {
                 $assertion
@@ -173,7 +173,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    giant.EVENT_ENTITY_ACCESS,
+                    $entity.EVENT_ENTITY_ACCESS,
                     methodName,
                     'content');
 
@@ -182,9 +182,9 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered when the specified entity is accessed.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             bindToEntityAccess: function (entityKey, methodName) {
                 $assertion
@@ -194,7 +194,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    giant.EVENT_ENTITY_ACCESS,
+                    $entity.EVENT_ENTITY_ACCESS,
                     methodName,
                     'strict');
 
@@ -203,9 +203,9 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from access events triggered on the specified entity.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             unbindFromEntityAccess: function (entityKey, methodName) {
                 $assertion
@@ -215,7 +215,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    giant.EVENT_ENTITY_ACCESS,
+                    $entity.EVENT_ENTITY_ACCESS,
                     methodName,
                     'strict');
 
@@ -224,9 +224,9 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered on any change event passing through the entity.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             bindToEntityContentChange: function (entityKey, methodName) {
                 $assertion
@@ -236,7 +236,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    giant.EVENT_ENTITY_CHANGE,
+                    $entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'content');
 
@@ -245,9 +245,9 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from change events passing through the entity.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             unbindFromEntityContentChange: function (entityKey, methodName) {
                 $assertion
@@ -257,7 +257,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    giant.EVENT_ENTITY_CHANGE,
+                    $entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'content');
 
@@ -266,9 +266,9 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Subscribes method to be triggered only when specified entity is replaced.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             bindToEntityChange: function (entityKey, methodName) {
                 $assertion
@@ -278,7 +278,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 this._bindToEntity(
                     entityKey,
                     entityKey,
-                    giant.EVENT_ENTITY_CHANGE,
+                    $entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'strict');
 
@@ -287,9 +287,9 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from change events triggered on the specified entity.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             unbindFromEntityChange: function (entityKey, methodName) {
                 $assertion
@@ -299,7 +299,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 this._unbindFromEntity(
                     entityKey,
                     entityKey,
-                    giant.EVENT_ENTITY_CHANGE,
+                    $entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'strict');
 
@@ -309,9 +309,9 @@ $oop.postpone(giant, 'EntityBound', function () {
             /**
              * Subscribes method to be triggered when the specified entity or any of its parents change.
              * Adds `affectedKey` payload / property to event.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             bindToDelegatedEntityChange: function (entityKey, methodName) {
                 $assertion
@@ -321,7 +321,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 this._bindToEntity(
                     entityKey,
                     entityKey.documentKey,
-                    giant.EVENT_ENTITY_CHANGE,
+                    $entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'delegate');
 
@@ -330,9 +330,9 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Unsubscribes method from delegated changes.
-             * @param {giant.EntityKey} entityKey
+             * @param {$entity.EntityKey} entityKey
              * @param {string} methodName
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             unbindFromDelegatedEntityChange: function (entityKey, methodName) {
                 $assertion
@@ -342,7 +342,7 @@ $oop.postpone(giant, 'EntityBound', function () {
                 this._unbindFromEntity(
                     entityKey,
                     entityKey.documentKey,
-                    giant.EVENT_ENTITY_CHANGE,
+                    $entity.EVENT_ENTITY_CHANGE,
                     methodName,
                     'delegate');
 
@@ -351,7 +351,7 @@ $oop.postpone(giant, 'EntityBound', function () {
 
             /**
              * Removes and unsubscribes all bindings associated with the current instance.
-             * @returns {giant.EntityBound}
+             * @returns {$entity.EntityBound}
              */
             unbindAll: function () {
                 var that = this;
