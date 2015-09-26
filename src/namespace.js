@@ -4,22 +4,22 @@
 var $entity = {};
 
 /** @namespace */
-var $assertion = $assertion || require('$entity-assertion');
+var $assertion = $assertion || require('giant-assertion');
 
 /** @namespace */
-var $oop = $oop || require('$entity-oop');
+var $oop = $oop || require('giant-oop');
 
 /** @namespace */
-var $utils = $utils || require('$entity-utils');
+var $utils = $utils || require('giant-utils');
 
 /** @namespace */
-var $data = $data || require('$entity-data');
+var $data = $data || require('giant-data');
 
 /** @namespace */
-var $event = $event || require('$entity-event');
+var $event = $event || require('giant-event');
 
 if (typeof require === 'function') {
-    require('$entity-templating');
+    require('giant-templating');
 }
 
 /**
