@@ -1,4 +1,3 @@
-/*global $entity */
 (function () {
     "use strict";
 

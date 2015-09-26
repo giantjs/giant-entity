@@ -1,4 +1,3 @@
-/*global $entity */
 $oop.postpone($entity, 'ReferenceItemKey', function () {
     "use strict";
 

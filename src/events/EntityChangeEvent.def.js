@@ -1,4 +1,3 @@
-/*global $entity */
 $oop.postpone($entity, 'EntityChangeEvent', function () {
     "use strict";
 

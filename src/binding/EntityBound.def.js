@@ -1,4 +1,3 @@
-/*global $entity, flock */
 $oop.postpone($entity, 'EntityBound', function () {
     "use strict";
 

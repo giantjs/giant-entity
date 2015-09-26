@@ -1,4 +1,3 @@
-/*global $entity */
 $oop.postpone($entity, 'DocumentKey', function () {
     "use strict";
 
