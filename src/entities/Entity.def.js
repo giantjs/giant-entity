@@ -176,9 +176,8 @@ $oop.postpone($entity, 'Entity', function () {
              * @returns {$entity.Entity}
              */
             unsetKey: function (splice) {
-                var that = this,
-                    parentEntity = this.getParentEntity(),
-                    parentNodeBefore = shallowCopy(parentEntity.getNode()),
+                var parentEntity = this.getParentEntity(),
+                    parentNodeBefore = shallowCopy(parentEntity.getSilentNode()),
                     entityPath = this.entityKey.getEntityPath();
 
                 $entity.entities.unsetKey(entityPath, splice, function (parentPath, parentNodeAfter) {
